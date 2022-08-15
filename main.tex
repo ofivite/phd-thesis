@@ -1,0 +1,230 @@
+\documentclass[a4paper,12pt,twoside]{book}
+
+%for appendicies
+\usepackage[titletoc]{appendix}
+
+% to check unused references
+%\usepackage{refcheck}
+\usepackage{slashed}
+\usepackage{setspace}
+% additional packages
+%\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[ngerman,english]{babel}
+%\usepackage{subfigure}
+\usepackage{subfig}
+\usepackage{epigraph}
+\usepackage{multirow}
+\usepackage{amssymb}
+\usepackage{rotating}
+\usepackage{wrapfig}
+\usepackage{gensymb}
+\usepackage{amsmath}
+\usepackage[makeroom]{cancel}
+\usepackage[bottom]{footmisc}
+%to allign text vertically in table cells
+\usepackage{pdflscape}
+\usepackage{diagbox}
+\usepackage{array}
+\usepackage{makecell}
+%xcolor MUST be loaded BEFORE the footnote, otherwise they conflict
+\usepackage{footnote}
+\usepackage{float}
+\usepackage{amssymb}
+\usepackage[percent]{overpic}
+%\usepackage{hepunits}
+\usepackage{xspace}
+\usepackage{cite}
+%to include txt files (HERAFITTER steering files)
+\usepackage{verbatim}
+\usepackage[retain-explicit-plus]{siunitx}
+\usepackage{lineno}
+%\linenumbers % numbering the lines 
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{cleveref}
+
+\crefname{figure}{Figure}{Figures}
+\crefname{table}{Table}{Tables}
+\usepackage{comment} %Added by Andrea, useful when correcting to keep text in tex file and exclude from pdf
+\usepackage{lipsum}                     % Dummytext
+\usepackage{xargs}                      % Use more than one optional parameter in a new commands
+\usepackage[pdftex,dvipsnames]{xcolor}  % Coloured text etc.
+% To make a special notes
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\newcommandx{\unsure}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
+\newcommandx{\change}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+\newcommandx{\info}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+\newcommandx{\improvement}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
+\newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
+\newcommandx{\reminder}[2][1=]{\todo[linecolor=red,backgroundcolor=OliveGreen!25,bordercolor=red,#1]{#2}}
+
+\usepackage{physics}
+\usepackage[rightcaption]{sidecap}
+
+\usepackage{calrsfs}
+\DeclareMathAlphabet{\pazocal}{OMS}{zplm}{m}{n}
+
+% To make nice first letter for the chapters:
+\usepackage{lettrine}
+\usepackage{type1cm}
+\LettrineRealHeighttrue
+\newcommand{\colorlettrine}[2]{\lettrine[realheight=true]{\color{blue}\textbf{#1}}{#2}}
+
+%to make feynman diagrams
+
+%add top left logo
+%\usepackage{eso-pic}% http://ctan.org/pkg/eso-pic
+%\usepackage{graphicx}% http://ctan.org/pkg/graphicx
+\usepackage{xcolor}
+
+% page settings
+\textwidth=16cm
+\oddsidemargin=5mm
+\evensidemargin=-5mm
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+% \fancyhead[LE,RO]{\leftmark}
+\fancyhead[RE,LO]{\leftmark}
+
+% include the file with command definitions
+\input{defs.tex}
+
+% for the Feynman diagrams
+\usepackage{feynmp}
+
+
+% %Define DESY-orange
+% \definecolor{DESYOrange}{HTML}{ed9a02}
+% % Nice chapter style
+% \usepackage[Lenny]{fncychap}
+% \ChNameUpperCase
+% \ChNumVar{\fontsize{60}{62}\usefont{OT1}{ptm}{m}{n}\selectfont\textcolor{DESYOrange}}
+% \ChTitleVar{\Huge\bfseries}
+
+% Chapter style
+\usepackage{titlesec, blindtext, color}
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{20pt}}
+\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
+
+%\usepackage[nouppercase]{scrpage2}
+%Appendix pdf proceedings
+\usepackage{pdfpages}
+
+% distance between parahraph breaks 
+\setlength{\parskip}{.8em} 
+\parindent=15pt
+
+% quotation marks
+\usepackage{csquotes}
+
+% links in bibliography
+\usepackage{hyperref}
+\usepackage{url}
+
+% ref enumerate items
+\usepackage{enumitem}
+
+% math 
+\usepackage{bm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%% body of the document
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+\makeatletter
+\renewcommand{\@evenhead}{{\vbox{\hbox to\textwidth{\normalfont\slshape\thepage \hfil \strut \leftmark}\hrule}}}
+\renewcommand{\@oddhead}{{\vbox{\hbox to\textwidth{\normalfont\slshape\rightmark \hfil \strut \thepage}\hrule}}}
+%for bold hlines:
+\def\hlinewd#1{%
+\noalign{\ifnum0=`}\fi\hrule \@height #1 %
+\futurelet\reserved@a\@xhline} 
+\makeatother
+\newcommand{\sepspace}{\vspace*{1em}}
+
+% %\pagestyle{scrheadings}
+% \makeatletter
+% \newcommand{\insertheaderrule}{\rlap{\rule[-.1\normalbaselineskip]{\textwidth}{.4pt}}}
+% \let\old@evenhead\@evenhead \let\old@oddhead\@oddhead
+% \def\@evenhead{\insertheaderrule\old@evenhead}% Prepend \insertheaderrule
+% \def\@oddhead{\insertheaderrule\old@oddhead}% Prepend \insertheaderrule
+% \makeatother
+
+\frontmatter
+
+% front matters
+\input{include/title.tex}
+\newpage
+\thispagestyle{empty}
+\mbox{}
+%back of the title
+%\input{include/title_back.tex}
+\clearpage
+% dedication
+%\input{include/dedication.tex}
+
+% abstract
+\input{include/abstract.tex}
+%\clearpage
+% abstract - German version
+\input{include/abstract_german}
+\clearpage
+
+%dedication
+
+
+%\input{Articles/articles.tex}
+%\input{02_Epigraph/epigraph.tex}
+
+%This is commented out to have page numbers on outer side of the page
+%\newpage
+%\thispagestyle{empty}
+%\mbox{}	
+
+
+% reset numbering for the table of contents
+\clearpage
+\pagenumbering{roman}
+
+% table of contents
+\tableofcontents
+
+%\input{conclusion.tex}
+%\newpage
+%\thispagestyle{empty}
+%\mbox{}
+
+% reset the numbering for the main text
+%\clearpage
+%\pagenumbering{arabic}
+
+% main text
+\mainmatter
+
+\pagestyle{fancy}
+\input{include/Introduction.tex}
+\input{include/Tau.tex}
+%\nocite{*}
+ %bibliography
+% \bibliographystyle{JHEPLibov}
+\bibliographystyle{JHEP}
+\bibliography{bibliography}
+
+\newpage
+\thispagestyle{empty}`
+\mbox{}
+
+
+\input{include/Acknowledgment}
+
+
+\end{document}

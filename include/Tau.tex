@@ -1,0 +1,195 @@
+\chapter{Tau lepton}
+The tau lepton, being one of the three discovered charged leptons in the Standard Model, plays a crucial role in improving the understanding of matter at the most fundamental level. For example, in the context of the minimal supersymmetric extension of the SM (MSSM) \cite{Fayet:1974pd, Fayet:1977yc}, there is a special interest in searches for neutral and charged Higgs bosons decaying into a pair of tau leptons \cite{CMS:2022goy}. Furthermore, in the light of testing the Lepton Flavour Universality (LFU) \cite{HFLAV:2022pwe} where the tensions with the SM predictions are observed \cite{Cheaib:2022ral, LHCb:2021trn}, directly searching for the Lepton Flavour Violation (LFV) processes in, e.g. $\tau \to 3\mu$ \cite{CMS:2020kwy} or $\tau \to \mu + \gamma$  \cite{Konno:2020tmf}, could shed the light on the yet unresolved mystery of LFU.
+
+The precision of such analyses heavily relies on the ability in a given experiment to accurately reconstruct and separate tau leptons from other background processes. However, the tau lepton stands out from other leptons in its properties, which poses several challenges in this endeavour. Therefore, this Chapter will take an experimentalist’s perspective and will describe, with a particular emphasis on the CMS experiment, challenges and achievements accomplished so far in the tau lepton reconstruction and identification.
+
+The Chapter is organised as follows. In Section \ref{tau-intro} a brief overview of the tau lepton’s history and its properties measured to this date is given. Section \ref{hps} introduces methods to reconstruct tau leptons in the CMS experiment, in particular a hadron-plus-strip (HPS) algorithm built on top of the Particle Flow (PF) algorithm, described in Section \ref{pf}. After the reconstruction of tau lepton candidates, an identification step has to be performed to categorise whether a given candidate originates from a genuine tau or a jet/lepton faking tau. An algorithm named DeepTau had been developed for that purpose and its details -- including the recent improvement in the context of the Run 3 data taking -- will be described in Sections \ref{deeptau1} and \ref{deeptau5}. However, the algorithm has several intrinsic limitations in its design, and ongoing efforts to overcome them with new models will be detailed in Section \ref{tat}.
+
+\section{Discovery \& Properties} \label{tau-intro}
+
+The tau lepton was observed for the first time in the Mark I experiment at the SPEAR $e^+e^-$ storage ring at the Stanford Linear Accelerator Center (SLAC) in 1974 by Martin L. Perl et al. \cite{Perl:1975bf}. Fundamentally, the motivation \cite{Perl:1992ad} behind the analysis was to solve  an \enquote{electron-muon} problem, which manifests itself in two questions \cite{Perl:1996dk}:
+\begin{itemize}
+    \item Why is the muon 206.8 times heavier than electron?
+    \item Why doesn’t the muon decay through the process $\mu \to e + \gamma$?
+\end{itemize}
+
+One of the ideas to understand this difference was to change the perspective and search for additional heavy leptons, which, in case of their existence, could help to gain insights into the initial problem. The theoretical framework to search for such leptons was a sequential heavy lepton model due to its elegance, symmetry and simplicity \cite{Perl:past_future}. The minimalistic and main assumption it makes is the existence of pairs ($L_\alpha  \longleftrightarrow \nu_\alpha$) of charged leptons and associated neutrinos with the lepton masses larger than those of the electron and the muon. 
+
+Additionally, the sequential heavy lepton model builds upon the concept of the lepton conservation. In the original formulation, it postulates that electron and muon each possess a unique property not possessed by other particle, a lepton family number, meaning that electron $e^-$ and its associated neutrino $\nu_e$ are assigned a lepton number $n_e = +1$, $\mu^-$ and $\nu_\mu$ receive a number $n_\mu = +1$ and antiparticles have the corresponding number negative. This lepton number should be preserved in reactions separately for each of the lepton family.
+
+Assuming the lepton family conservation, the sequential heavy lepton model expands this principle to other lepton families with higher masses.  From these principles it follows that given a high enough mass of the heavy charged lepton $L^-$, there should exist the following decays:
+\begin{enumerate}[label=D\arabic*]
+    \item \label{Ltoe} $L^- \to e^- \bar{\nu_e} \nu_L $ 
+    \item \label{Ltomu} $L^- \to \mu^- \bar{\nu_\mu} \nu_L $
+    \item $L^- \to \pi^- \nu_L $
+    \item $L^- \to \pi^-\pi^+\pi^- \nu_L $
+\end{enumerate}
+where the former two are exactly analogous to the corresponding decay of the muon into electron and two neutrinos via the weak interaction.
+
+After making an additional ansatz that heavy charged leptons can be produced similarly to electrons and muons in reactions $e^+e^- \to L^+L^-$ ,  Martin L. Perl et al. proposed an elegant idea to search for them in this production mode by looking into a process where one $L$ would decay via \ref{Ltoe} and the other via \ref{Ltomu}. Such an unusual final state consisting of $e^\pm$ and $\mu^\mp$ of opposite charge and a missing energy due to neutrinos escaping detection would hint to anomalous processes appearing in the detector. An excess of this kind of events over the small background expectations for which the analysts had \enquote{no conventional explanation} was exactly what had been observed at SPEAR. After the follow-up studies \cite{Feldman:1976fm, PLUTO:1977ctk, Barbaro-Galtieri:1977kfn, Bartel:1978ii, Bacino:1978gb, Bacino:1978wj} it had been finally concluded, that the observed excess indeed can be attributed to a lepton with the mass 3600 times the electron mass and 17 times the muon mass, later called \textit{tau} (from greek $\tau\rho\iota\tau o\nu$, \enquote{third}). These results together with an observation of the tau neutrino by the DONUT collaboration \cite{DONUT:2000fbd} therefore established the existence of the third generation of leptons.
+
+Since the era of its discovery, the properties of the tau lepton has been extensively studied in several experiments including Belle, BaBar, KEDR, BESIII, OPAL, CLEO, DELPHI, L3 and others. They can be summarised as follows \cite{ParticleDataGroup:2020ssz}:
+\begin{itemize}
+    \item Mass $m_\tau = 1.$ 
+\end{itemize}
+
+\section{Reconstruction in CMS}
+\subsection{Particle Flow algorithm} \label{pf}
+% \subsubsection{Motivation}
+In order to perform physical measurements in the particle physics context, one usually operates with an abstract notion of a \textit{physics object}, which is an entity reconstructed from the signals observed in the detector and representing a particle candidate of a particular kind. The goal of the reconstruction process is to build physics objects which are as close and as representative as possible of the genuine particles appearing in the detector. Since the precision of the object reconstruction has a direct impact on the precision of the physical measurement, it therefore plays a crucial role in every particle physics analysis.
+
+Historically, the reconstruction of particles of a given type was primarily based on the information of detector’s subsystems which had been specifically built to identify them. For example, the reconstruction of electrons and photons was primarily based on the ECAL response and was aimed to capture rather isolated particles. This approach can be referred to as \textit{local}, because it doesn’t make a full use of the signals across all detector subsystems due to a technical granularity limitation. 
+
+However, with detectors becoming more fine-grained one could turn from a local to a \textit{global} approach of the physics objects’ reconstruction. With that it became possible to build a \textit{holistic} image of an event in the detector by linking information from various detector subsystems. This is exactly the core idea of a \textit{particle-flow (PF) algorithm} \cite{CMS:2017yfk}, developed in the CMS experiment, which fundamentally aims at tracing the entire \enquote{flow} of particles as they are traversing the detector.
+
+\subsubsection{Basic elements}
+The PF algorithm follows a hierarchical approach in the reconstruction of physics objects. The first step in the algorithm is to construct basic PF elements which will later serve as a basis for building more complex high-level objects. The main PF elements being constructed at this point are:
+
+\begin{itemize}
+    \item Charged-particle tracks
+    \item Electron and muon tracks
+    \item Preshower, ECAL and HCAL energy clusters
+\end{itemize}
+
+For the reconstruction of \textbf{charged-particle tracks}, a pattern recognition approach using a combinatorial Kalman filter has been an indispensable tool among experimentalists for decades, also within the CMS experiment \cite{Adam:2005cg}. To improve the overall track reconstruction efficiency while keeping the misreconstructed rate at the same level, an iterative approach is taken \cite{CMS:2014pgm}. With each fitting iteration, it targets to recover inefficiencies for a specific track type by e.g. tailoring the seed construction to a given track type, which allows the loosening of the requirement on the number of hits. The track types include prompt or displaced high/low pt tracks, tracks inside high pt jets, and muon tracks. Overall, the iterative procedure brings a significant recovery in efficiency across the pt range while also performing twice faster comparing to a single iteration approach due to the optimised seed construction.
+
+% Conceptually, it is a recursive algorithm predicting the evolution of some system in time, which at each iteration consists of two steps:
+% Firstly, given an estimate of a system’s state \hat{x_{t-1|t-1}} and its covariance P_{t-1|t-1} from the previous time step, a prediction of the state \hat{x_{t|t-1}} and its covariance P_{t|t-1} at the next time step is derived from a physical model describing the dynamics of the system.
+% Secondly, a measurement is obtained and the new state estimate \hat{x_{t|t}} and its covariance P_{t|t} are derived as a weighted average of the already predicted and just observed information, where more certain configurations of the system receive higher weights. 
+
+% Projecting this approach to a tracking domain, the time steps correspond to tracker layers starting from the innermost and going outwards with the dedicated generation of seeds for the first step [ref]; observations are the hits in these layers; and the physical model corresponds to the equations of motion of a charged particle in a constant magnetic field, accounting for multiple scattering and energy loss. Additionally, after the convergence of trajectory building procedure with the Kalman filter the final track fitting and smoothing is performed to determine the particle properties.
+
+% However, the traditional pattern recognition approach had the limitation in the efficiency of charged hadron reconstruction. For example, due to the stringent requirements in the number of tracker hits which may not be satisfied for low pt particles because they undergo nuclear interactions with the detector material.
+
+Reconstruction of \textbf{electron tracks} largely profits from the iterative tracking procedure, since the latter allows to efficiently reconstruct electrons radiating bremsstrahlung photons. It therefore forms the basis of a tracker-based seeding method, in contrast to a conventional ECAL-based, which suffers from misreconstruction of non-isolated electrons as well as radiating electrons. Generally, for electrons with a small fraction of radiated energy, the tracks are usually well-reconstructed and therefore can be extrapolated to the ECAL surface and matched with the closest ECAL cluster to form an electron candidate seed. However, when energetic photons are radiated, the pattern recognition may result in tracks fitted with large $\chi^2$ values. For such tracks, an additional fitting is performed with a Gaussian-sum filter (GSF) \cite{adam2005reconstruction}, which essentially is an adaptation of the Kalman filter fitting accounting for possible sudden and substantial energy losses along the electron's trajectory. Finally, both tracker-based and ECAL-based electron seed are submitted together to an extended GSF algorithm for a full track reconstruction. Overall, this procedure significantly improves electron reconstruction efficiency by up to a factor of two comparing to an ECAL-based only approach, while also extending the allowed pt range down to 2 GeV.
+
+While electron track reconstruction was largely improved in the context of the PF algorithm development, \textbf{muon tracking} is not its specific part but rather a standalone step \cite{CMS:2018rym}. The output of this procedure is a collection of muon track candidates of three types:
+
+\begin{itemize}
+    \item \textit{Standalone-muon tracks} built by running the patter recognition on the hits exclusively in the muon spectrometer subsystems (DT, CSC, RPC).
+    \item \textit{Tracker muon tracks} reconstruction follows an "inside-out" approach, where firstly the tracker tracks are extrapolated to the muon system. If at least one muon segment matches to extrapolated track, the inner tracks is declared as a tracker muon.
+    \item \textit{Global muon tracks} are reconstructed with an "outside-in" approach, where standalone muon tracks are being matched with tracker tracks. The matching is performed by propagating both tracks to a common surface and is followed by a combined fit with the Kalman filter. 
+\end{itemize}
+The resulting approach yields an excellent reconstruction of muon with about 99\% of the muons produced in the acceptance region of the detector being classified as either global or tracker muon tracks.
+
+\textbf{Calorimeter clusters} reconstruction is an essential part of the PF algorithm. On the one hand, it plays a crucial role in the identification of neutral particles for which no track information is available, and their separation from the charged particles. On the other hand, it brings additional information to the reconstruction of electrons radiating bremsstrahlung  photons and also charged hadrons and therefore, once combined with the track information, helps to sizeably increase the purity of the final collection of physics objects.
+
+The building of calorimeter clusters, performed separately in each subdetector (ECAL barrel/endcap, HCAL barrel/endcap, preshower layers), consists in two steps: 
+
+\begin{enumerate}
+    \item \textit{Clustering.} Firstly, seeds are formed from the calorimeter cells with the deposited energy larger of the neighbouring cells and above a given seed threshold. The neighbouring cells are either the four closest cells sharing a side with the seed candidate, or the eight closest cells sharing either a side or a corner with the seed candidate. Then, topological clusters are grown on the principle of recursively adding neighbouring cells, passing a certain set of energy requirements, to the current cell, starting from the seeds candidates.
+    \item \textit{Energy attribution.} Due to a potential overlap of topological clusters, a dedicated approach had been developed to allow for sharing of the cells energy across several clusters. Performed with an expectation-maximisation algorithm based on a Gaussian-mixture model, it assumes that the energy deposited in a topological cluster is a composition of as many spatially Gaussian-distributed energy clusters, as there is seeds in the topological clusters. The model parameters (location and total energy of each cluster in the Gaussian mixture) obtained after convergence are used as cluster parameters in the downstream reconstruction. 
+\end{enumerate}
+
+After the clusters are formed, it is important to calibrate the response of the calorimeters to have a correct energy scale and identification of neutral and charged particles. Performed for ECAL \cite{CMS:2013lxn} and HCAL \cite{CMS:2019hpr} by fitting a parametric function which maps true values of energy and pseudorapidity of the cluster to the calibrated ones, the calibration procedure was successfully validated on data and showed overall improved energy response comparing to a raw one.
+
+\subsubsection{Linking \& Object construction}
+Having formed the fundamental PF elements, the PF algorithm proceeds to linking them between each other in order to form \textit{PF blocks}, essentially representing chains of PF elements. In order to reduce the computing time, the linking is performed as a search for the nearest neighbours in the eta/phi plane via a k-dimensional tree \cite{10.1145/361002.361007}.
+
+With the PF blocks being built, the PF algorithm proceeds to the identification of physics objects one the per block basis. The objects are formed in the following order: muons,  electrons together with isolated photons (converted or unconverted), hadrons (charged or neutral) and nonisolated photons (e.g. from $\pi^0$ decays). To account for possible nuclear interactions in the tracker material, secondary charged-particle tracks which are linked via a common nuclear-interaction vertex, are removed from a final particle list and are replaced by single primary particle. Lastly, events are post-processed to resolve rare cases of anomalously large $\pt^{\text{miss}}$ coming from e.g. the misreconstruction of muons. A detailed description of requirements applied to PF elements within a block at each of the steps can be found in the original paper \cite{CMS:2017yfk}.
+
+Once all PF blocks are emptied and physics objects of the aforementioned types are formed, one can proceed to grouping them into more complex objects. One of them is the tau lepton object, which reconstruction with a \textit{hadron-plus-strips (HPS) algorithm} is described in the next section. 
+
+\subsection{HPS algorithm} \label{hps}
+
+Since the tau lepton in about 65\% of all cases decays into the final state with hadrons (Section \ref{tau-intro}), it is important to efficiently identify such topologies in the detector. While the leptonic decays of the tau lepton in the CMS experiment are handled by the usual techniques for muon \cite{CMS:2018rym} and electron \cite{CMS:2020uim} reconstruction and identification, the hadronic decays pose a challenge, which requires a dedicated approach to account for their specific properties. With this goal in mind, a hadron-plus-strips (HPS) algorithm had been designed, originally for the LHC operation at $\sqrt{s} = $ 7 TeV \cite{cms2012performance} and 8 TeV \cite{CMS:2015pac}, followed by improvements for the data taking at $\sqrt{s} = $ 13 TeV \cite{CMS:2018jrd} and for the tau lepton identification with a DeepTau algorithm \cite{CMS:2022prd}. Below, the most recent overview of the HPS algorithm is provided, with, if relevant, references to the original implementation.
+
+The main challenge in reconstructing hadronic tau decays is that of efficiently distinguishing them from a large amount of jets originating from quarks or gluons. However, hadronic decay products of the tau are usually more collimated comparing to those of the QCD jets. Plus, \piz in the final state coming from intermediate $\rho(770)$ or $a_1(1260)$ resonances provide a unique handle to identify the corresponding decay modes (DM).
+
+Motivated by these observations the HPS algorithm starts from constructing so-called \textit{strips}, which would serve as a proxy for \piz particles. In the detector \piz promptly decays into a pair of photons, which consequently, due to a sizeable amount of the tracker material, are very probable to convert to a pair of electrons, which can furthermore radiate bremsstrahlung photons, etc. In the presence of the magnetic field, the electrons trajectories are bent and therefore, on the ECAL surface in the $\eta-\phi$ plane, the clusters associated to \piz decay products have an extended \enquote{strip} shape in the $\phi$ direction.
+
+In order to construct a strip, an iterative clustering procedure with the following steps is performed:
+
+\begin{enumerate}
+    \item In an event, hadronic jets are reconstructed by clustering PF particles using the anti-$k_T$ algorithm with the distance parameter $\Delta R = 0.4$. All PF particles in the cone of radius $\Delta R = \sqrt{\Delta \eta^2 + \Delta  \phi^2}$ around the axis for each of the jets are passed as an input to the next step. 
+    %%%
+    \item Within a jet, a strip is seeded by a photon or electron with a highest \pt not yet included in any strip and proceeds with the one-by-one aggregation of electrons/photons with $\pt > 0.5$ GeV within a $(\Delta \eta, \Delta  \phi)$ window in the $\eta-\phi$ plane of the dynamically adjusted size (originally, of the fixed size \cite{CMS:2015pac}). The size of the strip window is a parametrised function of \pt of the seed and the $e/\gamma$ to be included in the strip \cite{CMS:2018jrd} (Fig). The functional form is derived from simulated single tau events with a uniform \pt spectrum with the goal of capturing 95\% of possible $e/\gamma$ in \tauh decay products. In case of adding an $e/\gamma$ candidate to the strip, its position is recomputed as a \pt-weighted average of the coordinates in the $\eta-\phi$ plane of all the strip’s constituents, and the strip momentum is set to a sum of the strip’s constituents momenta. The procedure is terminated if there is no other $e/\gamma$ within a $(\Delta \eta, \Delta  \phi)$ window and the clustering of a new strip continues with selecting a new seed.
+    %%%
+    \item For each jet seed, \tauh hypotheses are formed by combining reconstructed strips with the charged PF candidates. Combinations are formed on the basis of decay modes to be targeted: \h, $\h \pi^0$, $\h \pi^0 \pi^0$, $\h \text{h}^\mp \h$ , $\h \text{h}^\mp \h \pi^0$, $\text{h}^\pm\text{h}^{\pm/\mp} (\pi^0)$, where \piz represents a reconstructed strip, \h a charged PF candidate and the last category targets $\tau^- \to \text{h}^- \text{h}^+ \text{h}^- \pi^0$ with one of the charged hadrons ($\pi^0$) escaping detection. The latter two had been included with the DeepTau algorithm \cite{CMS:2022prd}. In order to be assigned to a DM category, each combination is required to pass a mass window constraint to be compatible with the corresponding to the DM intermediate resonance. Originally, the mass window was statically defined but later was updated to be dynamically dependant on the strip \pt. In the following, $\h \pi^0$, $\h \pi^0 \pi^0$ DMs are analysed together, and referred to as $\h \pi^0$. 
+    %%%
+    \item Among the \tauh hypotheses formed at the previous step, the set of further requirements is applied. \tauh candidates should  have a charge $\pm 1$, except for the DMs with the missing charged hadron, where the \tauh charge is set to the charge of the charged hadron with the highest \pt. All reconstructed \h and strips in the combination should be located within the tau signal cone defined by the radius $\R_\text{sig} = 3.0 / \pt \, \text{(GeV)}$, limited to the range 0.05–0.10, with respect to the \tauh momentum. Finally, for each seeding jet a single \tauh candidate with the highest \pt is selected.
+    \end{enumerate}
+
+Overall, more than a half of each of the most significant \tauh decay modes (\h, $\h \pi^0$, $\h \text{h}^\mp \h$) is reconstructed in the targeted DMs (Fig. ). Although $\text{h}^\pm\text{h}^{\pm/\mp} (\pi^0)$ category helps to recover 19\% (13\%) of $\h \text{h}^\mp \h$ ($\h \text{h}^\mp \h \pi^0$) DMs, it is not considered in the main \tauh reconstruction routine due to its large charge mis-assignment probability. Despite the DM reconstructed efficiencies are naturally bounded by the 90\% efficiency of the charged track reconstruction and even lower efficiency for photons coming from \piz decays, one can observe that there is still room for improvement in the reconstruction of all DMs. In particular, the DMs with one charged prong \h and at least one \piz, where the HPS algorithm fails to reconstruct 25\% of these DMs, which amounts to $\approx$8\% of all possible tau decays. Therefore, this motivates future studies in the direction of improvement of the HPS algorithm.
+
+\reminder{Insert Figures}
+
+\section{Identification in CMS}
+Conceptually, the reconstruction step, starting from the PF algorithm (Section \ref{pf}) and going hierarchically to more complex algorithms, aims at providing physics objects as inclusively as possible, i.e. maximising the efficiency of capturing original genuine particles. This approach inherently creates a collection of physics objects which is not pure in the objects of interest and is contaminated by background objects. Therefore, a \enquote{post-processing} step is needed to refine the purity of the collection. 
+
+This step is usually referred to as \textit{identification} (ID), and its goal is to identify the types of objects appearing in the collection of reconstructed objects among the categories which are expected. This two-staged \enquote{RECO-ID} paradigm of building physics objects has been a standard in high-energy physics for years. However, it is worth mentioning that with the emergence of powerful Machine Learning (ML) techniques, novel \textit{end-to-end} approaches \cite{CMS:2022wjj,Pata:2021oez} unifying two steps into a single one proved to be a promising and efficient solution to the problem of reconstructing physics objects. 
+
+In the RECO-ID paradigm, ML-based algorithms have also proved to bring significant improvement to the ID step. The historical evolution pattern of ID tools is moving from so-called \textit{cut-based} (or rule-based) set of criteria to algorithms based on \textit{linear classifiers} or an ensemble of \textit{decision trees} and then finally to algorithms based on \textit{Deep Learning} (DL). The hadronic decays of the tau lepton also fit into this historical pattern, where the RECO step with the HPS algorithm was initially followed by a set of isolation criteria targeting predefined misidentification probabilities of \tauh against quark/gluon jets \cite{cms2012performance}. Later on, algorithms based on boosted decision trees (BDT) were introduced \cite{CMS:2015pac, CMS:2018jrd} each trained to distinguish \tauh from either jets, or electrons, or muons. Lastly, a DeepTau algorithm \cite{CMS:2022prd} combined previously separate classifiers into a single neural network, providing an excellent discrimination power between \tauh, jets, electrons and muons altogether. 
+
+The DeepTau architecture in its original implementation (Section \ref{deeptau1}), referred to as DeepTau v2.1, showed a significant improvement in \tauh identification against jets and leptons. Building upon this milestone, several improvements have been made in the context of the Run 3 preparation as outlined in Section \ref{deeptau5}, with the corresponding model being referred to as DeepTau v2.5. 
+
+\subsection{DeepTau v2.1} \label{deeptau1}
+There is one important aspect, in addition to the already mentioned unification of jet, electron and muon discriminants, which motivated a switch towards more advanced techniques for \tauh identification -- the usage of low-level information. While hand-crafted high-level variables (also called \textit{features}), provided as an input to a BDT, generally encapsulate the object to be identified, they are still limited in the representation power by the domain knowledge of the one who designed them. Since jets, being an input to a given model for \tauh identification, inherently exhibit complex hadronisation patterns, it is expected that their behavior cannot be fully described in terms of only several variables.
+
+In the field of Computer Vision (CV) it has been shown that Convolutional Neural Networks (CNN) trained on images learn notions of growing complexity, starting from simple patters at the first layers and capturing more complex abstract concepts at the deeper layers \cite{olah2017feature}. Since pixels in the image carry only low-level intensity information, one can therefore view the process of training a CNN model as an \textit{automated feature engineering}: more complex features are automatically learnt based on the low-level inputs. Moreover, the performance of ML models has been shown to increase as the model size grows \cite{726791,NIPS2012_c399862d,simonyan2014very,szegedy2015going,he2016deep,huang2017densely,tan2019efficientnet}. This hints towards a large scope of high-level features which models are capable to learn without explicit guidance and which otherwise would be hard to design manually.
+
+One of the perspectives on a particle detector is when it is viewed as a \enquote{camera} imaging collisions. That makes it natural to use an \textit{image representation} to describe the physics objects and the activity in the detector \cite{Cogan:2014oua,deOliveira:2015xxd,Kagan:2020yrm}. Despite this representation comes with certain limitations (see Section \ref{tat}), it has proved to be very performative in tasks like jet tagging \cite{Kasieczka:2019dbj,ATLAS:2017dfg,CMS:2020poo}, particle reconstruction and identification \cite{KM3NeT:2020zod,Collado:2020ehf,Collado:2020fwm,Abbasi:2021ryj}, and particle shower generation \cite{Paganini:2017dwg,Khattak:2021ndw,Buhmann:2021caf}.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=.75\textwidth]{Figures/Tau/deeptau_grids.pdf}
+    \caption{Caption}
+    \label{fig:deeptau_grid}
+\end{figure}
+
+All these aspects motivate the usage of convolution layers as the main building blocks of the DeepTau architecture and an image-like structure of the \tauh \textbf{input representation} (Fig. \ref{fig:deeptau_grid}). The latter is constructed by defining in $\eta$-$\phi$ space an inner grid with $11\times11$ cells of the size $0.02\times0.02$, and an outer grid with $21\times21$ cells of the size $0.05 \times 0.05$. The grids overlap and are centered around the HPS-reconstructed direction of flight of the \tauh candidate (Section \ref{hps}). Seven types of particles in the vicinity of the \tauh-axis are taken as an input:
+
+\begin{itemize}
+    \item PF-reconstructed: muons, electrons, photons, charged hadrons, and neutral hadrons (Section \ref{pf}). 
+    \item Standalone-reconstructed (RECO): electrons, muons.
+\end{itemize}
+
+The latter category uses dedicated standalone reconstruction algorithms which provide additional information about electrons and muons comparing to those from the PF algorithm. Each of the particles is attributed to a cell on both inner and outer grids according to its position in $\eta$-$\phi$ space, and the corresponding cell is filled with the features specific for a given particle type. Generally, the features describe the track quality, the quality of the associated PV or SV, the particle kinematics, the calorimeter and PU information. If several particles enter the same cell, the one with the highest \pt is selected. 
+
+In addition, high-level features are also provided as an input, as described below, to improve the discriminating power of the model. These handcrafted variables, describing the \tauh isolation, kinematic properties, associated vertex information, information about the associated strips, have been successfully used previously for the MVA classifiers. Although in theory, the model should be able to learn these variable in the limit of an infinite training data set, in practise this is often not the case due to a limited number of training data. Therefore, these variables are added explicitly to augment the model with expert knowledge. 
+
+The overall \textbf{architecture} is illustrated on Fig. \ref{fig:deeptau_v2p1_arch}. The model hyperparameters are described in detail in the original paper and below a conceptual overview of the model structure is provided. It starts from three streams, each processing its inputs independently: 
+\begin{itemize}
+    \item \textit{Global:} a set of fully connected layers which processes high-level features.
+    \item \textit{Inner:} a set of one-dimensional (1D) followed by two-dimensional (2D) convolutional layers which processes inputs from the inner cone around the reconstructed tau direction of flight.
+    \item \textit{Outer:} a set of 1D followed by 2D convolutional layers which processes inputs from the outer cone around the reconstructed tau direction of flight.
+\end{itemize}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/Tau/deeptau_v2p1.pdf}
+    \caption{Caption}
+    \label{fig:deeptau_v2p1_arch}
+\end{figure}
+1D section of both inner and outer streams are further split into three subsections individually processing three particle blocks: 
+\begin{itemize}
+    \item $e^\pm/\gamma$: to process inputs from combined PF electrons, PF photons, RECO electrons
+    \item $\mu^\pm$: to process inputs from combined PF muons and RECO muons
+    \item $\text{h}^\pm/\text{h}^0$: to process inputs from combined PF charged hadrons and PF neutral hadrons
+\end{itemize}
+
+After being processed individually, the three blocks are concatenated and passed to another set of 1D convolutional layers before being passed to a 2D section. In general, the idea of using 1D convolutions is to encode input features on the per-particle level into a more compact representation comparing to the dimensionality of the input space. Otherwise, the  usage of 2D convolutional layers directly on the input feature space would make the training task computationally hard to perform. Lastly, for each of the inner and outer streams, the 1D section is followed by the 2D section, where $3\cross3$ filters extract spacial correlations between cells across the grid while also downsampling the image representation to a single cell. 
+
+Overall, the three-stream part of the DeepTau architecture can be viewed as an \textit{encoder}, which extracts high-level features from the low-level ones while operating on a physically-motivated representation of $\eta$-$\phi$ space. From this perspective, the following processing part of the architecture can be viewed as a \textit{decoder}, which maps the learned features for a given \tauh candidate to a class probability. First, it concatenates extracted features from the inner and outer representations with those provided manually. Second, it processes them by a set of fully-connected layers, finally followed by a fully-connected layer with four output nodes and a softmax activation function. The latter outputs the probability $y_\alpha$ of the given \tauh candidate to belong to one of the four classes: electron, muon, hadronically decaying tau, quark or gluon jet. 
+
+In order to measure the model performance and also derive working points (WPs), the final \textbf{discriminators} against electrons, muons and jets are defined as:
+\begin{equation}
+    D_\alpha(\bm{y}) = \dfrac{y_\tau}{y_\tau + y_\alpha},
+\end{equation}
+where $\bm{y} = (y_e, y_\mu, y_\tau, y_\text{jet})$ is the output of the softmax layer of the model.
+
+To perform the training, a \textbf{loss function} is constructed and minimized with Nesterov-accelerated adaptive momentum estimation \cite{dozat2016incorporating}. It consists of three terms (the full description is given in Appendix ...):
+\begin{enumerate}
+    \item Binary cross-entropy term for \tauh class against all the other $(e, \mu, \text{jet})$ classes combined
+    \item Focal-loss \cite{lin2017focal} term for \tauh class against all other classes combined
+    \item Focal-loss terms separately for each of the $(e, \mu, \text{jet})$ classes, smoothed by a step function to target only \tauh candidates which are likely to be classified as \tauh.
+\end{enumerate}
+The composition of the loss function intents to guide the training to have better performance in the regions which are important for most of the analyses. Namely, it aims to provide better performance in the range 50-80\% of \tauh efficiency, while on the other hand to not focus on the identification of background classes in the high-purity regime.   
+
+The \textbf{data set} used for the training consists of events from the following simulated processes: Z+jets (NLO), W+jets, $t\bar{t}$, $Z^{'} \to \tau \tau$, $Z^{'} \to ee$, $Z^{'} \to \mu \mu$, (with $m(Z^{'})$ ranging from 1 to 5 TeV),and QCD multijet production. For testing, additional event samples from $\text{H} \to \tau\tau$ and Z+jets (LO) are used. To ensure that no additional biases are introduced, the \tauh candidates are sampled from the input samples such that the contribution of each class ($e$, $\mu$, \tauh, jet) in different (\pt, $\eta$) bins is the same. Furthemore, during the training additional weights are applied to make the distribution of classes uniform within each (\pt, $\eta$) bin.
+
+Overall, 
+
+\subsection{DeepTau v2.5} \label{deeptau5}
+
+\subsection{Tau Transformer} \label{tat}
