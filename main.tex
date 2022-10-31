@@ -89,6 +89,8 @@
 \fancyhf{}
 % \fancyhead[LE,RO]{\leftmark}
 \fancyhead[RE,LO]{\leftmark}
+\fancyfoot[C]{\thepage}
+% \renewcommand{\headrulewidth}{0pt}
 
 % include the file with command definitions
 \input{defs.tex}
@@ -132,6 +134,20 @@
 % math 
 \usepackage{bm}
 
+% line breaks in tabular cells
+\usepackage{makecell}
+
+% line numbers 
+\usepackage[switch, modulo]{lineno}
+\linenumbers
+
+% large vector symbols
+\usepackage{esvect}
+
+% % to show page numbers for fancy package
+% \usepackage{afterpage}
+% \usepackage{setspace}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%% body of the document
@@ -159,43 +175,41 @@
 % \def\@oddhead{\insertheaderrule\old@oddhead}% Prepend \insertheaderrule
 % \makeatother
 
-\frontmatter
-
-% front matters
-\input{include/title.tex}
-\newpage
-\thispagestyle{empty}
-\mbox{}
-%back of the title
-%\input{include/title_back.tex}
-\clearpage
-% dedication
-%\input{include/dedication.tex}
-
-% abstract
-\input{include/abstract.tex}
-%\clearpage
-% abstract - German version
-\input{include/abstract_german}
-\clearpage
-
-%dedication
 
 
-%\input{Articles/articles.tex}
-%\input{02_Epigraph/epigraph.tex}
+%%%%%%%%%% front matters
+% \frontmatter
+% \input{include/title.tex}
+% \newpage
+% \thispagestyle{empty}
+% \mbox{}
+% %back of the title
+% %\input{include/title_back.tex}
+% \clearpage
+% % dedication
+% %\input{include/dedication.tex}
 
-%This is commented out to have page numbers on outer side of the page
-%\newpage
-%\thispagestyle{empty}
-%\mbox{}	
+% % abstract
+% \input{include/abstract.tex}
+% %\clearpage
+% % abstract - German version
+% \input{include/abstract_german}
+% \clearpage
+
+% %\input{Articles/articles.tex}
+% %\input{02_Epigraph/epigraph.tex}
+
+% %This is commented out to have page numbers on outer side of the page
+% %\newpage
+% %\thispagestyle{empty}
+% %\mbox{}	
 
 
 % reset numbering for the table of contents
 \clearpage
 \pagenumbering{roman}
 
-% table of contents
+%%%%%%%%%%table of contents
 \tableofcontents
 
 %\input{conclusion.tex}
@@ -207,12 +221,13 @@
 %\clearpage
 %\pagenumbering{arabic}
 
-% main text
+%%%%%%%%%% main text
 \mainmatter
-
 \pagestyle{fancy}
-\input{include/Introduction.tex}
-\input{include/Tau.tex}
+
+% \input{include/Introduction.tex}
+\input{include/CP_etau.tex}
+% \input{include/Tau.tex}
 %\nocite{*}
  %bibliography
 % \bibliographystyle{JHEPLibov}
@@ -223,8 +238,9 @@
 \thispagestyle{empty}`
 \mbox{}
 
-
-\input{include/Acknowledgment}
+% \appendix
+% \input{include/Appendix.tex}
+% \input{include/Acknowledgment}
 
 
 \end{document}

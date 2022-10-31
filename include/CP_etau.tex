@@ -1,0 +1,267 @@
+\chapter{CP analysis in $\text{H} \to \tau_e\tau_h$ decays}
+\section{Introduction}\label{sec:cp-intro}
+
+In order to probe the CP nature of the interaction between the Higgs boson and tau leptons, one needs to modify the SM Lagrangian in a way to incorporate effects deviating from the Standard Model expectations. This can be done already at the tree level and from the general assumptions, i.e. without assuming any model dependence, where for the tau lepton case one can write the following extension of the Yukawa coupling term in the SM Lagrangian \cite{Gritsan:2016hjl}:
+\begin{equation}\label{eq:l_y}
+    \mathcal{L}_Y = -\frac{m_\tau}{v}(\kappa_\tau\bar{\tau}\tau + \tilde{\kappa_\tau}\bar{\tau}i\gamma_5\tau) \text{H}.
+\end{equation}
+
+Here $m_\tau$ is the mass of the tau lepton, $v=\left(\sqrt{2G_\text{F}}\right)^{-1/2} \approx 246$ GeV is the vacuum expectation value of the Higgs field (Sec. \ref{}) and $G_\text{F} = 1.1663787(6) × 10^{−5}$ GeV$^{-2}$ is the Fermi constant, $\kappa_\tau$ and $\tilde{\kappa_\tau}$ are coupling strength
+modifiers, H is the SM Higgs boson. While this term is written specifically for the SM scenario, it is generally applicable to any neutral spin-zero particle H of arbitrary CP nature with a flavor-diagonal Yukawa interaction with a fermion. 
+
+Few things should be noted regarding Eq. \ref{eq:l_y}. First, while such parametrisation is model-independent \textit{per se}, the couplings $\kappa_\tau$ and $\tilde{\kappa_\tau}$ can depend on the specific model under consideration and can be interpreted within the framework of these theories. For example, in the context of a two-Higgs doublet model, e.g. minimal supersymmetric SM
+extension (MSSM) \cite{Accomando:2006ga}, depending on the CP violation (CPV) scenario, the three mass eigenstates $h_i$ can be either two scalars (denoted as $h, H$) and one pseudoscalar (denoted as $A$) or states representing CP mixtures with both $\kappa$ and $\tilde{\kappa}$ couplings in Eq. \ref{eq:l_y} having non-zero values.  In this work, no model-dependant interpretation of the couplings is made.    
+
+Second, an assumption of real-valued $\kappa$ and $\tilde{\kappa}$ is made. While this makes the Yukawa coupling term Hermitian similarly to the whole SM Lagrangian, it is arguably an imposed property, which might not hold true in nature \cite{Mannheim:2021kjs}. Therefore, a generalisation of the study presented in this work towards a non-Hermitian Yukawa coupling \cite{Korchin:2016rsf, Korchin:2021xxl} is an interesting direction for future studies.
+
+From the couplings formulation, one can rewrite Eq. \ref{eq:l_y} as:
+\begin{equation}\label{eq:l_y_angle}
+    \mathcal{L}_Y = -g_\tau(\cos\alpha^{H\tau\tau}\bar{\tau}\tau + \sin\alpha^{H\tau\tau}\bar{\tau}i\gamma_5\tau)\text{H},
+\end{equation}
+
+where $g_\tau$ is a generalised coupling modifier and an effective mixing angle is introduced:
+\begin{equation}\label{eq:mixa}
+    \tan(\alpha^{H\tau\tau}) = \frac{\tilde{\kappa_\tau}}{\kappa_\tau}
+\end{equation}
+
+For the SM Higgs boson with the quantum numbers $J^{PC} = 0^{++}$ (pure scalar), $\tilde{\kappa_\tau} = 0$ and $\kappa_\tau = 1$, which translates into $\mixa = 0^\circ$. The scenario of $J^{PC} = 0^{++}$ (pure pseudoscalar) corresponds to $\mixa = 90^\circ$. Any intermediate value corresponds to the mixture of the couplings between CP-even and CP-odd components.
+
+Having the interaction defined in terms of the Lagrangian term, one can proceed to the derivation of the partial decay width of the SM Higgs boson into a pair of tau leptons. Using Eq. \ref{eq:l_y_angle} one can obtain for the partial decay width of H with the approximation $\beta_\tau = \sqrt{1-4m_\tau^2/m_h^2}\approx1$ \cite{Berge:2014wta}:
+\begin{equation}
+    d\Gamma_{\htt} \sim 1 - s^+_zs^-_z + \cos(2\mixa)(\boldsymbol{s}_T^+\cdot \boldsymbol{s}_T^-) + \sin(2\mixa)\left[(\boldsymbol{s}_T^+\cross \boldsymbol{s}_T^-)\cdot\hat{\boldsymbol{k}}^-\right ],
+\end{equation}
+
+where $\hat{\boldsymbol{k}}^-$ being a normalised $\tau^-$ momentum in the Higgs rest frame which points towards a positive direction of the $z$ axis, and $\boldsymbol{s}_\text{T}^\pm$ ($s_z^\pm$) is a projection of normalised spin vector of the tau lepton in its rest frame on the $xy$ plane ($z$ axis). It can be seen that it is the spin correlation between transverse components of the tau leptons' spin vectors which is sensitive to the CP information. Introducing $\phi_{s}$ as an angle pointing from $\boldsymbol{s}_T^+$ to $\boldsymbol{s}_T^-$ in a right handed coordinate system, one obtains:
+
+\begin{equation}\label{eq:h_width_spin}
+    d\Gamma_{\htt} \sim 1 - s^+_zs^-_z + |\boldsymbol{s}_T^+||\boldsymbol{s}_T^-|\cos(\phi_{s}-2\mixa)
+\end{equation}
+
+Conceptually, Eq. \ref{eq:h_width_spin} lays out the strategy to experimentally probe the CP structure of the Yukawa copling between the Higgs boson and tau leptons. First, one needs to reconstruct the correlation $\phi_{s}$ between the spin vectors $\boldsymbol{s}_T^+$ to $\boldsymbol{s}_T^-$ of the tau leptons. This can be achieved by studying the angular distributions of $\tau$ decay products, as described in Sec. \ref{sec:phicp}. Second, in a simplified picture the differential distribution for the angle encoding the spin correlation $\phi_{s}$ will allow to extract the phase shift $\mixa$ from the fit with $a\cdot\cos(\phi - 2\mixa)+b$ function, which in turn directly points to the CP nature (CP-even, CP-odd, or their mixture) of the SM Higgs boson via Eq. \ref{eq:mixa}. 
+
+In the following sections of this chapter a step-by-step overview towards this goal is described. Starting from the description of the data sets used in the analysis (Sec. \ref{sec:samples}), an overview of physics objects and observable reconstruction is given in Sec. \ref{sec:reco}. In Sec. \ref{sec:selection} a procedure to select \htt candidates is described, followed by the techniques to model background processes (Sec. \ref{sec:bkgr}). After the selection of the H candidates is performed, ML methods are used to categorise a given candidate as either originating from a signal or background processes (Sec. \ref{sec:ml}). Taking into account necessary systematic uncertainties (Sec. \ref{sec:syst}), a statistical inference procedure is performed (Sec. \ref{sec:stat}) to extract the effective mixing angle \mixa. Finally, results of the procedure and corresponding conclusion are given in Sec. \ref{sec:results}. 
+
+\section{Data \& Simulation}\label{sec:samples}
+For the CP analysis in this work a data set of $pp$ collisions collected by the CMS detector at $\sqrt{s}=13~\text{TeV}$ in 2016, 2017, and 2018 years is used. The corresponding integrated luminosities are $35.9$, $41.5$, and $59.7$ \fbi.
+
+Several Monte Carlo simulated data sets are produced in order to model signal and background processes. The signal processes constituent a Higgs boson being produced through gluon-gluon fusion (ggH), vector boson fusion (VBF), or associated production with a W or Z boson (WH, ZH, VH for combined). These samples are generated at next-to-leading order (NLO) in QCD with the POWHEG 2.0 event generator \cite{Nason:2004rx,Frixione:2007vw,Alioli:2010xd,Bagnaschi:2011tu,Nason:2009ai,Jezo:2015aia,Granata:2017iod}. The procedure is configured to produce scalar H. However, addition of CP mixing effects in the production mechanism, for example, by modifying the Higgs coupling to top and bottom quarks, can affect the distribution of physical observables (e.g. related to the accompanying jets), as well as the signal acceptance. It is studied that this contribution is negligible comparing to the theoretical uncertainties and therefore does not affect the CP measurement in the H decay.
+
+Reweighting is applied to distributions of the Higgs boson transverse momentum and the jet multiplicity to match with those of the samples produced at next-to-NLO with the POWHEG NNLOPS (version 1) generator \cite{Hamilton:2013fea,Hamilton:2015nsa}. The decay of the Higgs boson into a pair of tau leptons is described by the PYTHIA generator version 8.230 \cite{Sjostrand:2014zea} without accounting on the $\tau$ spin correlations. These are included within the TAUSPINNER package \cite{Przedzinski:2018ett}, which produces weights to reweight the signal samples according to predefined values of the mixing angle $\mixa=\{0^\circ, 45^\circ, 90^\circ\}$ used to compose signal templates for the statistical inference. For all 2016 samples NLO parton distribution functions (PDFs) are generated with the NNPDF3.0 \cite{NNPDF:2014otw}. For all 2017 and 2018 samples NNLO PDFs distributions generated with the NNPDF3.1 \cite{NNPDF:2017mvq}.
+
+Processes with a Z or W boson accompanied by up to four outgoing partons are generated with MADGRAPH5 aMC@NLO (version 2.6.0) \cite{Alwall:2014hca}. W bosons originating from the top quark decay are generated at leading order with the MLM jet matching and merging approach \cite{Alwall:2007fs}, as well as the diboson production at NLO. POWHEG 2.0 (1.0) is used for single top quark production (associated with a W boson) \cite{Re:2010bp,Frederix:2012dh} and top quark-antiquark pair production \cite{Alioli:2011as}. For modelling of the parton showering, fragmentation, and the decay of the $\tau$ lepton the generators are interfaced with PYTHIA with its parameters set to the CUETP8M1 tune \cite{CMS:2015wcf} , and CP5 tune \cite{CMS:2019csb} in 2017 and 2018. 
+
+The generated events are passed through the simulation of the CMS detector based on GEANT 4 \cite{GEANT4:2002zbu}. Additional $pp$ interactions per bunch crossing (also referred to as pileup interactions) are generated with PYTHIA and reweighted to match the pileup distribution in data. 
+
+\section{Event reconstruction}\label{sec:reco}
+The particle-flow (PF) algorithm (Sec. \ref{pf}) is at the core of the physics object reconstruction in CMS. It builds upon the idea of combining information from all the subsystems of the detector in order to improve the overall reconstruction efficiency. Using a hierarchical approach which starts from the construction of fundamental building blocks (e.g. tracks or clusters) it further combines them into high-level physics objects such as muons or charged hadrons. Furthermore, it serves as a basis for other algorithms building more complex objects, such as jet clustering (Sec. \ref{sec:jets}) or hadron-plus-strips algorithms (Sec. \ref{hps}). 
+
+\subsection{Electrons}\label{sec:reco_e}
+Electron object reconstruction \cite{CMS:2020uim} also builds on top of the PF basic elements: GSF tracks and ECAL clusters (Sec. \ref{sec:pf_base}). Conceptually, these elements are further combined, refined and filtered to yield a final electron object in the following procedure: 
+\begin{enumerate}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.65\textwidth]{Figures/CP_etau/mustache.png}
+    \caption{Distribution of PF clusters around the seed cluster for simulated electrons with $1 < E_T^{\text{seed}} < 10~\text{GeV}$ and $1.48 < \eta^{\text{seed}} < 1.75$ \cite{CMS:2020uim}. The $z$ axis shows the number of PF clusters around the seed matched to simulation. The red line illustrates the region where the clusters are selected by the mustache algorithm.}
+    \label{fig:mustache}
+\end{figure}
+
+    \item ECAL clusters are combined into a supercluster (SC) with a so-called mustache algorithm (Fig. \ref{fig:mustache}). The idea is to aggregate clusters coming from extensive bremsstrahlung and photon conversion within a \enquote{mustache} window in $\eta$-$\phi$ plane which accounts for the magnetic field of the CMS detector.
+
+    \item Association of SCs with GSF tracks is performed based on the output of a boosted decision tree (BDT) using as input SCs observables, track parameters and the SC-GSF matching variables.
+    \item Refinement of the mustache SCs is done which leverages the information from subdetectors outside of ECAL. This step recovers additional bremsstrahlung and conversion clusters. Moreover, a conversion-finding algorithm \cite{CMS:2015myp} with a dedicated BDT are used to identify pair of tracks compatible with a converted photon.
+    
+    \item All the input elements (ECAL clusters, mustache SCs, electron associated generic tracks, GSF tracks, conversion-identified tracks) are submitted to the PF algorithm to form electron candidates. After the linking, the final set of ECAL clusters for each candidate is promoted to a refined supercluster.
+    
+    \item Final electron objects are formed from a refined SC with an associated GSF track based on the loose requirements on the BDT output. The BDT is trained using the shower-shape, isolation and track-related variables as input.
+\end{enumerate}
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=0.65\textwidth]{Figures/CP_etau/e_reco_eff.png}
+    \caption{Electron reconstruction efficiency versus $\eta$ for various \pt ranges (upper panel) and ratios of data and simulation efficiencies (lower panel) in 2017 data taking period \cite{CMS:2020uim}.}
+    \label{fig:e-reco-eff}
+\end{figure}
+
+Overall, the procedure results in a good efficiency of electron reconstruction across \pt and $\eta$ ranges (Fig. \ref{fig:e-reco-eff}). Lastly, it should be noted that a graph neural network (GNN) based algorithm to form supercluster has been recently proposed to recover for inefficiency of the mustache energy aggregation and also to provide better robustness to pileup \cite{Valsecchi:2022rla, CMS-DP-2022-032}.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.48\textwidth]{Figures/CP_etau/e_reso.png}
+    \includegraphics[width=0.48\textwidth]{Figures/CP_etau/m_zee.png}
+    \caption{Left: relative energy resolution as a function of electron \pt, measured by the tracker, by ECAL (\enquote{corrected SC}), and after the third step of the energy regression (\enquote{E-p combination}). Right: invariant mass of an electron pair in the barrel region from $Z\to ee$ events in 2017 data before and after applying regression and scale corrections. \cite{CMS:2020uim}.}
+    \label{fig:e_corr}
+\end{figure}
+
+Since the energy of electrons is not fully reconstructed due to losses in the tracker or shower leakage in ECAL, corresponding corrections should be applied. This is achieved by firstly performing correction of SC energy and resolution via a 3-step BDT regression.  Second, residual discrepancies between data and simulation are taken into account with energy scale and spreading corrections derived from $Z \to ee$ events. These results in a great improvement both on the side of energy resolution (Fig. \ref{fig:e_corr}, left) and physical observables (Fig. \ref{fig:e_corr}, right).
+
+After the reconstruction of electron objects described above follows an identification step. Since the reconstruction algorithms are designed to be general-purpose and as inclusive as possible, it results in a sizeable fraction of background objects in the reconstructed electron collection. The identification step aims at the separation of prompt (created in the primary $pp$ interaction) genuine electrons from misidentified objects or non-prompt electrons (usually from heavy flavour jets). For that purpose, there's two methods. The first one is a cut-based discriminator based on the isolation variable:
+\begin{equation}\label{eq:iso_e}
+    I^e_{rel} = \dfrac{\sum \pt(\text{h}^\pm) + \max\left(\sum \pt(\text{h}^0) + \pt(\gamma) - \rho \cdot A_\text{eff}, 0\right)}{\pt^e},
+\end{equation}
+where $A_\text{eff}$ is an $\eta$-dependant isolation area \cite{CMS:2015xaf}, $E_T \equiv \sqrt{m^2 + \pt^2}$, $rho$ is an average pileup energy density per unit area in the $\eta$-$\phi$ plane and the sums are computed across PF candidates of a given type within a cone $\Delta R \equiv \sqrt{\Delta\eta^2+\Delta\phi^2}< 0.3$ around the reconstructed electron. Thresholds on this discriminator are derived to target specific predefined selection efficiencies. The discriminator is not used in this work and only a requirement $I^e_{rel} < 0.15$ is applied to selected electron objects. 
+
+The second method of electron identification is based on a boosted decision tree. It uses information about the track-cluster matching and energy deposits in HCAL/ECAL, as well as cluster-shape, track-quality variables and provides a score for a reconstructed electron object to be a genuine prompt electron. Working points are defined as thresholds on the score to target predefined electron selection efficiency. In this work, a working point corresponding to 90\% efficiency is used.
+
+Lastly, additional requirements are applied on the transverse $d_{xy} < 0.045$ cm and longitudinal $d_z < 0.2$ cm impact parameters of the selected electrons.
+
+\subsection{Muons}
+Muon reconstruction is not a part of the PF algorithm and relies on a standalone algorithm as described in Sec. \ref{sec:pf_base}. An identification step for muons is based on a set of requirements aimed to provide a predefined selection efficiency. In this work the muon object is required to be reconstructed as a tracker or global muon and pass the hit and segment compatibility quality selection. Same requirements on the impact parameters $d_{xy} < 0.045$ and $d_z < 0.2$ as in case of electrons are applied. Isolation variable is also defined as:
+\begin{equation}\label{eq:iso_mu}
+    I^\mu_{rel} = \dfrac{\sum \pt(\text{h}^\pm) + \max\left(\sum \pt(\text{h}^0) + \pt(\gamma) - \frac{1}{2}\sum \pt(\text{h}^\pm_{\text{PU}}), 0\right)}{\pt^\mu},
+\end{equation}
+
+where the sums are taken for the PF candidates in the isolation cone $\Delta R < 0.4$ centered around the reconstructed muon direction of flight. The sum $\sum \pt(\text{h}^\pm_{\text{PU}})$ is computed over the charged PF candidates originating from pileup vertices and scaled down by a factor 1/2 to approximate and subtract the pileup contribution from neutral particles. A requirement $I^\mu_{rel} < 0.15$ is also applied.  
+
+\subsection{Tau leptons}
+Tau leptons decaying hadronically ($\tau_h$) are reconstructed with a dedicated hadron-plus-strips (HPS) algorithm as described in Sec. \ref{hps}. First, it aims to reconstructs $\pi^0$ coming from the \tauh decays in a form of \enquote{strips}. Second, it combines them with charged hadrons to form potential \tauh candidates according to expected decay modes (DM) (Sec. \ref{tau-intro}).
+
+For the identification step, a DeepTau model (Sec. \ref{deeptau1}) is used to separate \tauh candidates, reconstructed by the HPS algorithm, from jets, electrons, and muons. The model is built from 1D and 2D convolutional layers operating on a grid in $\eta$-$\phi$ plane centered around the HPS-reconstructed \tauh candidate. It combines low-level information from PF candidates and RECO electrons/muons as they are placed on the grid to  separate between genuine \tauh and fakes. For this work, in the $tau_e\tau_h$ final state the \tauh candidate is required to pass the working points which correspond to probability of 70\%, 80\%, and 99.95\% to pass DeepTau discriminators against jets, electrons, and muons, respectively.
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Figures/CP_etau/svfit.png}
+    \caption{Distribution of $m_{\tau\tau}$ variable derived with the SVFit algorithm (left) and visible mass $m_\text{vis}$ of the ditau system (right) for the \htt (black line histogram) and \ztt (yellow filled histogram) events in the $\tau_\mu\tau_h$ final state \cite{Bianchini:2014vza}.}
+    \label{fig:svfit}
+\end{figure}
+
+Since there are undetectable neutrino(s) present in the $\tau$ decays, the full reconstruction of the $\tau\tau$ system is not possible by means of \tauh reconstruction algorithms only. A dedicated SVFit algorithm \cite{Bianchini:2014vza} is used to recover for this loss of information. It combines a missing transverse momentum vector $\Vec{p}_\text{T}^\text{miss}$ and its uncertainty matrix with the four-vectors of two tau leptons and uses a simplified matrix-element approach to reconstruct the invariant mass $m_{\tautau}$ of the ditau system. This variable provides better separation between \htt and $Z/\gamma^*\to\tau\tau$ events comparing to a visible mass $m_\text{vis}$ of the ditau system (Fig. \ref{fig:svfit}).    
+
+The analysis in this work, as it will be shown in Sec. \ref{sec:phicp}, heavily relies on excellent identification of \tauh decay modes. Several changes have been already introduced with the DeepTau algorithm to improve their purity and efficiency at the stage of the HPS algorithm. However, the migration from, for example, $\text{DM}=11$ ($\h\text{h}^\mp\h\text{h}^0$) to $\text{DM}=10$ ($\h\text{h}^\mp\h$) is still sizeable ($\sim25\%$) and leads to the pollution of the latter DM category which in turn affects the analysis sensitivity. Furthermore, $\text{DM}=2$ ($\h\text{h}^0\text{h}^0$) is merged with $\text{DM}=1$ ($\h\text{h}^0)$ which does not allow for their separate analysis. To mitigate these limitations, two BDTs (referred to as MVA DM) are trained and applied on top of the HPS reconstructed \tauh candidates to predict their decay mode \cite{CMS-DP-2020-041}. One BDT is designed to identify decay modes with one charged prong and $n(\pi^0) = \{0,1,2\}$ ($\text{DM}=0,1,2$), while the other targets \tauh candidates with three charged prongs and $n(\pi^0) = \{0,1\}$ ($\text{DM}=10,11$). The input variables to the BDT describe the kinematics, invariant mass properties and angular information of the constituents of HPS reconstructed \tauh candidate. \htt events in the $\tau_\mu\tau_h$ and $\tau_h\tau_h$ final states with the H is produced via vector-boson or gluon-gluon fusion are used for the training. Overall, the BDTs provide the identification of \tauh candidates with $\text{DM}=2$ and consistently improve the purity of DM selection by up to $25\%$ without significant reduction in efficiency (Fig. \ref{fig:mva_dm}).  
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{Figures/CP_etau/mva_purity.png}
+    \includegraphics[width=0.45\textwidth]{Figures/CP_etau/mva_eff.png}
+    \caption{Comparison of purity and efficiency of the \tauh decay mode identification between the HPS (orange bars) and MVA DM algorithms (blue bars) \cite{CMS-DP-2020-041}.}
+    \label{fig:mva_dm}
+\end{figure}
+
+
+
+\subsection{Jets and missing transverse energy}\label{sec:jets}
+An anti-$k_\text{T}$ algorithm \cite{Cacciari:2008gp} with the distance parameter $R=0.4$ as implemented in the FastJet package \cite{Cacciari:2011ma} is used for the reconstruction of jets. Effectively, it is proposed as an extension of the $k_\text{T}$ \cite{Ellis:1993tq} and Cambridge/Aachen \cite{Wobisch:1998wt} algorithms with redefining the distance measure as:
+
+\begin{align}
+    &d_{ij} = \min(k_{\text{T},i}^{2p},k_{\text{T},j}^{2p})\dfrac{\Delta^2_{ij}}{R^2}\\
+    &d_{iB} = k_{\text{T},i}^{2p},
+\end{align}
+
+where $d_{ij}$ is the distance between entities $i$ and $j$ (either particles or \enquote{pseudojets}), $d_{iB}$ is the distance between the entity $i$ and the beam,  $\Delta^2_{ij} = (y_i-y_j)^2 + (\phi_i - \phi_j)^2$ with $k_{\text{T},i}, y_i, \phi_i$ being the transverse momentum, rapidity and azimuth angle of the entity $i$, respectively. The parameter $p$ balances between the energy and geometrical scales. For $p=0$ one obtains an inclusive Cambridge/Aachen algorithm, while the case $p=1$ corresponds to the $k_\text{T}$ algorithm.
+
+A inclusive anti-$k_\text{T}$ algorithm corresponds to $p=-1$ starts by combinatorically computing the distances $d_{ij}$ and $d_{iB}$ between input PF particles. If $d_{ij}$ is the smallest out of two, the particles/entities are merged together into a single entity (so-called pseudojet). Otherwise, the particle/entity $i$ is removed from the list and called a jet. Then the distances are recalculated until there are no entities left.
+
+In order to correct for the impact of pileup interactions on the jet observables, a charge hadron subtraction (CHS) technique is used \cite{CMS-PAS-JME-14-001}. It identifies the PF candidates which originate from pileup vertices and removes them from the collection used to cluster jets. Residual jet energy corrections are applied to correct for differences between data and simulation \cite{CMS:2016lmd}. A large amount of noise in the ECAL endcaps during the 2017 data taking period caused a disagreement between the data and simulation. Therefore, jets with $\pt < 50~\text{GeV}$ and $2.65 < |\eta| < 3.10$ are removed from the analysis of 2017 data set. Jets containing b-quarks are identified with the DeepCSV algorithm \cite{CMS:2017wtu}. The medium working point is used which corresponds to approximately $70\%$ identification efficiency of b-jets with the misidentification of jets from light quarks/gluons at the level of $1\%$.
+
+The missing transverse energy (MET) \met is reconstructed as the momentum imbalance in the transverse plane \cite{CMS:2019ctu}. \met is calculated as a negative vectorial sum of the reconstructed PF candidates in the event with the jet energy corrections being taken into account. Pileup effects are mitigated with a pileup per particle identification (PUPPI) algorithm \cite{Bertolini:2014bba} which assigns a weight to each PF candidate which indicates the likelihood of the candidate to originate from a pileup interaction. These weights are further used to rescale the four-momentum of the PF candidates, which showed to improve both jet and MET observables comparing to the CHS method.
+
+\subsection{Primary vertex}\label{sec:pv}
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/CP_etau/pv.png}
+    \caption{Difference between the generator-level and reconstructed primary vertex position for the $x$ (left), $y$ (middle), and $z$ (right) coordinates. Blue (orange) histogram corresponds to the nominal (refitted beamspot-corrected) PV reconstruction as described in step 1 (2) in Sec. \ref{sec:pv}}
+    \label{fig:pv}
+\end{figure}
+ Vertex corresponding to a primary $pp$ interaction is reconstructed in two steps:
+\begin{enumerate}
+    \item An initial collection of primary vertex (PV) candidates is obtained by clustering tracks with a deterministic annealing algorithm \cite{726788}. A vertex having the largest value of $\sum \pt^2$ of the physics objects in the event (jets reconstructed from the tracks assigned to a candidate vertex and MET) is selected as a primary vertex.
+    \item A refitting procedure with an adaptive vertex fitter \cite{Fruhwirth:2007hz} is performed to improve the PV position resolution. Tracks originating from $\tau$ decay are removed from the fit in order to remove  the bias arising from the displacement of the $\tau$ decay vertex. Furthermore, additional constraint to the LHC beam spot -- 3-D region where LHC beams collide in the CMS detector -- is introduced. The position and covariance matrix of the beam spot are precisely measured as an average over multiple collision events \cite{CMS:2014pgm}. Therefore, using the beam spot information as an initial estimate of the PV position and uncertainty in the fit instead of a default fit configuration improves the fitting convergence and the PV position resolution in the transverse plane by a factor of 3 (Fig. \ref{fig:pv}). 
+\end{enumerate}
+
+\subsection{Impact parameter}\label{sec:ip}
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Figures/CP_etau/ip.png}
+    \caption{Illustration of the impact parameter vector $\boldsymbol{n}_-$ reconstruction via a tangent method for a decay of a tau lepton with momentum $\boldsymbol{\text{k}}_-$ to a one charged prong with momentum $\boldsymbol{\text{p}}_-$ in a laboratory frame \cite{Berge:2008dr}. The impact parameter vector is obtained by extrapolating $\boldsymbol{\text{p}}_-$ in the direction of the primary vertex (PV) from the tau decay vertex (intersection of dashed and $\boldsymbol{\text{p}}_-$ lines). A vector pointing from PV to the point of the closest approach on the extrapolated tangent is an impact parameter vector.}
+    \label{fig:ip}
+\end{figure}
+
+In order to perform CP analysis in some of the $\tau\tau$ final states reconstruction of the impact parameter (IP) -- a vector from the PV to the point of the closest approach of a charged particle track to PV -- is needed for the charged prongs originating from $\tau$ decays  (Fig. \ref{fig:ip}). Since existing methods in CMS are limited to the IP reconstruction done in the transverse plane (which is not precise for the tracks with high pseudorapidity), a dedicated approach is developed to extend it to 3D. Contrary to another method using a tangent track extrapolation (Fig. \ref{fig:ip}), it parametrises the particle trajectory in the magnetic field as a helix $\vec{x}(t)$ and minimizes the distance between the trajectory and the primary vertex $\vv{d}(t) = |\vec{x}(t) - \vv{PV}|$. The resulting vector obtained after the minimisation $\text{IP} = \vec{x}(t_{\text{min}}) - \vv{PV}$ is used as an impact parameter vector. Furthermore, the minimisation procedure allows for a propagation of track parameter uncertainties to the impact parameter vector, therefore enabling the construction of an impact parameter significance variable:
+\begin{equation}
+S_{\text{IP}} = \dfrac{|\text{IP}|}{\sigma(\text{IP})},
+\end{equation}
+
+where $\sigma(\text{IP}) = \dfrac{\vv{\text{IP}}^{\text{T}}}{|\vv{\text{IP}}|}\boldsymbol{\Sigma}_{\vv{\text{IP}}}\dfrac{\vv{\text{IP}}}{|\vv{\text{IP}}|}$ and $\boldsymbol{\Sigma}_{\vv{\text{IP}}}$ is the covariance matrix for the impact parameter vector derived with the error propagation. $S_{\text{IP}}$ variable is further used in the event selection described in Sec. \ref{sec:selection}.
+
+\subsection{\phicp observable}\label{sec:phicp}
+\subsubsection{Introduction}
+As described in Sec. \ref{sec:cp-intro} and specifically in Eq. \ref{eq:h_width_spin}, the CP nature of the Higgs boson coupling with tau leptons can be accessed through the spin correlations of the tau leptons resulting from its decay. However, it is not straight-forward \textit{a priori} how to analyse this correlations experimentally. Furthermore, the situation is also complicated by the necessity to reconstruct the Higgs rest frame, which is not available in $pp$ collision at LHC. 
+
+The following approach is proposed by Berge et al. \cite{Berge:2011ij, Berge:2014sra, Berge:2014wta}. Firstly, considering the general form of the tau lepton decay via a charged prong $\tau^\pm \to a^\pm + X$ with $a^\pm \in \{e^\pm, \mu^\pm, \pi^\pm, a_1^{L,T,\pm}\}$, one obtains the partial decay width of the tau lepton:
+\begin{equation}\label{eq:tau_width}
+    \Gamma_ad\Gamma(\tau^\pm(\boldsymbol{s}^\pm) \to a^\pm(q^\pm)+X) = n(E_\pm)\cdot[1 \pm b(E_\pm) \boldsymbol{s}^\pm \cdot \boldsymbol{q}^\pm]\cdot dE_\pm\dfrac{d\Omega\pm}{4\pi},
+\end{equation}
+
+where $\boldsymbol{s}^\pm$ is a normalised spin vector of the tau lepton in its rest frame, $E_\pm$ and $\boldsymbol{q}^\pm$ are the energy and the direction of flight of $a^\pm$ in the tau rest frame. $n(E_\pm)$ and $b(E_\pm)$ are referred to as spectral functions \cite{Berge:2011ij}. 
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Figures/CP_etau/phicp_vis.png}
+    \caption{Illustration of the \htt in its rest frame where each $\tau$ decays into a single charged pion \cite{CMS:2021sdq}. The \phicp angle between the tau lepton decay planes is shown as a red arrow.}
+    \label{fig:phicp_vis}
+\end{figure}
+
+Using Eq. \ref{eq:l_y_angle} and \ref{eq:tau_width} one obtains for the partial decay width of \htt:
+\begin{equation}\label{eq:master}
+    \dfrac{d\Gamma}{d\phicp}(\htt) \sim 1 - \dfrac{\pi^2}{16}b(E^+)b(E^-)\cos(\phicp - 2\mixa),
+\end{equation}
+
+where a \phicp observable is introduced as the angle between the tau lepton decay planes in the Higgs rest frame (Fig. \ref{fig:phicp_vis}). However, since the latter cannot be reconstructed in $pp$ collisions, a zero-momentum frame (ZMF) using the charged decay products of the tau leptons is used in this work as an approximation of the Higgs rest frame. This might potentially reduce the overall sensitivity of the analysis, therefore hinting towards further studies of the ditau system reconstruction in $pp$ collisions.
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Figures/CP_etau/sfunc.png}
+    \caption{Spectral functions $n(E_\pi)$ and $b(E_\pi)$ for the charged pion in $\tau^- \to \rho^- \nu_\tau \to \pi^-\pi^0\nu_\tau$ (left) and $\tau^\pm \to a_1^- \nu_\tau \to \pi^-\pi^0\pi^0\nu_\tau$ (right) decays as a function of the charged pion energy ($E_\pi$) in the tau rest frame \cite{Berge:2011ij}. The values of $n(E_\pi)$ and $b(E_\pi)$ are given in units of GeV$^{-1}$.}
+    \label{fig:sfunc}
+\end{figure}
+
+One can contrast Eq. \ref{eq:master} with Eq. \ref{eq:h_width_spin} and observe that \phicp angle effectively resembles the angle between the transverse spin vectors of the tau leptons. This can be viewed as that the $\tau$ decay product topology has a spin analysing power allowing to access the spin information experimentally. However, this power is dependant on the $\tau$ decay mode and on the properties of the charged prong as encoded with the spectral functions. The functions show complex behaviour (Fig. \ref{fig:sfunc}) and for some scenarios can change their sign therefore affecting the separation between pure scalar and pseudoscalar hypotheses. No dedicated optimisation of CP sensitivity is carried out in this work as the analysis is largely limited by the available statistics. This strongly affects the room for optimisation of the event selection with respect to the spectral functions as it will further reduce the amount of signal candidates. However, as more data will be available in the future, such optimisation can be carried out in the context of the differential measurement of CP \htt properties.
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Figures/CP_etau/phicp.png}
+    \caption{The distribution of \phicp angle in the Higgs rest frame at the generator level for the \htt events where both tau leptons decay into a charged pion and a neutrino \cite{CMS:2021sdq}. The hypotheses of a scalar (solid red), pseudoscalar (dashed blue), and a CP mixture with $\mixa=45^\circ$ (dash-do-dot green) Higgs boson as well as a Z vector boson (dash-dot black) are shown.}
+    \label{fig:phicp}
+\end{figure}
+
+Similarly to Eq. \ref{eq:h_width_spin}, a CP mixing angle \mixa enters in Eq. \ref{eq:master} as a phase shift of the cosine distribution. Therefore, given enough sensitivity one would be able to gauge the CP nature of the $\text{H}\tau\tau$ coupling by the shift of the modulation from the expected SM (CP-even) scenario (Fig. \ref{fig:phicp}). It should also be noted that for the $Z/\gamma^* \to \tau\tau$ process, which constitute one of the major background in this work, the distribution of \phicp observable is flat at the generator level. 
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{Figures/CP_etau/phicp_dy.png}
+    \includegraphics[width=0.45\textwidth]{Figures/CP_etau/phicp_ggh.png}
+    \caption{Unnormalised \phicp distributions for the simulated DY (left) and \htt (right) events on the reconstructed level for four final states analysed in this work. Dashed lines on the left figure show the mean of the corresponding histogram counts. On the right figure, solid (dashed) lines represent the distribution of the scalar (pseudoscalar) H hypothesis. Histogram counts are in auxiliary units.}
+    \label{fig:phicp_e}
+\end{figure}
+
+However, at the detector level track resolution and PV smearing effects distort the distribution of \phicp both for the signal and background processes \cite{Berge:2014sra}. For example, for the $\tau_e\tau_h$ analysed in this work, for the $e\pi$ final state (one tau decays into electron and neutrinos, the other into a charged pion and neutrinos) it is visible on Fig. \ref{fig:phicp_e} (left) that the distribution of the simulated DY events is not flat and peaks towards $0$ and $2\pi$ values of \phicp. This is due to the PV smearing effects that pull the reconstructed IP vectors towards smaller values, which consequently translates to \phicp values . This effect is pronounced only for the final states where IP vectors are used for the reconstruction of \phicp for both tau leptons, as described below in this section. Despite the spearing effects breaking the flatness of the DY background events, some symmetries can still be used in the construction of the templates for the statistical inference, as described in Sec. \ref{sec:stat}. For the \htt events, the modulations are clearly visible at the reconstruction level for all the final states being considered, and the pure CP even and CP odd hypotheses are separable. 
+
+\subsubsection{Methods}
+Due to the variety of tau lepton decays, $\tau\tau$ final state is challenging to analyse from the perspective of the CP measurement as there is no universal method of \phicp reconstruction which would cover all the $\tau$ decay modes. 
+
+By definition, \phicp is the angle between the tau lepton decay planes in the Higgs rest frame. Intuitively, this can be reconstructed for tau leptons both decaying into at least two reconstructable objects. However, if one of the tau leptons decays into a single charged prong and neutrino, it is no longer possible to define its decay plane because of the neutrino escaping detection. This is particularly the case for the $\tau_e\tau_h$ final state analysed in this work, where one tau lepton decays into an electron and a neutrino.
+
+Since there's two decay planes involved in the computation of \phicp, the problem factorises into the problem of reconstructing separately a decay plane for each of the tau leptons followed by computing the angle between them. 
+
+For the decays into one charged prong $\tau^\pm \to e^\pm \nu$ and $\tau^\pm \to \pi^\pm \nu$ an \textbf{impact parameter method} is used. While it is natural to construct the decay plane spanned by the momenta of reconstructed particle, in these decay modes there's only one momentum vector available. Therefore, and impact parameter vector of a charged prong is used as the second vector to define the decay plane. The IP vector is computed in the laboratory frame (Sec. \ref{sec:ip}) and then boosted in the Higgs ZMF. 
+
+
+To summarise, the final states to be analysed with the corresponding methods are:
+\begin{itemize}
+    \item $e\pi$
+\end{itemize}
+
+
+\section{Event selection}\label{sec:selection}
+
+\section{Background estimation}\label{sec:bkgr}
+
+\section{Event categorisation}\label{sec:ml}
+
+\section{Systematic uncertainties}\label{sec:syst}
+
+\section{Statistical inference}\label{sec:stat}
+
+\section{Results}\label{sec:results}
+
