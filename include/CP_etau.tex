@@ -1,4 +1,4 @@
-\chapter{CP analysis in $\text{H} \to \tau_e\tau_h$ decays}
+\chapter{CP analysis in $\text{H} \to \et$ decays}\label{sec:cp-etau}
 \section{Introduction}\label{sec:cp-intro}
 
 In order to probe the CP nature of the interaction between the Higgs boson and tau leptons one needs to modify the SM Lagrangian in a way to incorporate effects deviating from the Standard Model expectations. This can be done already at the tree level and from the general assumptions, i.e. without assuming any model dependence. For the tau lepton case one can write the following extension of the Yukawa coupling term in the SM Lagrangian \cite{Gritsan:2016hjl}:
@@ -6,7 +6,7 @@ In order to probe the CP nature of the interaction between the Higgs boson and t
     \mathcal{L}_Y = -\frac{m_\tau}{v}(\kappa_\tau\bar{\tau}\tau + \tilde{\kappa_\tau}\bar{\tau}i\gamma_5\tau) \text{H}.
 \end{equation}
 
-Here $m_\tau = 1.776(86)$ GeV is the mass of the tau lepton, $v=\left(\sqrt{2G_\text{F}}\right)^{-1/2} \approx 246$ GeV is the vacuum expectation value of the Higgs field (Sec. \ref{}), $G_\text{F} = 1.1663787(6) × 10^{−5}$ GeV$^{-2}$ is the Fermi constant, $\kappa_\tau$ and $\tilde{\kappa_\tau}$ are the coupling strength
+Here $m_\tau = 1.776(86)$ GeV is the mass of the tau lepton, $v=\left(\sqrt{2G_\text{F}}\right)^{-1/2} \approx 246$ GeV is the vacuum expectation value of the Higgs field (Sec. \ref{}), $G_\text{F} = 1.1663787(6) \cross 10^{−5}$ GeV$^{-2}$ is the Fermi constant, $\kappa_\tau$ and $\tilde{\kappa_\tau}$ are the coupling strength
 modifiers, H is the SM Higgs boson. While this term is written specifically for the SM scenario, it is generally applicable to any neutral spin-zero particle H of arbitrary CP nature with a flavor-diagonal Yukawa interaction with a fermion. 
 
 Few things should be noted regarding Eq. \ref{eq:l_y}. First, while such parametrisation is model-independent \textit{per se}, the couplings $\kappa_\tau$ and $\tilde{\kappa_\tau}$ can depend on the specific model under consideration and can be interpreted within the framework of these theories. For example, in the context of a two-Higgs doublet model, e.g. minimal supersymmetric SM
@@ -114,14 +114,14 @@ Muon reconstruction is not a part of the PF algorithm and relies on a standalone
 where the sums are taken for the PF candidates in the isolation cone $\Delta R < 0.4$ centered around the reconstructed muon direction of flight. The sum $\sum \pt(\text{h}^\pm_{\text{PU}})$ is computed over the charged PF candidates originating from pileup vertices and scaled down by a factor 1/2 to approximate and subtract the pileup contribution from neutral particles. A requirement $I^\mu_{\text{rel}} < 0.15$ is also applied.  
 
 \subsection{Tau leptons}\label{sec:reco_tau}
-Tau leptons decaying hadronically ($\tau_h$) are reconstructed with a dedicated hadron-plus-strips (HPS) algorithm as described in Sec. \ref{hps}. First, it aims to reconstructs $\pi^0$ coming from the \tauh decays in a form of \enquote{strips}. Second, it combines them with charged hadrons to form potential \tauh candidates according to expected decay modes (DM) (Sec. \ref{tau-intro}).
+Tau leptons decaying hadronically ($\tauh$) are reconstructed with a dedicated hadron-plus-strips (HPS) algorithm as described in Sec. \ref{hps}. First, it aims to reconstructs $\pi^0$ coming from the \tauh decays in a form of \enquote{strips}. Second, it combines them with charged hadrons to form potential \tauh candidates according to expected decay modes (DM) (Sec. \ref{tau-intro}).
 
 For the identification step, a DeepTau model (Sec. \ref{deeptau1}) is used to separate \tauh candidates, reconstructed by the HPS algorithm, from jets, electrons, and muons. The model is built from 1D and 2D convolutional layers operating on a grid in $\eta$-$\phi$ plane centered around the HPS-reconstructed \tauh candidate. It combines low-level information from PF candidates and RECO electrons/muons as they are placed on the grid to  separate between genuine \tauh and fakes. For this work, the \tauh candidate is required to pass the working points which correspond to the probability of 70\%, 80\%, and 99.95\% (Medium, Tight, Very loose, respectively) to pass DeepTau discriminators against jets, electrons, and muons, respectively. Furthermore, the $z$ component of the impact parameter of the leading charged track with respect to PV is required to be $|d_z| < 0.2$ cm.
 
 \begin{figure}[t!]
     \centering
     \includegraphics[width=0.85\textwidth]{Figures/CP_etau/svfit.png}
-    \caption{Distribution of $m_{\tau\tau}$ variable derived with the SVFit algorithm (left) and visible mass $m_\text{vis}$ of the ditau system (right) for the \htt (black line histogram) and \ztt (yellow filled histogram) events in the $\tau_\mu\tau_h$ final state \cite{Bianchini:2014vza}.}
+    \caption{Distribution of $m_{\tau\tau}$ variable derived with the SVFit algorithm (left) and visible mass $m_\text{vis}$ of the ditau system (right) for the \htt (black line histogram) and \ztt (yellow filled histogram) events in the \mt final state \cite{Bianchini:2014vza}.}
     \label{fig:svfit}
 \end{figure}
 
@@ -129,7 +129,7 @@ Since there are undetectable neutrino(s) present in the $\tau$ decays, the full 
 
 The analysis in this work, as it will be shown in Sec. \ref{sec:phicp}, heavily relies on identification of \tauh decay modes. Several changes have been already introduced with the DeepTau algorithm to improve their purity and efficiency at the stage of the HPS algorithm. However, the migration from, for example, $\text{DM}=11$ ($\h\text{h}^\mp\h\text{h}^0$) to $\text{DM}=10$ ($\h\text{h}^\mp\h$) is still sizeable ($\sim25\%$) and leads to the contamination of the latter DM category, which in turn affects the analysis sensitivity. Furthermore, $\text{DM}=2$ ($\h\text{h}^0\text{h}^0$) is merged with $\text{DM}=1$ ($\h\text{h}^0)$ which does not allow for their separate analysis. 
 
-To mitigate these limitations, two BDTs (referred to as MVA DM) are trained and applied on top of the HPS reconstructed \tauh candidates to predict their decay mode \cite{CMS-DP-2020-041}. One BDT is designed to identify decay modes with one charged prong and the number of $\pi^0$ $n(\pi^0) = \{0,1,2\}$ ($\text{DM}=0,1,2$), while the other targets \tauh candidates with three charged prongs and $n(\pi^0) = \{0,1\}$ ($\text{DM}=10,11$). The input variables to the BDT describe the kinematics, invariant mass properties and angular information of the constituents of an HPS reconstructed \tauh candidate. \htt events in the $\tau_\mu\tau_h$ and $\tau_h\tau_h$ final states with the H produced via vector-boson or gluon-gluon fusion are used for the training. Overall, the BDTs provide the identification of \tauh candidates with $\text{DM}=2$ and consistently improve the purity of DM selection by up to $25\%$ without significant reduction in efficiency (Fig. \ref{fig:mva_dm}).  
+To mitigate these limitations, two BDTs (referred to as MVA DM) are trained and applied on top of the HPS reconstructed \tauh candidates to predict their decay mode \cite{CMS-DP-2020-041}. One BDT is designed to identify decay modes with one charged prong and the number of $\pi^0$ $n(\pi^0) = \{0,1,2\}$ ($\text{DM}=0,1,2$), while the other targets \tauh candidates with three charged prongs and $n(\pi^0) = \{0,1\}$ ($\text{DM}=10,11$). The input variables to the BDT describe the kinematics, invariant mass properties and angular information of the constituents of an HPS reconstructed \tauh candidate. \htt events in the \mt and \tata final states with the H produced via vector-boson or gluon-gluon fusion are used for the training. Overall, the BDTs provide the identification of \tauh candidates with $\text{DM}=2$ and consistently improve the purity of DM selection by up to $25\%$ without significant reduction in efficiency (Fig. \ref{fig:mva_dm}).  
 
 \begin{figure}[t!]
     \centering
@@ -244,12 +244,12 @@ Similarly to Eq. \ref{eq:h_width_spin}, a CP mixing angle \mixa enters in Eq. \r
     \label{fig:phicp_e}
 \end{figure}
 
-However, at the detector level track resolution and PV smearing effects distort the distribution of \phicp both for the signal and background processes \cite{Berge:2014sra}. For example, for the $\tau_e\tau_h$ analysed in this work, for the $e\pi$ final state (one tau decays into electron and neutrinos, the other into a charged pion and neutrinos) it is visible on Fig. \ref{fig:phicp_e} (left) that the distribution of the simulated Drell-Yan events is not uniform and peaks towards $0$ and $2\pi$ values of \phicp. This is due to the PV smearing effects that pull the reconstructed IP vectors towards smaller values, which consequently translates to \phicp values . This effect is pronounced only for the final states where IP vectors are used for the reconstruction of \phicp for both tau leptons, as described below in this section. Despite the smearing effects destructing the uniformity of the Drell-Yan background events, some symmetries can still be used in the construction of the templates for the statistical inference, as described in Sec. \ref{sec:stat}. For the \htt events, the modulations are clearly visible at the reconstruction level for all the final states being considered, and the pure CP even and CP odd hypotheses are separable. 
+However, at the detector level track resolution and PV smearing effects distort the distribution of \phicp both for the signal and background processes \cite{Berge:2014sra}. For example, for the \et analysed in this work, for the $e\pi$ final state (one tau decays into electron and neutrinos, the other into a charged pion and neutrinos) it is visible on Fig. \ref{fig:phicp_e} (left) that the distribution of the simulated Drell-Yan events is not uniform and peaks towards $0$ and $2\pi$ values of \phicp. This is due to the PV smearing effects that pull the reconstructed IP vectors towards smaller values, which consequently translates to \phicp values . This effect is pronounced only for the final states where IP vectors are used for the reconstruction of \phicp for both tau leptons, as described below in this section. Despite the smearing effects destructing the uniformity of the Drell-Yan background events, some symmetries can still be used in the construction of the templates for the statistical inference, as described in Sec. \ref{sec:stat}. For the \htt events, the modulations are clearly visible at the reconstruction level for all the final states being considered, and the pure CP even and CP odd hypotheses are separable. 
 
 \subsubsection{Methods}
 Due to the variety of tau lepton decays, $\tau\tau$ final state is challenging to analyse from the perspective of the CP measurement as there is no universal method of \phicp reconstruction which would cover all the $\tau$ decay modes. 
 
-By definition, \phicp is the angle between the tau lepton decay planes in the Higgs rest frame. Intuitively, this can be reconstructed for tau leptons both decaying into at least two reconstructable objects using their momenta vectors. However, if one of the tau leptons decays into a single charged prong and neutrino, it is no longer possible to define its decay plane because of the neutrino escaping detection. This is particularly the case for the $\tau_e\tau_h$ final state analysed in this work, where one tau lepton decays into an electron and a neutrino.
+By definition, \phicp is the angle between the tau lepton decay planes in the Higgs rest frame. Intuitively, this can be reconstructed for tau leptons both decaying into at least two reconstructable objects using their momenta vectors. However, if one of the tau leptons decays into a single charged prong and neutrino, it is no longer possible to define its decay plane because of the neutrino escaping detection. This is particularly the case for the \et final state analysed in this work, where one tau lepton decays into an electron and a neutrino.
 
 Since there's two decay planes involved in the \phicp computation, the problem factorises into the problem of reconstructing separately a decay plane for each of the tau leptons followed by computing the angle between them. Furthermore, there's generally two four-vectors in the laboratory frame needed to construct the plane in the ZMF. To unify the notation across various decay modes, these are further referred to as $\lambda^\pm$ ($\lambda^{ZMF^\pm}$) and $q^\pm$ ($q^{ZMF^\pm}$) in the laboratory (zero-momentum) frame, where $\pm$ refers to the charge of the tau lepton. Vectors in the ZMF are obtained by the Lorentz boost from the laboratory frame. Depending on the decay mode, the four-vectors are constructed using various approaches, as described further.
 
@@ -260,7 +260,7 @@ A transverse component of $\lambda^{ZMF^\pm}$ with respect to $q^{ZMF^\pm}$ is d
 \end{align}
 
 Finally, one obtains $\phicp \in [0^\circ,360^\circ]$ angle as:
-\begin{equation}
+\begin{equation}\label{eq:phicp}
     \phicp = 
     \begin{cases}
     \phi^{ZMF} & \text{if} ~O^{ZMF} \geq 0 \\
@@ -297,14 +297,14 @@ To summarise, the final states to be analysed with the corresponding methods to 
 \end{itemize}
 
 \section{Event selection}\label{sec:selection}
-The following procedure to select events for the analysis of the $\tau_e\tau_h$ final state, where one tau lepton decays into an electron plus neutrinos ($\tau_e$) and the other into hadrons plus neutrino ($\tau_h$), is followed:
+The following procedure to select events for the analysis of the \et final state, where one tau lepton decays into an electron plus neutrinos ($\taue$) and the other into hadrons plus neutrino ($\tauh$), is followed:
 
 \begin{enumerate}
-    \item Events are selected online by the CMS trigger system (Sec. \ref{}). Either a cross trigger ($e \, \& \, \tau_h$) or a single electron trigger ($e$) should be triggered depending on the data taking year (online \pt thresholds for the corresponding objects are shown in brackets in GeV):
+    \item Events are selected online by the CMS trigger system (Sec. \ref{}). Either a cross trigger ($e \, \& \, \tauh$) or a single electron trigger ($e$) should be triggered depending on the data taking year (online \pt thresholds for the corresponding objects are shown in brackets in GeV):
     \begin{itemize}
         \item 2016: $e$(25)
-        \item 2017: $e$(27) OR $e(24) \, \& \, \tau_h(30)$
-        \item 2018: $e$(32) OR $e(24) \, \& \, \tau_h(30)$
+        \item 2017: $e$(27) OR $e(24) \, \& \, \tauh(30)$
+        \item 2018: $e$(32) OR $e(24) \, \& \, \tauh(30)$
     \end{itemize}
     
     \item For each event, pairs of oppositely charged electron and hadronically decaying tau lepton reconstructed offline (Sec. \ref{sec:reco_e} and Sec. \ref{sec:reco_tau}) are selected with the requirement to be sufficiently separated (cone distance $\Delta R > 0.5$). These offline objects are required to match the corresponding online objects within the cone distance $\Delta R < 0.5$. Offline electron (\tauh) objects should have \pt at least 1(5) GeV higher when the online \pt thresholds for the corresponding trigger legs. 
@@ -313,9 +313,9 @@ The following procedure to select events for the analysis of the $\tau_e\tau_h$ 
     
     \item Events containing jet(s) with $\pt > 25$ GeV and $|\eta| < 2.4$ passing the Medium (Loose) working point of the DeepCSV classifier (Sec. \ref{sec:jets}) are vetoed. 
     
-    \item Reconstructed electron candidate is required to have $\pt > 25$, $|\eta| < 2.1$ as well as IP, identification, and isolation requirements described in Sec. \ref{sec:reco_e}. 
+    \item Reconstructed electron candidate is selected with $\pt > 25$, $|\eta| < 2.1$ as well as IP, identification, and isolation requirements described in Sec. \ref{sec:reco_e}. 
     
-    \item Reconstructed \tauh candidate is required to have $\pt > 30$, $|\eta| < 2.3$ ($|\eta| < 2.1$ for the cross trigger) as well as IP and identification requirements described in Sec. \ref{sec:reco_tau}.
+    \item Reconstructed \tauh candidate is selected with $\pt > 20$, $|\eta| < 2.3$ ($|\eta| < 2.1$ for the cross trigger) as well as IP and identification requirements described in Sec. \ref{sec:reco_tau}.
     
     \item Transverse mass of the electron candidate and the missing transverse energy \met is defined as:
     \begin{equation}
@@ -323,13 +323,13 @@ The following procedure to select events for the analysis of the $\tau_e\tau_h$ 
     \end{equation}
     with $\Delta\phi$ denoting the azimuthal angle between the vector of electron transverse momentum $\vv{p}_\text{T}^e$ and \met. The requirement $m_\text{T} < 50 ~\text{GeV}$ is applied in order to reject the background from the W+jets process.
     
-    \item In case there is several $\tau_e\tau_h$ candidates in the event, the pairs are ranked firstly with the highest priority given to the pairs with the most isolated electron, then the highest \pt electron, then the \tauh candidate with the highest DeepTau against jet score, then with the \tauh candidate with the highest \pt.
+    \item In case there is several \et candidates in the event, the pairs are ranked firstly with the highest priority given to the pairs with the most isolated electron, then the highest \pt electron, then the \tauh candidate with the highest DeepTau against jet score, then with the \tauh candidate with the highest \pt.
 \end{enumerate}
 
 
 \section{Background estimation}\label{sec:bkgr}
-The main background sources in the $\tau_e\tau_h$ final state can be roughly classified as those involving genuine tau leptons, jets faking \tauh ($\text{jet}\to \tauh$), prompt/non-prompt leptons faking \tauh ($l\to \tauh$). In terms of physical processes, the expected contributions are from the Drell-Yan, QCD multijet, top
-quark-antiquark pair production (\ttbar), single top quark production (ST), W+jets, and diboson production processes. In this work, the backgrounds are largely modelled with data-driven methods: a $\tau$-embedding technique \cite{CMS:2019pkt} is used to model background with two genuine tau leptons, and a \enquote{fake factor} (\ff) method \cite{CMS:2018lkr} is used to model $\text{jet}\to \tauh$ background. These two methods together account for approximately $90\%$ of all background processes. Other minor background processes are modelled from the simulation where events with a pair of genuine tau leptons or with a jet faking \tauh are removed to avoid double-counting. 
+The main background sources in the \et final state can be roughly classified as those involving genuine tau leptons, jets faking \tauh ($\text{jet}\to \tauh$), prompt/non-prompt leptons faking \tauh ($l\to \tauh$). In terms of physical processes, the expected contributions are from the Drell-Yan, QCD multijet, top
+quark-antiquark pair production (bar), single top quark production (ST), W+jets, and diboson production processes. In this work, the backgrounds are largely modelled with data-driven methods: a $\tau$-embedding technique \cite{CMS:2019pkt} is used to model background with two genuine tau leptons, and a \enquote{fake factor} (\ff) method \cite{CMS:2018lkr} is used to model $\text{jet}\to \tauh$ background. These two methods together account for approximately $90\%$ of all background processes. Other minor background processes are modelled from the simulation where events with a pair of genuine tau leptons or with a jet faking \tauh are removed to avoid double-counting. 
 
 \subsection{$\tau$-embedding method}\label{sec:emb}
 The most challenging part in the simulation of the $Z/\gamma^* \to ll$ process is to model the cases with several emitted partons . This translates, after hadronisation, in the multiplicity of jets in the final state and the corresponding hadronic activity in the detector. Its modelling would require resource-demanding simulation of samples at NLO and further, which in practise still doesn't guarantee adequate description of event observables in data. Therefore, finding the way to model the $Z$+jets process without relying on simulation would be beneficial. 
@@ -348,7 +348,7 @@ A $\tau$-embedding method is designed for that and builds up on an idea of using
     
     \item All traces in the detector which are associated with the muons are removed from the event. This includes hits in the tracking system and muon chambers, plus energy deposits in the calorimeter which are compatible with the fitted global-muon track. 
     
-    \item A pair of tau leptons with the kinematic properties of the two muons in data is simulated with PYTHIA and passed through the empty detector environment (no other particles, no pileup). The tau leptons are forced to decay into a predefined $\tau_e\tau_h$ final state with a branching fraction $100\%$. However, electrons and muons can also in principle be simulated and injected for validation purposes. 
+    \item A pair of tau leptons with the kinematic properties of the two muons in data is simulated with PYTHIA and passed through the empty detector environment (no other particles, no pileup). The tau leptons are forced to decay into a predefined \et final state with a branching fraction $100\%$. However, electrons and muons can also in principle be simulated and injected for validation purposes. 
     
     \item A hybrid event is created as an overlay of the event with the removed muon traces and the event with the simulated pair of tau leptons. The combination is performed at the reconstruction level of physics objects (tracks, $e/\mu$, calorimeter clusters). The resulting sample of hybrid events can be used in the analysis to model the backgrounds with two genuine $\tau$ leptons.
 
@@ -391,7 +391,7 @@ $\text{Jet} \to \tauh$ background constitutes another important background in th
     \item Corrections are applied to account for discrepancies in the closure tests when $\ff^i$ are applied to events in the corresponding DR. Differences between DR and AR resulting in a different \jtt rates between there two regions are also accounted for in the corresponding corrections. 
 \end{enumerate}
 
-\subsection{Corrections}
+\subsection{Corrections}\label{sec:corr}
 While most of the background is estimated from data, it still relies to a certain extent on simulation which requires dedicated corrections to be applied in order to refine its modelling of data. 
 
 The corrections applied to the embedded samples are:
@@ -422,14 +422,14 @@ Lastly, corrections to the impact parameter significance variable are applied bo
 \begin{figure}[t!]
     \centering
     \includegraphics[width=0.6\textwidth]{Figures/CP_etau/mvis.png}
-    \caption{Comparison of data with simulation for 2018 data-taking period for the visible mass of the $\tau_e\tau_h$ system variable.}
+    \caption{Comparison of data with simulation for 2018 data-taking period for the visible mass of the \et system variable.}
     \label{fig:mvis}
 \end{figure}
 
 After estimating the backgrounds as described above and applying all the necessary corrections good agreement between data and simulation is observed for the key physical observables for all years (Fig. \ref{fig:mvis}, Fig. \ref{fig:nn_vars}, and Appendix \ref{app:control_plots}). 
 
 \section{Event categorisation}\label{sec:categ}
-After the selection of $\tau_e\tau_h$ candidate pairs (Sec. \ref{sec:selection}), one has to perform their categorisation. Fundamentally, that means that one wants for each candidate pair understand from which physical process it originates. Since the selection criteria do not yield the sample with only \htt events but the one which is contaminated by several background processes, one is interested in purifying this sample. This is hardly possible to perform manually due to an extremely large number of events to be categorised. Therefore, some automated refining procedure is needed.
+After the selection of \et candidate pairs (Sec. \ref{sec:selection}), one has to perform their categorisation. Fundamentally, that means that one wants for each candidate pair understand from which physical process it originates. Since the selection criteria do not yield the sample with only \htt events but the one which is contaminated by several background processes, one is interested in purifying this sample. This is hardly possible to perform manually due to an extremely large number of events to be categorised. Therefore, some automated refining procedure is needed.
 
 One possible solution would be to follow a rule-based approach and define a set of criteria on custom variables constructed using expert knowledge. This is however a difficult task due to the multidimensionality of the problem, which moreover might not give an optimal result. Therefore, a Machine Learning (ML) approach is taken to classify events into predefined categories. These are defined as follows, together with the corresponding samples used for the composition of a training data set:
 
@@ -498,7 +498,7 @@ Lastly, a requirement on the impact parameter significance $S_\text{IP} > 1.5$ i
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.49\textwidth]{Figures/CP_etau/NN_score_embed_et_2018_higgs_prefit.pdf}
+    \includegraphics[width=0.49\textwidth]{Figures/CP_etau/NN_score_embed_et_2018_tau_prefit.pdf}
     \includegraphics[width=0.49\textwidth]{Figures/CP_etau/NN_score_fakes_et_2018_fakes_prefit.pdf}
     \caption{Pre-fit distribution of the NN score in the genuine $\tau$ (left) and fakes (right) background categories for 2018 data-taking period.}
     \label{fig:bkgr_cat_prefit}
@@ -530,7 +530,7 @@ It is parametrised by:
     
 \end{itemize}
 
-The likelihood function is computed as a product over categories $j$ and bins $i$. In the analysis of the $\tau_e\tau_h$ final state the former product is taken over the categories for each of the three (2016, 2017, 2018) data-taking periods as defined by the corresponding neural networks (Sec. \ref{sec:categ}). In the combination with the other channels (Sec. \ref{sec:comb}) the corresponding categories as defined by the analysis of these channels are additionally included in the product. The signal (Higgs) category is further split into four categories based on the MVA DM predictions (Sec. \ref{sec:reco_tau}) for the \tauh candidate with the decay modes MVA DM = \{0, 1, 2, 10\} being considered. Therefore, the final set of categories in the $\tau_e\tau_h$ analysis is:
+The likelihood function is computed as a product over categories $j$ and bins $i$. In the analysis of the \et final state the former product is taken over the categories for each of the three (2016, 2017, 2018) data-taking periods as defined by the corresponding neural networks (Sec. \ref{sec:categ}). In the combination with the other channels (Sec. \ref{sec:comb}) the corresponding categories as defined by the analysis of these channels are additionally included in the product. The signal (Higgs) category is further split into four categories based on the MVA DM predictions (Sec. \ref{sec:reco_tau}) for the \tauh candidate with the decay modes MVA DM = \{0, 1, 2, 10\} being considered. Therefore, the final set of categories in the \et analysis is:
 \begin{itemize}
     \item $e\pi$ (signal)
     \item $e\rho$ (signal)
@@ -682,7 +682,7 @@ The following sources of shape uncertainties are considered in the analysis:
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.49\textwidth]{Figures/CP_etau/NN_score_embed_et_2018_higgs_postfit.pdf}
+    \includegraphics[width=0.49\textwidth]{Figures/CP_etau/NN_score_embed_et_2018_tau_postfit.pdf}
     \includegraphics[width=0.49\textwidth]{Figures/CP_etau/NN_score_fakes_et_2018_fakes_postfit.pdf}
     \caption{Post-fit distribution of the NN score in the genuine $\tau$ (left) and fakes (right) background categories for 2018 data-taking period.}
     \label{fig:bkgr_cat_postfit}
@@ -710,7 +710,7 @@ In order to gauge the behaviour of the systematic uncertainties in the fit, a sc
 \end{figure}
 
 
-The signal categories are then unblinded and the resulting unrolled distributions of \phicp observable are shown in Fig. \ref{fig:sig_cat_postfit} and Appendix \ref{}. A slight presence of the \htt signal is visible in the bins of the NN score, albeit diminished by statistical uncertainties. 
+The signal categories are then unblinded and the resulting unrolled distributions of \phicp observable are shown in Fig. \ref{fig:sig_cat_postfit} and Appendix \ref{}. A slight presence of the \htt signal is visible in the bins of the NN score, albeit diluted by statistical uncertainties. 
 
 Before proceeding to the extraction of the observed \mixa value from the fit to data it is good to have an estimate of what one would expect under the null hypothesis, which is the Standard Model. The expected values of \mixa are obtained with the same procedure as described in Sec. \ref{sec:stat} but with the template fit being performed to the Azimov data set. The latter is obtained with fixing the cross sections of all the physical processes to their SM values. 
 
@@ -721,7 +721,7 @@ Before proceeding to the extraction of the observed \mixa value from the fit to 
     \label{fig:mixa_exp}
 \end{figure}
 
-The obtained expected value of the CP mixing angle is $\mixa_\text{exp} = 0 \pm 90^\circ$ (Fig. \ref{fig:mixa_exp}), which corresponds to the expected CP sensitivity of $0.99 \sigma$. The latter describes the statistical significance to exclude the pure CP-odd hypothesis if taken as a null hypothesis. Expected sensitivities split by the final states are:
+The obtained expected value of the CP mixing angle is $\mixa_\text{exp} = 0^\circ \, \pm \, 90^\circ$ (Fig. \ref{fig:mixa_exp}), which corresponds to the expected CP sensitivity of $0.99 \sigma$. The latter describes the statistical significance to exclude the pure CP-odd hypothesis if taken as a null hypothesis. Expected sensitivities split by the final states are:
 \begin{itemize}
     \item $e\tauh$ (total): $0.99\sigma$ 
     \item $e\rho$: $0.57\sigma$ 
@@ -737,7 +737,7 @@ The obtained expected value of the CP mixing angle is $\mixa_\text{exp} = 0 \pm 
 %     \label{fig:mixa_exp}
 % \end{figure}
 
-One can further introduce $\mu$ as an inclusive signal strength modifier which scales cross section times the \htt branching fraction of all the three production modes altogether (opposite to the two separate $\mu_\text{ggH}$ and $\mu_\text{qqH}$ used to obtained the final result). The likelihood scan on the Azimov data set gives its expected value $\mu_\text{exp} = 1.00^{+0.26}_{-0.24}$. Overall, the expected values of both CP sensitivity and the signal strength show that the $\tau_e\tau_h$ channel is not sufficient on its own to provide significant information about the CP structure of the $\text{H}\tau\tau$ interaction. However, as it is shown in Sec. \ref{sec:comb} a combination with the other $\tau_\mu\tau_h$ and $\tau_h\tau_h$ leads to conclusive results.
+One can further introduce $\mu$ as an inclusive signal strength modifier which scales cross section times the \htt branching fraction of all the three production modes altogether (opposite to the two separate $\mu_\text{ggH}$ and $\mu_\text{qqH}$ used to obtained the final result). The likelihood scan on the Azimov data set gives its expected value $\mu_\text{exp} = 1.00^{+0.26}_{-0.24}$. Overall, the expected values of both CP sensitivity and the signal strength show that the \et channel is not sufficient on its own to provide significant information about the CP structure of the $\text{H}\tau\tau$ interaction. However, as it is shown in Sec. \ref{sec:comb} a combination with the other \mt and \tata leads to conclusive results.
 
 \begin{figure}[h!]
     \centering
@@ -748,4 +748,4 @@ One can further introduce $\mu$ as an inclusive signal strength modifier which s
 
 Substituting the Azimov data set with the observed data, one can obtain with the same statistical inference procedure the observed values of the CP mixing angle $\mixa_\text{obs} = -48^{+51^\circ}_{-42^\circ}$ (Fig. \ref{fig:mixa_obs}). The observed value of the inclusive signal strength modifier is $\mu_\text{obs} = 1.14^{+0.27}_{-0.25}$, which is in agreement with the expectation. 
 
-To summarise, the $\tau_e\tau_h$ final state is \textit{a priori} expected to provide subleading contribution the analysis in terms of the CP sensitivity. This is due to the challenges in the electron reconstruction where the bremsstrahlung significantly impacts the resolution of the impact parameter vector, which in turn decreases the separation between CP-even and CP-odd hypothesis with the \phicp observable. Moreover, a larger number of jets misidentified as electrons leads to higher \pt thresholds at the trigger level, which further reduces the electron selection efficiency. Quantitatively, the observed (expected) value of the CP mixing angle is obtained to be $\mixa = -48^{+51^\circ}_{-42^\circ} (0 \pm 90^\circ)$ which does not hint to any preferable CP hypothesis with the main limiting factor being the lack of statistics in this final state. Nevertheless, the expected CP sensitivity in the $\tau_e\tau_h$ channel is comparable with the expected contribution of the most sensitive $\mu\rho, \rho\rho, \rho\pi$ final states ($1.16\sigma$, $1.10\sigma$, and $1.08\sigma$) respectively. Therefore, it plays an important role in the final combination of all the final states considered in the CP analysis of the $\text{H}\tau\tau$ coupling, as described in Sec. \ref{sec:comb}.
+To summarise, the \et final state is \textit{a priori} expected to provide subleading contribution the analysis in terms of the CP sensitivity. This is due to the challenges in the electron reconstruction where the bremsstrahlung significantly impacts the resolution of the impact parameter vector, which in turn decreases the separation between CP-even and CP-odd hypothesis with the \phicp observable. Moreover, a larger number of jets misidentified as electrons leads to higher \pt thresholds at the trigger level, which further reduces the electron selection efficiency. Quantitatively, the observed (expected) value of the CP mixing angle is obtained to be $\mixa = -48^{+51^\circ}_{-42^\circ} (0^\circ \, \pm \, 90^\circ)$ which does not hint to any preferable CP hypothesis with the main limiting factor being the lack of statistics in this final state. Nevertheless, the expected CP sensitivity in the \et channel is comparable with the expected contribution of the most sensitive $\mu\rho, \rho\rho, \rho\pi$ final states ($1.16\sigma$, $1.10\sigma$, and $1.08\sigma$) respectively. Therefore, it plays an important role in the final combination of all the final states considered in the CP analysis of the $\text{H}\tau\tau$ coupling, as described in Sec. \ref{sec:comb}.

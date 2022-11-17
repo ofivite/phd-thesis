@@ -1,0 +1,225 @@
+\chapter{Combination of \et, \mt, and \tata channels}\label{sec:comb}
+
+In Sec.\ref{sec:cp-etau} an overview of the analysis of the Yukawa coupling between the Higgs boson and tau leptons in the $\tau_e\tau_h$ channel has been presented. However, historically the first channels to be analysed and published were \mt and \tata \cite{CMS:2020rpr, Cardini:2021hbb}. These two channels are expected to be the most sensitive to the CP measurement due to the larger branching fraction and/or more precise reconstruction of the \phicp observable. 
+
+Moreover, in the fully-hadronic \tata channel and specifically in the $\aaa$ final state, one can fully reconstruct the Higgs rest frame, which is not straight-away possible in the other final states (hence an approximation with the zero-momentum frame is used). This makes it a unique playground also to probe a\textit{ polarimetric vector method} of the \phicp observable reconstruction. 
+
+Originally, the $\aaa$ final state was analysed with the NP+NP method for the \phicp observable reconstruction. However, it is the recent paper \cite{CMS:2021sdq} which introduces the polarimetric vector method to its analysis and adds \et, as described in this work, to the combination with the other \mt and \tata channels. This chapter therefore provides a brief overview of the analysis in the \mt (Sec. \ref{sec:mt}) and \tata (Sec. \ref{sec:tata}) channels. The results of the overall combination are presented in Sec. \ref{sec:comb_res}.
+
+\section{Overview of the \mt channel}\label{sec:mt}
+Generally, there is little to no difference between the analysis of \mt and \et channels in terms of the strategy. It proceeds with the selection of pairs of muon (Sec. \ref{sec:reco_mu}) and \tauh (Sec. \ref{sec:reco_tau}) physics objects. The requirements for the \tauh candidates are the same as in the \et channel except for the DeepTau working points, which are required to be Medium against jets, VVLoose against electrons, and Tight against muons. One more difference with respect to the \et channel is related to the trigger (single muon $\mu(.)$ or cross-trigger $\mu(.) \, \& \, \tauh (.)$) and the corresponding online \pt requirements (in brackets in GeV):
+    \begin{itemize}
+        \item 2016: $\mu(22)$ OR $\mu(19) \, \& \, \tauh(20)$
+        \item 2017/2018: $\mu(24)$ OR $\mu(20) \, \& \, \tauh(27)$
+    \end{itemize}
+Offline \pt requirements are also chosen to be 1(5) GeV higher when the online \pt thresholds for the muon (\tauh) legs. All the other selection requirements are identical to those described in Sec. \ref{sec:selection}.
+
+The main background sources in the \mt are genuine tau lepton pairs, jets faking \tauh and less pronounced contribution from prompt/non-prompt leptons faking \tauh comparing to the \et channel. The former background is modelled with the embedding technique (Sec. \ref{sec:emb}) where the simulated tau leptons are forced to decay into $\mu\tauh$ final state with the 100\% branching fraction. The $\text{jet} \to \tauh$ background is modelled with the \ff method (Sec. \ref{sec:ff}) which are derived following the same procedure as in the \et channel including the same corrections for non-closure tests and the difference between DR and SR/AR. All the other minor backgrounds ($\mu \to \tauh$, $\text{jet} \to \tau_\mu$, $\text{prompt lepton} \to \tau_\mu$) are taken from the simulation. Corrections to simulated/embedded samples which differ from those described in Sec. \ref{sec:corr} are related to the muon leg and include muon tracking/ID/isolation/trigger scale factors, $\mu \to \tauh$ fake rate and energy scale corrections as derived with the tag-and-probe method. A dedicated calibration of the muon impact parameter is derived with the $Z\to\mu\mu$ events in data.
+
+Event categorisation is performed with a set of neural networks following the strategy outlined in Sec. \ref{sec:categ}. For each data-taking year two neural networks are trained in the two-fold manner. The set of input features (with the change of electron features to those of a muon), NN hyperparameters, training data set composition, and the training setup are identical to the \et channel. 
+
+Three output categories (signal, genuine $\tau$, fakes) are defined and the signal category is further split depending on the \tauh MVA DM identification with the $\tauh \to \pi/\rho/a_1^\text{1pr}/a_1^\text{3pr}$ decay modes being considered. A requirement on the impact parameter significance of the muon and pion $S_\text{IP} (\mu/\pi) > 1.5$ is applied in the signal categories to the $\tau$ candidates which decay into a single muon or into a single charged pion. In the background categories, the requirement is applied only to the latter case. \phicp observable is used to extract the CP mixing angle \mixa as outlined in Sec. \ref{sec:phicp} with the impact parameter (IP) and neutral pion (NP) methods being used depending on the \tauh decay mode. To summarise, the following categories and \phicp reconstruction methods on the side of the \mt channel are used in the final combination:  
+
+\begin{itemize}
+    \item $\mu\pi$ (signal) $\longrightarrow$ IP + IP
+    \item $\mu\rho$ (signal) $\longrightarrow$ IP + NP
+    \item $\mu a_1^\text{1pr}$ (signal) $\longrightarrow$ IP + NP
+    \item $\mu a_1^\text{3pr}$ (signal) $\longrightarrow$ IP + NP
+    \item Genuine $\tau$ (background)
+    \item Fakes (background)
+\end{itemize}
+
+\section{Overview of the \tata channel}\label{sec:tata}
+While there's little difference between the analysis of \et and \mt channels due to the similarity of the physical processes, the \tata channel has some specific properties slightly altering the analysis strategy. 
+
+Events are triggered with a ditau trigger for all three data-taking years. Online \pt thresholds for the candidates is 35 GeV and therefore the requirement $\pt(\tauh) > 40$ GeV is applied offline as well as $|\eta(\tauh)| < 2.1$. A pair of \tauh candidates matched to the trigger objects with the opposite charge and cone distance $\Delta R > 0.5$ is selected. Both candidates are required to pass DeepTau Medium working point against jets, VVLoose working point against electrons, and VLoose working point against muons. No requirement on the transverse mass $m_\text{T}$ is applied since W+jets background is not sizeable in this case. For the \aaa final state, described in more details below, a presence of a reconstructed secondary vertex is required for each of the \tauh candidates.
+
+The fact that the \tata final state is fully-hadronic, opposite to the $\tau_l\tau_\mathrm{h}$ where at least one light lepton is required, results in the background composition dominated by the QCD jets faking \tauh. This affects the \ff derivation which now consists only in the fake factor responsible for the QCD process. It is derived as in the \et case with the derivation region defined by inverting the opposite-sign requirement for the tau lepton pair. The fake factor is measured for the leading \tauh candidate as a function of its \pt in bins of the number of jets and MVA decay mode, with the case of MVA DM = 0 split into bins of $S_\text{IP}$ ($S_\text{IP} < 1.5$, $S_\text{IP} \ge 1.5$). Application region, where \ff is applied as a weight on event-by-event basis, is defined by inverting the nominal DeepTau working points in the signal region for the leading \tauh candidate. Corrections are derived to account for non-closure differences in \met variable and for the difference between the opposite-sign and same-sign regions. 
+
+The background processes involving two genuine \tauh are modelled with the embedded samples. It is also possible that the leading \tauh candidates is a genuine tau and the subleading \tauh candidate is lepton/jet fake. These events are modelled with the simulation, as well as the ones where the leading \tauh candidate is a lepton faking \tauh. All the corrections described in Sec. \ref{sec:corr} which are related to the \tauh objects are applied.
+
+Selected \tauh\tauh candidates are also categorised into the signal, genuine $\tau$, and fakes categories. The former inclusively captures the ggH, VBF, and VH production modes. The genuine $\tau$ category is aimed at the background processes involving two genuine tau leptons and is represented in the training data set with events from embedded samples. The fake categories captures events where at least one \tauh candidates is a misidentified jet or lepton. In the training data set this category is represented  with events taken from simulated samples (application region weighted with \ff) for the cases where lepton (jet) fakes \tauh. The categorisation is performed with a BDT trained in a two-fold manner separately for each data-taking year. The input features describe the kinematics of the two \tauh candidates, jets, MET, and the ditau system. 
+
+The signal category is further split into categories depending on the MVA DM classification of both the \tauh candidates. The final states classified as $\rho a_1^\text{1pr}$ and $a_1^\text{1pr} a_1^\text{1pr}$ are merged together because MVA DM classification is not able to disentangle efficiently decay modes with one and two neutral pions. A requirement on the impact parameter significance of the pion $S_\text{IP}(\pi) > 1.5$ is applied in the signal and background categories to the \tauh candidates which decay into a single charged pion. The \phicp observable is reconstructed depending on the decay mode of each \tauh candidate with the methods described in Sec. \ref{sec:phicp} with the only exception of \aaa final state described below. Overall, the following nine signal and two background categories with the corresponding decay plane reconstruction methods are used in the statistical inference procedure:
+
+\begin{itemize}
+    \item $\pi\pi$ (signal) $\longrightarrow$ IP + IP
+    \item $\pi\rho$, $\pi a_1^\text{1pr}$, $\pi a_1^\text{3pr}$ (signal) $\longrightarrow$ IP + NP
+    \item $\rho \rho$, $\rho a_1^\text{1pr}$, $\rho a_1^\text{3pr}$, $a_1^\text{1pr} a_1^\text{3pr}$ (signal) $\longrightarrow$ NP + NP
+    \item \aaa (signal) $\longrightarrow$ Polarimetric vector
+    \item Genuine $\tau$ (background)
+    \item Fakes (background)
+\end{itemize}
+
+As it was mentioned in introduction to this Chapter, $\aaa$ final state where both $a_1$ mesons decay into three charged pions and one tau neutrino provides a unique opportunity of reconstructing the Higgs decay frame. It starts from reconstructing for each \tauh candidate its decay vertex with refitting three charged tracks resulting from the tau decay together. Given this secondary vertex (SV) one can obtain the direction of the tau lepton momentum in the laboratory frame as the vector connecting the refitted primary vertex (Sec. \ref{sec:pv}) with the secondary one. 
+
+A Gottfried–Jackson angle \gj is defined as an angle between the tau lepton (as a vectorial distance between PV and SV) and $a_1$ momentum (as a vectorial sum of its charged prong momenta) vectors in the laboratory frame. Then on can obtain a magnitude of the tau lepton momentum as \cite{Cherepanov:2018npf}:
+\begin{equation}\label{eq:pt_gj}
+    |\vec{p}_\tau| = \dfrac{(m^2_{a_1} + m^2_\tau)|\vec{p}_{a_1}|\cos\gj \pm \sqrt{(m^2_{a_1}+|\vec{p}_{a_1}|^2)((m^2_{a_1} - m^2_\tau)^2 - 4m^2_\tau|\vec{p}_{a_1}|\sin^2\gj)}}{2(m^2_{a_1}+|\vec{p}_{a_1}|^2\sin^2\gj)}
+\end{equation}
+
+Here $m_{a_1}$ is a reconstructed invariant mass of the intermediate $a_1$ meson, $m_\tau$ is the mass of the tau lepton, $\vec{p}_{a_1}$ is a reconstructed from its decay products momentum vector of the $a_1$ meson. The maximum possible value of the Gottfried–Jackson angle is:
+\begin{equation}
+    \gj^\text{max} = \arcsin\left(\dfrac{m_\tau^2 - m_{a_1}^2}{2m_\tau|\vec{p}_{a_1}|}\right)
+\end{equation}
+
+In cases where the reconstructed \gj exceeds $\gj^\text{max}$, its value is set to  $\gj^\text{max}$. From Eq. \ref{eq:pt_gj} one can observe that there's two possible solutions to the equation. This ambiguity results from two possible ways $a_1$ meson can decay in the tau rest frame: opposite to and in the direction of the tau lepton momentum. The ambiguity for the \aaa pair is resolved by selecting one of the four solutions which results in the invariant mass closest to the Higgs boson mass. Eq. \ref{eq:pt_gj} together with the tau lepton direction defined by the displacement of SV from PV reconstructs the full four-momentum of each of the tau lepton candidates in the laboratory frame. By combining them together one obtains the four-momentum of the H in the laboratory frame and therefore can perform Lorentz boost into its rest frame.
+
+The full reconstruction of the $a_1$ and tau momentum also enables the computation of the polarimetric vector $h_\mu$. It is a four-vector which enters the most general parametrisation of $\tau \to X + \nu_\tau$ decay width \cite{Davier:1992nw,Kuhn:1992nz}:
+\begin{equation}\label{eq:width_pol}
+    d\Gamma = \dfrac{|M|^2}{2m_\tau}(1+h_\mu s^\mu)dLips
+\end{equation}
+
+where $|M|^2$ is a spin averaged squared matrix element of the reaction, $dLips$ is a Lorentz invariant phase space element, $s^\mu$ is a tau spin four-vector in the tau rest frame. For the decay into a single charged pion and neutrino $\tau \to \pi + \nu_\tau$ the spacial part of the polarimetric vector takes its simplest form $\vec{h} = -\vec{n}_\pi$, i.e. equals to the negative unit vector of the pion momentum in the tau rest frame. However, for the three prong tau decays the expression cannot be derived analytically and quantitative methods are used within the TAUOLA library \cite{Jadach:1990mz,Jezabek:1991qp,Jadach:1993hs}.
+
+Using Eq. \ref{eq:width_pol} one can derive that the \phicp angle can be computed as the angle between the planes spanned for each of the tau leptons by the polarimetric and tau momentum vectors with Eq. \ref{eq:master} for the partial decay width holding true. Therefore, for the \aaa final state one uses polarimetric vectors for $\vec{h}^\pm$ each of the tau leptons together with their momentum $\vec{q}^\pm$ in the laboratory frame to construct unit vectors $\hat{\lambda}^{\pm}$ (Sec. \ref{sec:phicp}) as:
+\begin{equation}
+    \hat{\lambda}^\pm = \dfrac{\vec{h}^\pm \cross \vec{q}^\pm}{|\vec{h}^\pm \cross \vec{q}^\pm|}
+\end{equation}
+
+Lorentz-boosting $\hat{\lambda}^{\pm}$ into the Higgs rest frame, derived as described above, one obtains $\hat{\lambda}^{HMF^\pm}$ and uses them to define $\phi^{HMF}$ and $O^{HMF}$ vectors:
+
+\begin{align}
+    &\phi^{HMF} = \arccos(\hat{\lambda}^{HMF^+} \cdot \hat{\lambda}^{HMF^-})\\
+    &O^{HMF} = - (\hat{\lambda}^{HMF^+} \cross \hat{\lambda}^{HMF^-}) \cdot \hat{q}^{HMF^+}
+\end{align}
+
+Finally, the \phicp angle is constructed as in Eq. \ref{eq:phicp}:
+\begin{equation}
+    \phicp = 
+    \begin{cases}
+    \phi^{HMF} & \text{if} ~O^{HMF} \geq 0 \\
+    360^\circ - \phi^{HMF} & \text{if} ~O^{HMF} < 0
+    \end{cases}
+\end{equation}
+
+In theory, the polarimetric vector method for the \phicp observable computation can be used in all tau decay modes provided that the tau momentum can be reconstructed. This is however not possible straight-away because of neutrinos escaping detection and carrying away a fraction of momentum. \aaa final state provides a unique opportunity to infer the momentum of both tau leptons from the information about the tau decay vertex and further uses it to derive polarimetric vectors to construct the \phicp observable. It was studied that the polarimetric vector method improves the expected CP sensitivity in the \aaa final states by approximately 80\% from $0.14\sigma$ to $0.25\sigma$. This improved sensitivity hints towards further studies in the direction of using the method in the other final states.
+
+\section{Results}\label{sec:comb_res}
+
+The statistical inference for the combination of \et, \mt, and \tata channels is performed following the procedure described in Sec. \ref{sec:stat}. The likelihood function is constructed with Eq. \ref{eq:like} where the product over categories is extended to include the categories described in Sec. \ref{sec:mt} and \ref{sec:tata} for the \mt and \tata channels respectively with the corresponding nuisance parameters. Most of the systematic uncertainties are common across all the three channels and therefore are formalised with common nuisance parameters in the fit. Uncertainties which are additionally included to those described in Sec. \ref{sec:syst} are related to the trigger selection and corrections applied specifically in \mt and \tata channels (Table \ref{tab:nuis-comb}).
+
+\begin{table}[ht!]
+	\caption{Summary of systematic uncertainties additionally included in the combination of \et, \mt, and \tata channels with respect to ones described in Table \ref{tab:nuis}.}
+    \centering
+	\begin{tabular}{ccccc}
+	    \hline
+		Uncertainty & Magnitude & Samples & Correlation & Type \\
+		\hline
+        Muon reconstruction (\mt) & 1\% & MC & Yes & $\ln\text{N}$\\
+        SV reconstruction eff. (\aaa) & 2\% & MC & No & $\ln\text{N}$\\
+        Muon trigger (\mt) & 2\% & MC & No & $\ln\text{N}$\\
+        Tau trigger (\tata) & \pt/Decay-mode dep. & MC & No & Shape\\
+        $e \to \tauh$ fake rate (\tata) & 2-10\% & MC & No & $\ln\text{N}$\\
+        $\mu \to \tauh$ fake rate (\mt) & up to 40\% & MC & No & $\ln\text{N}$\\
+        Muon energy scale (\mt) & 0.4–2.7\% & MC & Yes & Shape\\
+        $\mu \to \tauh$ energy scale (\mt) & 1\% & MC & No & Shape\\
+    \end{tabular} \label{tab:nuis-comb}
+\end{table}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.49\textwidth]{Figures/CP_etau/NN_score_embed_mt_postfit.png}
+    \includegraphics[width=0.49\textwidth]{Figures/CP_etau/NN_score_fakes_mt_postfit.png}
+    \caption{Post-fit distribution of the NN score in the genuine $\tau$ (left) and fakes (right) background categories combined for all the data-taking periods in the \mt channel.}
+    \label{fig:bkgr_cat_postfit_mt}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.49\textwidth]{Figures/CP_etau/NN_score_embed_tt_postfit.png}
+    \includegraphics[width=0.49\textwidth]{Figures/CP_etau/NN_score_fakes_tt_postfit.png}
+    \caption{Post-fit distribution of the NN score in the genuine $\tau$ (left) and fakes (right) background categories combined for all the data-taking periods in the \tata channel.}
+    \label{fig:bkgr_cat_postfit_tt}
+\end{figure}
+
+After the likelihood function is maximised, a GoF test with the saturated model is performed. Obtained $p$-value of 0.51 combined for all the categories and all the data-taking years indicates a good agreement of the fitted statistical model with data. This is also verified by the post-fit data distributions in the background categories for \mt (Fig. \ref{fig:bkgr_cat_postfit_mt}) and \tata (Fig. \ref{fig:bkgr_cat_postfit_tt}) channels. The unrolled distributions of the \phicp observable in bins of the BDT/NN score in the signal categories for the most sensitive $\mu\rho$ (Fig. \ref{fig:sig_cat_postfit_comb}, top) and $\rho\rho$ (Fig. \ref{fig:sig_cat_postfit_comb}, bottom) final states also show good level of agreement between data and simulation. The presence of the H signal is visible in the last bins of the NN score as well as the modulations in the distribution, however still dominated by the statistical fluctuations.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Figures/CP_etau/Bin_number_mu-rho_mt_higgs_postfit.png}
+    \includegraphics[width=0.95\textwidth]{Figures/CP_etau/Bin_number_rho-rho_tt_higgs_postfit.png}
+    \caption{Post-fit distribution of unrolled in bins of the NN score \phicp observable in the two most sensitive $\mu\rho$ (top) and $\rho\rho$ (bottom) signal categories combined for all data-taking periods.}
+    \label{fig:sig_cat_postfit_comb}
+\end{figure}
+
+Results of the statistical fit to the Asimov data set yield the following expected sensitivity to reject the pure CP-odd hypothesis under the CP-even null hypothesis:
+\begin{itemize}
+    \item \mt + \et + \tata: $2.6\sigma$ 
+    
+    \item \mt: $1.47\sigma$ 
+    \begin{itemize}
+        \item $\mu\rho$: $1.16\sigma$ 
+        \item $\mu\pi$: $0.71\sigma$ 
+        \item $\mu a_1^\text{3pr}$: $0.51\sigma$ 
+        \item $\mu a_1^\text{1pr}$: $0.24\sigma$ 
+    \end{itemize}
+    
+    \item \et: $0.99\sigma$ 
+    \begin{itemize}
+        \item $e\rho$: $0.57\sigma$ 
+        \item $e\pi$: $0.54\sigma$ 
+        \item $e a_1^\text{3pr}$: $0.38\sigma$ 
+        \item $e a_1^\text{1pr}$: $0.17\sigma$ 
+    \end{itemize}
+    
+    \item \tata:  $1.85\sigma$ 
+    \begin{itemize}
+        \item $\rho\rho$: $1.10\sigma$ 
+        \item $\rho\pi$: $1.08\sigma$ 
+        \item $\rho a_1^\text{3pr}$: $0.65\sigma$ 
+        \item $\pi\pi$: $0.39\sigma$ 
+        \item $\pi a_1^\text{3pr}$: $0.48\sigma$       
+        \item $a_1^\text{1pr}\rho + a_1^\text{1pr}a_1^\text{1pr}$: $0.30\sigma$ 
+        \item $\pi a_1^\text{1pr}$: $0.23\sigma$    
+        \item $a_1^\text{3pr}a_1^\text{3pr}$: $0.28\sigma$ 
+        \item $a_1^\text{3pr}a_1^\text{1pr}$: $0.13\sigma$ 
+    \end{itemize}
+\end{itemize}
+
+Out of the three channels the \tata channel provides the largest sensitivity, with the second and third contributions coming from the \mt and \et channels respectively. The most significant final states are those including at least one tau lepton decaying into a $\rho$ meson and neutrino. However, contributions from the single-prong final states (e.g. $\mu\pi$) are also sizeable. As it was mentioned earlier, despite the \et channel provides subleading contribution to the expected CP sensitivity comparing to the \mt and \tata channels, it is comparable to the most leading final states and therefore serves as an important addition to the overall combination. The relative contribution of the \aaa final state is even smaller comparing to the other final states. However, almost twice the relative gain of the polarimetric vector method in expected sensitivity with respect to the neutral pion method is an important step further in developing analysis techniques for CP- and tau-related analyses.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/CP_etau/master_scan.png}
+    \caption{Negative log-likelihood scan of the CP mixing angle \mixa for the combination of \mt, \et, and \tata channels for all the data-taking years on the Azimov (dashed blue line) and collected (red solid line) data sets. Horizontal dashed grey lines indicate the thresholds for the 68.3\%, 95.5\%, and 99.7\% CLs.}
+    \label{fig:master_scan}
+\end{figure}
+
+One of the parameters of interest in the fit is the vector of signal strength modifiers $\vec{\mu} = (\mu_\text{ggH}, \mu_\text{qqH})$. The corresponding observed values after the fit $\mu_\text{ggH} = 0.59^{+0.28}_{-0.32}$ and $\mu_\text{qqH} = 1.39^{+0.56}_{-0.47}$ are strongly anticorrelated (correlation coefficient $\rho = -0.76$). This result is expected since the analysis does not differentiate between various H production modes by design, e.g. at the categorisation level where all the production modes are treated inclusively in the signal category. One can further introduce instead of $\vec{\mu}$ a single $\mu$ POI which would scale simultaneously contributions from ggH and VBF processes times the \htt branching fraction. Observed (expected) values of this parameter are $0.82 \pm 0.15$ ($1.00 \pm 0.16$) which is compatible with the dedicated \htt coupling analysis \cite{CMS:2022kdi}. 
+
+The likelihood scan of the main parameter of interest \mixa for the final combination on both the Azimov and collected data sets is shown in Fig. \ref{fig:master_scan}. Observed (expected) value of the CP mixing angle is measure to be $-1\pm19^\circ$ ($0\pm21^\circ$) at 68.3\% CL. This result is compatible with the Standard Model expectation of the \htt coupling to correspond to the pure CP-even hypothesis. It also corresponds to the observed (expected) rejection of the pure CP-odd hypothesis under assumption of the pure CP-even hypothesis at the level of $3.0\sigma$ ($2.6\sigma$). 
+
+The observed value of \mixa with the uncertainty value decomposed into different sources (statistical uncertainties, experimental systematic uncertainties, statistical uncertainties in the background templates, theoretical uncertainties) is:
+\begin{equation}
+    \mixa = −1 \pm 19 ~\text{(stat)} \pm 1 ~\text{(syst)} \pm 2 ~\text{(bin-by-bin)} \pm 1 ~\text{(theo)}^\circ.
+\end{equation}
+
+The result is therefore largely dominated by the statistical uncertainties with the second leading uncertainty coming from the bin-by-bin uncertainties in the background templates. The latter is directly linked to the former since background contribution is largely estimated from data itself.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/CP_etau/mu_mixa.png}
+    \caption{The 2D negative log-likelihood scan of the inclusive signal strength modifier $\mu$ versus the CP mixing angle \mixa.}
+    \label{fig:mu_mixa}
+\end{figure}
+
+One can also investigate if there is a correlation between the inclusive signal strength modifier $\mu$, scaling the total H production cross section times \htt branching fraction, and the CP mixing angle \mixa. The 2D negative log-likelihood scan is shown in Fig. \ref{fig:mu_mixa} with the corresponding 68.3\%, 95.5\%, and 99.7\% CL contours being derived as the values where $-2\Delta\log\mathcal{L}$ equals 2.30, 6.20, and 11.62, respectively. No significant correlation between the two parameters is observed.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/CP_etau/kk.png}
+    \caption{The 2D negative log-likelihood scan of the CP-even ($\kappa_\tau$) and CP-odd ($\tilde{\kappa}_\tau$) Yukawa couplings between the SM Higgs boson and tau leptons (Eq. \ref{eq:l_y}).}
+    \label{fig:kk}
+\end{figure}
+
+An additional scan is performed for the likelihood function parametrised in terms of the couplings $\kappa_\tau$ and $\tilde{\kappa}_\tau$ (Eq. \ref{eq:l_y}). All the other H couplings (both affecting the H production and decay into $\tau\tau$) are fixed to their SM values. The 2D scan is shown in Fig. \ref{fig:kk}, where one should note that the fit cannot distinguish the absolute sign of $\kappa_\tau$ and $\tilde{\kappa}_\tau$, which results in the symmetrical shape of the negative log-likelihood distribution.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/CP_etau/propaganda.png}
+    \caption{The \phicp distribution for $\rho\rho$, $\pi\rho$, $\mu\rho$, and $e\rho$ final states weighted by $A \cdot S/(S+B)$ as described in Sec. \ref{sec:comb_res}. The red (blue) histogram corresponds to the distribution of the pure CP-even (CP-odd) hypothesis, black dots correspond to the background-subtracted data. The grey uncertainty band corresponds to the uncertainty of the subtracted background contribution.}
+    \label{fig:propaganda}
+\end{figure}
+
+Lastly, one can combine the most sensitive signal categories together into a single representative plot to visualise which CP hypothesis is overall more favoured by data. The corresponding distribution is shown in Fig. \ref{fig:propaganda} for the $\rho\rho$, $\pi\rho$, $\mu\rho$, and $e\rho$ final states. It is obtained by the following procedure: firstly, the bins of the unrolled \phicp distribution for all the signal categories corresponding to these final states are taken and the background contribution is subtracted from data. Then, for each bin a weight is computed as $w_\text{bin} = A \cdot S/(S+B)$ where $A = |\text{CP}^\text{even} - \text{CP}^\text{odd}| / (\text{CP}^\text{even} + \text{CP}^\text{odd})$ is the separation between the pure CP-even and CP-odd contributions in this bin normalised to the total number of bins; $S$ and $B$ are expected signal and background contributions in the bin, respectively. This weight is applied for each of the bins both to the background-subtracted data and CP-even/CP-odd signal templates. The weighted sum of contributions across all the signal categories per \phicp bin is finally plotted with corresponding uncertainties. Additionally, since there is a phase shift of $180^\circ$ between the $\tau_l\tauh$ and \tata channels due to the different sign of spectral functions for the electron/muon, the corresponding shift is applied in the weighted combination of bins. Overall, one can observe that the data favours the pure CP-even hypothesis. 
