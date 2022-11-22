@@ -1,0 +1,203 @@
+\chapter{CMS experiment at LHC}\label{sec:cms-exp}
+
+In order to study physical properties of fundamental particles one should have access to their source with the possibility to construct a laboratory environment and carry out experiments in a controlled way. In this work, as it will be described in the following chapters, one needs to be able to produce Higgs bosons and to be able to measure their decays into a pair of tau leptons. The former is done using proton-proton ($pp$) collisions at the Large Hadron Collider (LHC) as described in Sec. \ref{sec:lhc}. A Compact Muon Solenoid (CMS) detector detailed in Sec. \ref{sec:cms} serves as a laboratory for the reconstruction of the Higgs boson decays into a pair of tau leptons and for the measurement of their properties.
+
+\section{LHC facility}\label{sec:lhc}
+
+The Large Hadron Collider \cite{Evans:2008zzb} is a hadron accelarator built by European Organization for Nuclear Research (Conseil Européen pour la Recherche Nucléaire or CERN for short) which started its operation in 2008. It is installed in a 3.8-metre wide circular tunnel with 26.7 km in circumference which was previously used for the operation of the Large Electron–Positron (LEP) Collider. The tunnel lies between 50 m and 175 m below the surface at the border between France and Switzerland near Geneva.
+
+Original design for the LHC provides collision of protons with protons, protons with heavy ions (p-Pb), and heavy ions with heavy ions (Pb-Pb, Xe-Xe). The particles in each of the two beams are grouped in \textit{bunches} in order to maximise the rate of interactions in a unit of time. For the proton-proton collisions, firstly a centre-of-mass energy $\sqrt{s} = 7$ TeV was reached in 2010 and 2011, followed by an increase to $\sqrt{s} = 8$ TeV in 2012, where both periods are referred to as Run 1. During a Run 2 period corresponding to the years from 2016 to 2018 the LHC was operating at the centre-of-mass energy $\sqrt{s} = 13$ TeV. During the time of writing this work, a Run 3 period was ongoing at the centre-of-mass energy $\sqrt{s} = 13.6$ TeV. 
+
+In between the periods, two Long Shutdowns (LS) took place (in 2013–2015 and 2018–2022 years) which introduced major upgrades to the LHC and its detectors to allow for their operation at the higher centre-of-mass energy and collision rate. The latter is referred to as an instantaneous luminosity and it is defined by the beam parameters with the following formula:  
+
+\begin{equation}
+    \mathcal{L} = \dfrac{N_b^2 n_b f_\text{rev} \gamma}{4\pi \varepsilon_n \beta^*}F.
+\end{equation}
+
+Here, $N_b$ is the number of particle per bunch, $n_b$ is the number of bunches per beam, $f_\text{rev}$ is the beam revolution frequency, $\gamma$ is the beam relativistic gamma factor, $\varepsilon_n$ is the normalised transverse beam emittance, $\beta^*$ is the beta function at the point of collision, $F$ is the geometric reduction factor:
+\begin{equation}
+    F = \left(1 + \left(\dfrac{\theta_c \sigma_z}{2\sigma^*}\right)^2\right)^{-1/2}.
+\end{equation}
+
+where $\theta_c$ is the bunch crossing angle at the interaction point, $\sigma_z$ is a root mean square (RMS) of the bunch in the longitudinal direction, $\sigma^*$ is the RMS of the beam in the direction transverse to the beam trajectory.  
+
+The nominal design luminosity for the LHC was $10^{34} ~\text{cm}^{-2}~\text{s}^{-1}$ and twice this value was reached during the Run 2 period.  An integrated luminosity can be derived from the instantaneous one by integrating over a given period of time $[t_1, t_2]$:
+\begin{equation}
+L = \int_{t_1}^{t_2} \mathcal{L}dt.
+\end{equation} 
+
+Then, the expected number of \textit{events} (i.e. occurrences in the detector) of a given process can be obtained by multiplying the integrated luminosity by the cross section of the process:
+\begin{equation}
+    N_\text{events} = L \cdot \sigma_\text{process}.
+\end{equation}
+
+Particles in the LHC are accelerated in two separate beam pipes each kept at the vacuum with the pressure ranging from $10^{-10}$ to $10^{-11}$ mbar. 1232 dipole magnets, each 15 m long, are used to bend the particle beams. 392 quadrupole magnets, each 5-7 m long are used to focus the beams. Sextupole, octupole, and decapole magnets are also used to correct slight imperfections in the magnetic field. The superconducting magnets are made of copper-clad niobium-titanium and are kept at the temperature of 1.9 K. This is achieved by using superfluid helium-4 and dedicated vacuum systems to create an insulating environment.   
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Figures/CMS/cern.png}
+    \caption{The CERN accelerator complex \cite{Mobs:2684277}.}
+    \label{fig:cern}
+\end{figure}
+
+The CERN accelerator complex is used to inject protons into the LHC (Fig. \ref{fig:cern}). The energy of protons is progressively increased in stages by several accelerators. In order to obtain protons in the first place, hydrogen ($\text{H}^{-}$) ions with the energy of 160 MeV are generated with a Linac 4 linear accelerator. It started operation in 2020 and substituted previously used Linac 2. The ions are further fed into a Proton Synchrotron Booster (PSB) where the electrons are removed from the atom leaving only a nucleus with a single proton. These protons are accelerated up to 2 GeV and fed into a Proton Synchrotron (PS) which brings their energy up to 25 GeV. After the PS, the protons are fed into a Super Proton Synchrotron (SPS) which increases their energy up to 450 GeV and feeds them into the main ring of the LHC, where they are accumulated and accelerated up to the target center-of-mass energy.  
+
+Nine experiments are installed at the LHC in order to study a broad range of particle physics phenomena. Four of them are the large experiments placed at the LHC beam intersection points in dedicated underground caverns:  
+\begin{itemize}
+    \item CMS (\enquote{Compact Muon Solenoid}) \cite{CMS:2008xjf} and ATLAS (\enquote{A Toroidal LHC ApparatuS}) \cite{ATLAS:2008xda}. These are general-purpose detectors installed at the Point 5 (P5) and Point 1 (P1), respectively. The detectors are designed to study a wide range of phenomena from the Higgs mechanism to searches for new physics, e.g. dark matter candidates and extra dimensions.
+    
+    \item LHCb (\enquote{Large Hadron Collider beauty}) \cite{LHCb:2008vvz}. It is placed at Point 8 (P8) and its specialisation is the study of heavy flavour physics ranging from CP violation to exotic hadron spectroscopy.  
+    
+    \item ALICE (\enquote{A Large Ion Collider Experiment}) \cite{ALICE:2008ngc}. It is installed at Point 2 (P2) with the specific design to study heavy-ion collisions and thus explore the properties of the quark-gluon plasma.
+\end{itemize}
+
+The other five experiments are smaller at scale and share the cavern with the ones mentioned above. These are:
+\begin{itemize}
+    \item TOTEM (\enquote{Total, elastic and diffractive cross-section measurement}) \cite{TOTEM:2008lue}. It is installed in the very forward region from P5 (CMS) along the beam trajectory. The detector is designed to study the proton structure and to measure the proton-proton interaction cross section complementary to the other general-purpose detectors.  
+    
+    \item LHCf (\enquote{Large Hadron Collider forward}) \cite{LHCf:2008lfy}. It is installed few hundred meters away from P1 (ATLAS) with the goal of simulating the environment of ultra-high-energy cosmic rays which is helpful for calibration of large-scale cosmic-ray experiments.
+    
+    \item MoEDAL-MAPP (Monopole and Exotics Detector at the LHC, MoEDAL Apparatus for Penetrating Particles) \cite{MoEDAL:2009jwa}. The detector is installed near P8 (LHCb) with the goal to directly search for the magnetic monopole and other highly ionizing stable massive particles.
+    
+    \item FASER (ForwArd Search ExpeRiment) \cite{Feng:2017uoz}. It is located 480 metres downstream of P1 (ATLAS) and it is designed to search for new light and weakly interacting particles, e.g. dark photons, axion-like particles and sterile neutrinos. Furthermore, a dedicated sub-detector FASER$\nu$ is installed to detect and study neutrinos with TeV energies.  
+    
+    \item SND@LHC (Scattering and Neutrino Detector at the LHC) \cite{SHiP:2020sos}. It is a recently approved experiment to be installed close to P1 (ATLAS) which will cover the pseudorapidity range $7.2 < \eta < 8.4$ complementary to the other experiments. Its primary goal is to measure the process $pp\to\nu X$ to provide insights into the charmed-hadron production and search for feebly interacting particles.
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Figures/CMS/lumi.png}
+    \caption{Delivered luminosity for $pp$ collisions versus time for 2010-2012 (Run 1), 2015-2018 (Run 2), and 2022 (Run 3) years \cite{CMS:lumi}.}
+    \label{fig:lumi}
+\end{figure}
+
+The analysis presented in this work uses the data collected with the CMS detector during the Run 2 data-taking period (Fig. \ref{fig:lumi}). The data set size corresponds to the total integrated luminosity of 137.62 \ifb. In the future, starting from 2026 year, the LHC will undergo a High-Luminosity upgrade (HL-LHC) in order to extend its discovery potential and maintain the performance at the instantaneous luminosity increased by a factor of 10 comparing to the originally designed value \cite{ZurbanoFernandez:2020cco}. After the upgrade HL-LHC is expected to deliver the total integrated luminosity of up to 4000 \ifb by the 2040 year. The upgrade is expected to significantly improve the reach of physical searches and the measurement precision, also for the study presented in this work, as it is mentioned in Sec. \ref{sec:comb}.  
+
+
+\section{CMS detector}\label{sec:cms}
+
+The Compact Muon Solenoid detector \cite{CMS:2008xjf} is a general-purpose apparatus designed to cover a broad spectrum of particle physics research at the TeV scale. It is placed about 100 meters underground at the Point 5 collision area of the LHC near Cessy, France. The detector weights about 14000 tonnes and it is about 15 metres high and 21 metres long (Fig. \ref{fig:cms}). 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/CMS/cms.png}
+    \caption{Schematic illustration of the CMS detector \cite{CMS:web-detector}.}
+    \label{fig:cms}
+\end{figure}
+
+The detector consists of various subsystems each designed to meet a specific purpose, as described in the following subsections. In general, the concept of being suitable for performing a wide range of experiments drives the complexity of the design and the subsystems. This task is also complicated by the fact that the expected number of observed particles per $pp$ bunch crossing is of the order of thousands, and the bunch crossings appear approximately every 25 ns. Therefore, the detector subsystems must be granular enough to provide the desired level of resolution.
+
+Overall, the  detector design should provide physical measurements having an excellent quality and precision of the following items:
+\begin{itemize}
+    \item Muon identification, (di)muon momentum resolution up to 1 TeV and precise charge assignment. This is largely achieved by the design of the magnet system (Sec. \ref{sec:magnet}).
+    \item Electron and photon reconstruction within the large geometrical acceptance, good (di)electron/photon energy resolution. This is largely achieved by the design of the electromagnetic calorimeter (Sec. \ref{sec:ecal}).
+    \item Charged-track momentum resolution and reconstruction efficiency. It is crucial, for example, for the jet and tau lepton reconstruction and it is ensured by the design of the tracking system (Sec. \ref{sec:tracker}).
+    \item Hermeticity for containment of all the particles appearing in the collision. This relies on the proper design of the hadron calorimeter (Sec. \ref{sec:hcal}) and has direct impact on the precision of the missing transverse energy reconstruction (MET) (Sec. \ref{sec:jets}).
+\end{itemize}
+
+The following coordinate system is defined to describe positions and directions in the detector. The origin of the coordinate system is placed at the nominal $pp$ collision point. The $y$-axis points vertically upward, the $x$-axis points radially inward towards the centre of the LHC ring, and the $z$-axis points along the tangent of the LHC ring from the Point 5 towards the Jura mountains. The azimuthal angle $\phi$ is measured from the $x$-axis in the $x-y$ plane as well as the radial distance $r$. Variables referred to as transverse (e.g. transverse momentum \pt) correspond to the projections onto the plane transverse to the beam direction, i.e. $x-y$ plane. The polar angle $\theta$ is measured from the $z$-axis. The \textit{pseudorapidity} $\theta$ is defined as:
+\begin{equation}
+    \theta \equiv -\ln\tan(\theta/2).
+\end{equation}
+
+\subsection{Solenoid magnet}\label{sec:magnet}
+
+The superconducting magnet is at the core of the CMS detector. It is designed to provide a magnetic field of up to 4 T (with the nominal value of 3.8 T) which is crucial for precise measurement of the charged particles momentum, especially those of muons. The magnet has a cold bore diameter of 6.3 metres, the magnetic length of 12.5 metres and the mass of 220 tonnes. Its distinctive feature is a 4-layer winding (instead of the previously maximum of 2 layers e.g. in BaBar coils \cite{BaBar:2001yhh}) needed to provide the magnetic field of the nominal strength. A 10000-tonne yoke consisting of 6 endcap disks and 5 barrel wheels is used to return the magnetic flux. All the detector subsystems are placed inside of the main solenoid except for the muon chambers, which are installed within the return yoke.
+
+\subsection{Tracking system}\label{sec:tracker}
+One of the most fundamental steps of particle object reconstruction in the detector is the reconstruction of tracks. In the presence of a magnetic field it serves as the basis for measuring particle properties such as charge and momentum. Furthermore, tracks are fundamental blocks for the actual particle reconstruction (Sec. \ref{pf}) as well as the reconstruction of the primary interaction point (Sec. \ref{sec:pv}). Therefore, efficient design of the tracking system responsible for the measurement of tracks is necessary.
+
+As mentioned earlier, the expected number of particles appearing per $pp$ bunch crossing is extremely large. This puts strict requirement on the tracking system with granularity, speed, and radiation hardness being the most crucial points. These requirements motivate the choice of the silicon technology for the whole tracking system. The tracker constitutes the innermost subsystem of the CMS detector as it directly surrounds the proton collision point. It has a cylindrical shape with an outer radius of 1.2 m and a length of 5.6 m. It consists of two main parts: the pixel detector and the silicon strip tracker (Fig. \ref{fig:tracker}). 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/CMS/tracker.png}
+    \caption{Schematic view of the CMS tracker for the Phase-0 configuration \cite{CMS:2008xjf}}
+    \label{fig:tracker}
+\end{figure}
+
+The Phase-0 configuration (before 2017 year) of the pixel detector consists of three barrel layers at radii of 44, 73, and 102 mm and two endcap disks from both sides at distances 345 and 465 mm from the collision point. The pixel cell size is $100\cross 150$ $\mu\text{m}^2$ in $r-\phi$ and $z$, respectively. It is chosen to provide the same track resolution in both directions which in turn allows for a precise 3D reconstruction of primary/secondary vertices. The nominal coverage for this configuration is $|\eta| < 2.5$ in terms of pseudorapidity and 1.1 $\text{m}^2$ in terms of area, with about 66 million pixels in total. For the Phase-1 configuration \cite{CMSTrackerGroup:2020edz}, the pixel detector was upgraded to account for the future increase of the instantaneous luminosity leading to an increased multiplicity of tracks in the tracker. Barrel layers were arranged more closely to the collision point at radii 29, 68, 109, and 160 mm with one more layers added. One more endcap disk was also added to both sides with the placement distances being 291, 396, and 516 mm from the collision point. The total coverage area was therefore extended to 1.9 $\text{m}^2$ which corresponds to the pseudorapidity range $|\eta| < 3.0$. Overall, the upgrade leads to an improved transverse track impact parameter resolution from $25-90 ~\mu\text{m}$ to $20-65 ~\mu\text{m}$ for tracks with the transverse momentum $\pt \in [1,10]$ GeV and $|\eta|<1.4$ (3.0) for the Phase-0 (Phase-1) configuration \cite{CMS-DP-2020-049}.
+
+The silicon strip tracker spans the radial distance between 20 cm and 116 cm and consists of three subsystems:
+\begin{itemize}
+    \item Tracker Inner Barrel and Disks (TIB/TID). These occupy the region up radially up until 55 cm with 4 barrel layers and 3 endcap disks at each end. The mean strip pitch varies from 80 (100) $\mu\text{m}$ to  120 (141) $\mu\text{m}$ for TIB (TID).
+    \item Tracker Outer Barrel (TOB). It extends up to 116 ($\pm118$) cm in radius ($z$) and consists of 6 barrel layers with a pitch varying from 183 $\mu\text{m}$ to 122 $\mu\text{m}$ from the innermost layers outwards.
+    \item Tracker Endcaps (TEC+/TEC-). The modules cover the region 124 cm $< |z| <$ 282 cm and 22.5 cm $< |r| <$ 113.5 cm. Each TEC consists of 9 disks with radial strip pitch varying from 97 $\mu\text{m}$ to 184 $\mu\text{m}$. 
+\end{itemize}
+
+Additionally, the modules in the first two layers of TIB and TID, the rings of the first two layers of TOB and layers 1, 2, and 5 of TECs include a second micro-strip module mounted back-to-back with a stereo angle of 100 mrad. This allows for the measurement of the second coordinate in the corresponding modules (either $z$ in the barrel or $r$ in the endcap).
+
+
+\subsection{Electromagnetic calorimeter}\label{sec:ecal}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/CMS/ecal.png}
+    \caption{Schematic layout of the CMS electromagnetic calorimeter \cite{CMS:2008xjf}.}
+    \label{fig:ecal}
+\end{figure}
+
+The electromagnetic calorimeter in CMS is hermetic homogeneous calorimeter covering the pseudorapidity range of $|\eta|<3$ (Fig. \ref{fig:ecal}). The main driving motivation behind its design is to be able to detect the decay of the Higgs boson into a pair of photons which requires a good energy resolution for the reconstructed photons. Also, general LHC conditions put constraints on the fast scintillation time, fine granularity, and radiation resistance. Altogether, the choice of $\text{PbWO}_4$ crystals for the main calorimeter material meets all of these criteria. The scintillation time is of the same order as the time between two consecutive bunch crossing time ($\sim 25$ ns). Moreover, the small Moliere radius (2.2 cm) and the short radiation length $X_0$ (0.89 cm) allow for the construction of the compact calorimeter with fine granularity.
+
+The barrel part of ECAL (EB) contains $360 \cross 2 \cross 85 = 61200$ crystals with 8.14 $\text{m}^3$ in volume (67.4 tonnes in weight) covering the range $|\eta| < 1.479$ in pseudorapidity. The front faces of the crystals are positioned at a radius of 1.29 m from the collision point. The cross-section of crystals is approximately $0.0174 \cross 0.0174$ in $\eta-\phi$ plane. The length of crystals is 25.8 $X_0$ (230 mm) which allows for more than 98\% energy containment for electrons and photons with the energy up to 1 TeV. 
+
+The endcap part of ECAL (EE) for both sides consists of two parts (so-called \textit{dees}) with 3662 crystals each. The crystals are arranged in a rectangular $x-y$ grid with off-pointing angles ranging from 2 to 8 degrees. The front (rear) cross-section for the crystals is $28.62 \cross 28.62 \text{ mm}^2$ ($30 \cross 30 \text{ mm}^2$) and the length is 24.7 $X_0$ (220 mm). Total EE crystal volume is $2.90 \text{ m}^3$ with the weight of 24 tonnes.  
+
+A fine-grained preshower detector is installed before each of the endcap disks with the goal of distinguishing $\pi^0$ decays from prompt photons. It consists of two layers where each layer is a lead radiator followed by a silicon strip sensor plane. The two radiators are of the size of approximately one and two radiation lengths. The pitch of the silicon sensors is 1.9 mm ($61\cross61 \text{ mm}^2$ divided into 32 strips).  
+
+The scintillation light is collected with avalanche photodiodes (vacuum phototriodes) in the EB (EE) due to their high radiation tolerance, fast response, and ability to operate in the 4-T magnetic field. The ECAL subsystems are precisely maintained at the operating temperature of $18^\circ$ with a dedicated water cooling system to mitigate fluctuations in the number of scintillated photons. 
+
+\subsection{Hadron calorimeter}\label{sec:hcal}
+The hadron calorimeter (HCAL) plays an important role not only in the precise measurement of jet properties, but also in the reconstruction of the missing transverse energy, which is sensitive to the level of containment of hadronic activity in the detector. The CMS HCAL is a hermetic sampling calorimeter made of alternating layers of a brass absorber and plastic scintillator tiles (Fig. \ref{fig:hcal}). It is placed after the tracking system and ECAL (at radii of 1.77 m) before the solenoid coil (at radii of 2.95 m).
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/CMS/hcal.png}
+    \caption{Schematic layout of one-fourth of the CMS hadronic calorimeter in the $r-z$ plane \cite{CMS:2008xjf}.}
+    \label{fig:hcal}
+\end{figure}
+
+The barrel part of HCAL (HB) covers the pseudorapidity range of $|\eta| < 1.3$. The thickness of the absorber reaches up to six interaction lengths $\lambda_I$ and increases up to ten interaction lengths at larger pseudorapidities. ECAL in front of HB adds $1.1 \lambda_I$ of the material. The plastic scintillator is divided into 16 sectors in pseudorapidity which results in the $0.087 \cross 0.087$ segmentation in the $\eta-\phi$ plane. The light from the scintillators is passed with wavelength shifting fibres to hybrid photodiodes.
+
+While the HB part is placed within the magnet solenoid, it is also complemented by a tail catcher (HO) outside of the solenoid. This module is added since EB together with HB do not provide sufficient containment of hadron showers. HO is placed as the first layer in each of the five rings (along the $z$ axis) which form an iron yoke returning the magnetic field. In the most central ring ($|\eta| \sim 0$) two layers of scintillators are placed, while all the other rings have a single layer. The cross-section of tiles in HO approximately matches those of HB with the granularity $0.087 \cross 0.087$ in the $\eta-\phi$ plane. It was studied that the energy response of the calorimeter is more Gaussian for the HCAL configuration with HO comparing to those without HO \cite{Banerjee:1999dka}. Furthermore, the effect of leakage is reduced which propagates to the improved measurement of the missing transverse energy.
+
+The endcap part of HCAL (HE) covers the pseudorapidity range of $1.3 < |\eta| < 3.0$. Similarly to HB, it is also composed of alternating layers of brass absorber and plastic scintillator tiles. In total, the number of tiles for both HE parts is 20 916 with the granularity $\approx 0.17 \cross 0.17$ in the $\eta-\phi$ plane. The depth of the entire calorimeter system (ECAL and HCAL) reaches about 10 $\lambda_I$ in the endcap and 12 $\lambda_I$ in the barrel regions.
+
+The last part of the CMS hadron calorimeter system is the forward calorimeter (HF). It is installed from both sides of the interaction point at the distance of $\pm 11$ m along the beam line. It is designed to cover the pseudorapidity range up to $|\eta| \approx 5$ and to survive under harsh radiation conditions. HF is made of grooved plates of a steel absorber. Quartz fibres are chosen as the calorimeter material due to their radiation resistance. They are placed in the grooves with the long fibres (over the full thickness of the absorber) alternating with the short ones (covering the back of the absorber). The towers cross-section is $\approx 0.175 \cross 0.175$ in the $\eta-\phi$ plane. The signals from the short and long fibres initiated by the Cherenkov light from the charged particles as they pass through the HO medium are used to measure separately the electromagnetic and hadronic components of the shower.
+
+
+\subsection{Muon system}\label{sec:muon-system}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/CMS/muon_system.png}
+    \caption{Cross section of the CMS detector in the $r-z$ plane illustrating the subdetectors of the muon system \cite{CMS:2018rym}. The drift tube stations are shown in yellow (labelled as MB), the cathode strip chambers are shown in green (labelled as ME), the resistive plate chambers are shown in blue (labelled as RB and RE).}
+    \label{fig:muon-system}
+\end{figure}
+
+The CMS detector is originally designed to precisely identify and measure muons across the whole kinematic experimental range. This is achieved by a dedicated structure of the muon system. Since it is placed outside of the solenoid, it necessarily has to cover a large area which puts forward the requirements for the system to be inexpensive and robust.
+
+In the barrel region, the low particle rate is expected and drift tube (DT) chambers are used. There is 4 stations in total placed between the layers of the flux return plates covering the pseudorapidity range $|\eta| < 1.2$. The first 3 stations contain 8 chambers grouped into a pair of 4 chambers. The first 4 chambers measure the coordinate in the $r-\phi$ plane, while the other 4 stations measure the $z$ coordinate. The fourth station measures only the $r-\phi$ coordinate.
+
+In the endcap region, the high particle rate is expected and therefore cathode strip chambers (CSC) are used. Covering the pseudorapidity range $0.9 < |\eta| < 2.4$ they provide high radiation resistance and fast time response. In total there is 4 CSC stations in each endcap placed between the flux return plates. The cathode strips within each chamber are organised radially and measure the $r-\phi$ coordinate. The anode wires are arranged perpendicularly to the strips and measure the $\eta$ coordinate and the beam crossing time of the muon.
+
+Both DT and CSC can be used for event triggering independently of the rest of the detector due to a relatively good \pt resolution and background rejection. However, due to a low resolution in the beam crossing time, resistive plate chambers (RPC) are added both to the barrel and endcap regions to improve the triggering capabilities. These are double-gap chambers operating in the avalanche mode and covering the pseudorapidity range $|\eta| < 1.6$. There is 6 RPC layers in the barrel region with 2 layers placed in each of the first 2 stations and 1 layer placed in each of the last 2 stations. In the endcap region, an RPC plate is added to each of the first 3 stations. Overall, they provide improved time resolution and fast response at the expense of having lower coordinate resolution.
+
+Lastly, for the Phase-2 upgrade of the detector, several updates to the muon system are being performed \cite{Hebbeker:2017bix} in order to be able to operate efficiently at higher luminosity. For the DT chambers and CSC, electronics will be changed to maintain the same level of latency and readout rate for the trigger system. For the forward region, two new sections of improved RPCs are added to extend the RPC pseudorapidity coverage from 1.9 to 2.4. Moreover, three sets of detectors based on Gas Electron Multiplier (GEM) technology will be installed. This will extend the pseudorapidity range of the offline muon reconstruction up to $|\eta| < 2.8$ with an improved trigger capabilities.
+
+\subsection{Trigger and data facility}\label{sec:trigger}
+LHC delivers proton-proton collisions at the very high rate of 40 MHz (1 bunch crossing per 25 ns), which makes it extremely challenging to analyse data  from various CMS subdetectors online. Furthermore, the high granularity of the CMS detector results in a large amount of data which is not possible to store. A trigger system is designed to tackle this problem by significantly reducing the size of original data by at least a factor of $10^6$.
+
+The trigger system consists of two stages \cite{CMS:2016ngn}. The first stage consists of a Level-1 (L1) trigger and a Data Acquisition (DAQ) system which aim to reduce the initial rate from 40 MHz to 100 kHz. It uses raw information available separately from the calorimeter and muon systems to coarsely determine high-level physics objects (e.g. jets or isolated/non-isolated $e/\gamma$). This information is further used to define criteria whether a given collision should be rejected or accepted for further processing. All the computation are performed in hardware with field programmable gate arrays (FPGA), application-specific integrated circuit (ASIC) and programmable memory lookup tables (LUT) technologies to allow for processing of large scale data online at high rates.
+
+The second stage is a High-Level Trigger (HLT) and it aims to reduce the L1 rate from 100 kHz to 5 mHz. Contrary to the L1 trigger, software computations are performed on a large farm of processors at the HLT level. Reconstruction algorithms similar to the ones used offline are being run for each of the L1-selected collisions to reconstruct physics objects. For that purpose, several so-called HLT paths are defined each targeting to select collisions with a specific predefined topology. Software modules in HLT paths are arranged sequentially and gradually build objects of increasing complexity from raw detector-level data. In the end of the path, a decision is made based on the information about reconstructed HLT physics objects whether a given collision should be recorded.
+
+Events accepted by the trigger system are sent to a \enquote{storage manager} software process which handles the transfer of data from local disks to a CMS Tier-0 computing center at CERN. In general, the CMS computing system is structured hierarchically into three tiers combining data centres worldwide: 
+\begin{itemize}
+    \item Tier-0 (CERN). It handles transfer of online data to a permanent storage, performs first reconstruction of raw data and exports it to Tier-1 centers.
+    \item Tier-1 (few national computing facilities). The tier provides a long-term safe second storage of CMS raw and simulated data outside of Tier-0 and rapid transfer of data to Tier-2 centers. Additionally, it performs the second reconstruction of the raw data and provides the analysis of vary large data samples.
+    \item Tier-2 (several research institutes). The tier is responsible for the local storage of data transferred from Tier-1. It also provides support for the final-stage analysis of data sets and production of the Monte Carlo (MC) simulated data with its transfer to Tier-1 centers.
+\end{itemize} 
+
+Lastly, resources of all the data centres across the tiers are integrated into a single Worldwide LHC Computing Grid (WLCG) system relying upon Grid middleware to standardise access to storage and CPU facilities \cite{Bird:2005js}. It provides an interface for the CMS-specific distributed computing software to remotely access data and perform job submission for the data analysis at scale.
+
