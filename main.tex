@@ -148,6 +148,20 @@
 % \usepackage{afterpage}
 % \usepackage{setspace}
 
+% change font in math equations
+\usepackage{newtxtext,newtxmath}
+
+% set mathcal to old caligraphy 
+% \DeclareSymbolFont{eulerletters}{U}{zeur}{b}{n}
+% \DeclareMathSymbol{\eull}{\mathord}{eulerletters}{L}
+% \usepackage{euler}
+% \usepackage{unicode-math}
+% \setmathfont[range={\mathcal}]{Lucida Calligraphy}
+
+% to set figures HERE
+\usepackage{float}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%% body of the document
@@ -226,10 +240,11 @@
 \pagestyle{fancy}
 
 % \input{include/Introduction.tex}
+\input{include/SM.tex}
 % \input{include/CMS.tex}
 % \input{include/Tau.tex}
 % \input{include/CP_etau.tex}
-\input{include/CP_comb.tex}
+% \input{include/CP_comb.tex}
 %\nocite{*}
  %bibliography
 % \bibliographystyle{JHEPLibov}
