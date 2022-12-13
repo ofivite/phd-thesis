@@ -1,5 +1,8 @@
 \documentclass[a4paper,12pt,twoside]{book}
 
+\newcommand\hmmax{0}
+\newcommand\bmmax{0}
+
 %for appendicies
 \usepackage[titletoc]{appendix}
 
@@ -161,6 +164,13 @@
 % to set figures HERE
 \usepackage{float}
 
+% to correctly read extensions in \includegraphics
+\usepackage{graphicx}
+\usepackage{grffile}
+
+
+% % umlauts
+%\usepackage[utf8]{inputenc}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -232,11 +242,6 @@
 % \listoftables
 \newpage
 
-%\input{conclusion.tex}
-%\newpage
-%\thispagestyle{empty}
-%\mbox{}
-
 % reset the numbering for the main text
 %\clearpage
 %\pagenumbering{arabic}
@@ -245,28 +250,28 @@
 \mainmatter
 \pagestyle{fancy}
 
-% \input{include/intro.tex}
-% \input{include/SM.tex}
-% \input{include/CMS.tex}
-% \input{include/Tau.tex}
-% \input{include/CP_etau.tex}
-% \input{include/CP_comb.tex}
-% \input{include/outro.tex}
+ \input{include/intro.tex}
+ \input{include/SM.tex}
+ \input{include/CMS.tex}
+ \input{include/Tau.tex}
+ \input{include/CP_etau.tex}
+ \input{include/CP_comb.tex}
+ \input{include/outro.tex}
 
-% \appendix
-% \input{include/Appendix.tex}
+ \appendix
+ \input{include/Appendix.tex}
 % \input{include/Acknowledgment}
 
 
 %\nocite{*}
- %bibliography
+%bibliography
 % \bibliographystyle{JHEPLibov}
 \bibliographystyle{JHEP}
 \bibliography{bibliography}
 
-\newpage
-\thispagestyle{empty}
-\mbox{}
+%\newpage
+%\thispagestyle{empty}
+%\mbox{}
 
 
 
