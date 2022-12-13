@@ -201,17 +201,13 @@
 
 
 
-%%%%%%%%%% front matters
-% \frontmatter
-% \input{include/title.tex}
-% \newpage
-% \thispagestyle{empty}
-% \mbox{}
-% %back of the title
-% %\input{include/title_back.tex}
-% \clearpage
-% % dedication
-% %\input{include/dedication.tex}
+%%%%%%%%% front matters
+ \frontmatter
+ \input{include/title.tex}
+ \newpage
+ \thispagestyle{empty}
+ \mbox{}
+
 
 % abstract
 \input{include/abstract.tex}
@@ -221,18 +217,17 @@
 \input{include/abstract_german}
 \clearpage
 
-% %\input{Articles/articles.tex}
-% %\input{02_Epigraph/epigraph.tex}
-
 % %This is commented out to have page numbers on outer side of the page
 % %\newpage
 % %\thispagestyle{empty}
 % %\mbox{}	
 
-
 % reset numbering for the table of contents
 \clearpage
 \pagenumbering{roman}
+
+\newpage\null\thispagestyle{empty}\newpage
+\newpage\null\thispagestyle{empty}\newpage
 
 %%%%%%%%%%table of contents
 \tableofcontents
@@ -269,9 +264,9 @@
 \bibliographystyle{JHEP}
 \bibliography{bibliography}
 
-%\newpage
-%\thispagestyle{empty}
-%\mbox{}
+\newpage
+\thispagestyle{empty}
+\mbox{}
 
 
 

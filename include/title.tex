@@ -4,23 +4,23 @@
 
 \begin{titlepage} % Suppresses headers and footers on the title page
 
-\vspace*{-4cm}
-\hspace*{-1.5cm}
-\includegraphics[height=3cm]{Figures/general/up-uhh-logo.png}
-\hfill
-\includegraphics[height=3cm]{Figures/general/DESY_logo_4C.png}
+%\vspace*{-4cm}
+%\hspace*{-1.5cm}
+%\includegraphics[height=3cm]{Figures/general/up-uhh-logo.png}
+%\hfill
+%\includegraphics[height=3cm]{Figures/general/DESY_logo_4C.png}
 
 \vspace{2cm}
     \centering
 
 	%\vspace{2.\baselineskip} % Whitespace above the title
 	%\vspace{-2cm}
-	\noindent\makebox[\linewidth]{\rule{1.05\textwidth}{1.5pt}} \\
+%	\noindent\makebox[\linewidth]{\rule{1.05\textwidth}{1.5pt}} \\
 	%\rule{\textwidth}{1.5pt}\\
 	\vspace{0.4cm}
-    \parbox[t]{0.96\textwidth}{\rmfamily \setlength\parfillskip{0pt} \def\baselinestretch{1.1}\centering\Huge \bfseries TITLE}\\
+    \parbox[t]{0.96\textwidth}{\rmfamily \setlength\parfillskip{0pt} \def\baselinestretch{1.1}\centering\Huge \bfseries Tau identification algorithms and study of the CP structure of the Yukawa coupling between the Higgs boson and tau leptons in CMS}\\
 	\vspace{0.4cm}
-	\noindent\makebox[\linewidth]{\rule{1.05\textwidth}{1.5pt}} \\
+%	\noindent\makebox[\linewidth]{\rule{1.05\textwidth}{1.5pt}} \\
     %\rule{\textwidth}{1.5pt}\\
     \vspace{2 cm} % Whitespace below the title
 	
@@ -29,11 +29,12 @@
     
     \vspace{2 cm} % Whitespace after this block
 
-    \parbox[b]{0.93\textwidth}{\def\baselinestretch{1.3}\centering\upshape \Large vorgelegt von \\ {\LARGE\scshape \bfseries NAME SURNAME } \\ aus \\ {\scshape \bfseries XXXXXX}}
+    \parbox[b]{0.93\textwidth}{\def\baselinestretch{1.3}\centering\upshape \Large vorgelegt von \\ {\LARGE\scshape \bfseries Oleg Filatov } \\ %aus \\ {\scshape \bfseries XXXXXX}
+    }
     
     \vspace{2 cm} % Whitespace after this block
     
-    \parbox[b]{0.93\textwidth}{\def\baselinestretch{1.3}\centering\upshape\large Hamburg\\ 2021}
+    \parbox[b]{0.93\textwidth}{\def\baselinestretch{1.3}\centering\upshape\large Hamburg\\ 2022}
 
 \end{titlepage}
 
@@ -43,33 +44,29 @@
  
 \vfill\vspace{-2cm}\par
 \thispagestyle{empty}
-\cleardoublepage
+%\cleardoublepage
 
 \thispagestyle{empty}
-\section*{Eidesstattliche Versicherung / Declaration on oath}
+\section*{Eidesstattliche Erkl\"arung / Declaration on oath}
 \vspace{1cm}
 \begin{center}
     
 \parbox[b]{0.85\textwidth}{
   
-Hiermit versichere ich an Eides statt, dass ich die vorliegende Dissertations\-schrift selbst verfasst und keine anderen als die angegebenen Hilfsmittel und Quellen benutzt habe. 
-Die eingereichte schriftliche Fassung entspricht der auf dem elektronischen Speichermedium. 
-Die Dissertation wurde in der vorgelegten oder einer ähnlichen Form nicht schon einmal in einem früheren Promotionsverfahren
-angenommen oder als ungenügend beurteilt.\\\\
+Ich erkl\"are hiermit an Eides statt, dass ich diese Dissertation selbst verfasst und keine anderen als die angegebenen Hilfsmittel oder Quellen benutzt habe.\\
 
-I hereby declare, on oath, that I have written the present dissertation by my own and have not used any resources and aids other than those acknowledged.
-The written version submitted corresponds to the one stored  electronically.
-The dissertation presented in this form, has not already been accepted in an earlier doctoral procedure or assessed as unsatisfactory.\\\\
+I hereby declare in lieu of oath that I have written this dissertation myself and that I have not used any auxiliary materials or sources other than those indicated.\\\\
 \vspace{1cm}
 
 \hspace{0.2cm} Hamburg, \today \hfill 
 \vspace{0.5cm}
 
-\hfill NAME SURNAME \hspace{1.0cm} 
+\hfill Unterschrift des Doktoranden \hspace{1.0cm} 
 }
 
 \end{center}
 \vfill
+
 \newpage
 \thispagestyle{empty}
 \cleardoublepage
@@ -82,34 +79,36 @@ The dissertation presented in this form, has not already been accepted in an ear
  
 % (alle Angaben vorl\"aufig) & \\ \\
  
- Gutachter der Dissertation:
-  & Dr. Alexei Raspereza\\
-  & Prof. Dr. Elisabetta Gallo \\ 
+ Gutachter/innen der Dissertation:
+ & Titel Vorname Name \\
+ & Titel Vorname Name \\
+%  & Dr. Alexei Raspereza\\
+%  & Prof. Dr. Elisabetta Gallo \\ 
   \\
   
  Zusammensetzung der Pr{\"u}fungskommission: 
-  & Prof. Dr. XXXXXX \\
-  & Prof. Dr. XXXXXX \\
-  & Prof. Dr. XXXXXX \\
-  & Dr.  XXXXXX\\
-  & Dr.  XXXXXX\\
+  & Titel Vorname Name \\
+  & Titel Vorname Name \\
+  & Titel Vorname Name \\
+  & Titel Vorname Name\\
+  & Titel Vorname Name\\
   
- Vorsitzender der Pr{\"u}fungskommission: & Prof. Dr.  XXXXXX\\
+ Vorsitzende/r der Pr{\"u}fungskommission: & Titel Vorname Name\\
  %Vorsitzende des Pr\"ufungsausschusses: & Prof. Dr. Jan Louis \\
  \\
  
- Datum der Disputation: & DATE \\
+ Datum der Disputation: & tt.mm.jjjj \\
  \\
  
- Vorsitzender des Fach-Promotionsausschusses Physik: & Prof. Dr. G{\"u}nter H. W. Sigl \\
+ Vorsitzender des Fach-Promotionsausschusses PHYSIK: & Prof. Dr. G{\"u}nter H. W. Sigl \\
 %Vorsitzende des Promotionsausschusses: & Prof. Dr. Jan Louis \\
  \\
 
- Leiter des Fachbereichs Physik: & Prof. Dr. Wolfgang Hansen \\
+ Leiter des Fachbereichs PHYSIK: & Prof. Dr. Wolfgang J. Parak \\
 %Leiter des Fachbereichs Physik: & Prof. Dr. Peter Hauschildt \\
  \\
 
- Dekan der Fakult{\"a}t MIN: & Prof. Dr. Heinrich Graener \\
+ Dekan der Fakult{\"a}t MIN: & Prof. Dr.-Ing. Norbert Ritter \\
 %Dekan der Fakult\"ar f\"ur Mathematik, & \\
 %Informatik und Naturwissenschaften:  & Prof. Dr. Heinrich Graener \\
 % 
@@ -118,5 +117,3 @@ The dissertation presented in this form, has not already been accepted in an ear
  }
 
 \clearpage
-
-\newpage
