@@ -1,5 +1,320 @@
 \chapter{Appendix}
-\section{Loss function}
-...
 
-\section{Performance plots}
+\section{ML glossary}\label{app:glossary}
+\begin{itemize}
+    \item[] \textbf{Label/Target:} information about the event/object which the model learns to predict given an input representation of the event/object during the optimisation step. 
+    
+    \item[] \textbf{Loss function:} a function that maps the event or values of one or more variables onto a real number representing a \enquote{cost} associated with the event. Usually parametrised per event as a function of the true event information (target) and the corresponding model predictions, the loss function is minimised as a part of an optimisation problem in order to infer the model's parameters. The term also refers to a cost associated with a group of events, usually by summing/averaging the loss function values for each of the events.
+    
+    \item[] \textbf{Up/Downsampling (image preprocessing):} the increase/decrease of the spatial resolution of the image while keeping the same representation.
+    
+    \item[] \textbf{Representation:} generally, the way a given event/object is described. In the context of ML, the representation is the way the object/event is numerically encoded (manually or by the model itself) in order to be used for the downstream task.   
+    
+    \item[] \textbf{Encoder:} a part of the model which maps the input representation (usually high-dimensional) of the event/object into a representation useful for the given optimisation task (usually low-dimensional).
+    
+    \item[] \textbf{Decoder:} a part of the model which maps the representation learned by the encoder into a target prediction. 
+
+    \item[] \textbf{Hyperparameter:} a parameter whose value is used to control the learning process or the model configuration. Therefore, it usually remains constant during the training rather than being optimised jointly with the model weights.
+
+    \item[] \textbf{Training:} the process of inferring the best parameters of the model as obtained by minimising the loss function. In most of the classification problem it is performed in steps where each step corresponds to a forward pass of a single batch to compute the value of the loss function, followed by a backward pass where the weight gradients are computed and the model parameters are updated by the optimiser. 
+
+    \item[] \textbf{Epoch:} a period of time corresponding to the number of steps when the model completes the iteration over the entire training dataset.  
+
+    \item[] \textbf{Batch:} a set of input objects from the training data set used for a single step of the model training.
+
+    \item[] \textbf{Model:} a mathematical representation of objects and their relationships to each other. Usually represents (a set) of functions or rules parametrised by some parameters, also called weights.
+
+    \item[] \textbf{Forwardpropagation/forward pass:}  a process of propagating a batch of input data through the model layer by layer to the final layer which outputs a prediction and the value of the loss function.
+    
+    \item[] \textbf{Backpropagation/backward pass:} a process of computing the gradient of the loss function with respect to each model weight by the chain rule, computing the gradient one layer at a time, iterating backward from the last model layer to the first one. 
+ 
+    \item[] \textbf{Regularisation:} a reduction of model sensitivity as measured by the change in performance to a certain type of input data variation.
+
+    \item[] \textbf{Optimiser:} the method to update the model weights during the training. Usually it is done using some modified form of the gradient descent. In its original definition, at the given step of the training each of the weights is updated by the negative gradient of the loss function w.r.t. to the corresponding weight as computed for a given batch during the backpropagation step. The key parameter in this update is a so-called learning rate, which is a multiplier to the gradient vector. Many optimisers do not fix it as a constant throughout the training but rather try to dynamically adjust it as the training is ongoing.
+    % \begin{itemize}
+    %     \item[] \textbf{Adam}
+    %     \begin{equation}
+    %         2+2
+    %     \end{equation}
+    % \end{itemize}
+
+    \item[] \textbf{Receiver Operator Characteristic (ROC) curve:} a plot of the true positive rate (positive class efficiency) against the false positive rate (negative class efficiency) at various model threshold settings used to measure the model performance.
+
+    \item[] \textbf{Categorical variable:} a variable that can take one of a limited and fixed number of possible values.
+
+    \item[] \textbf{Embedding:} a procedure mapping a given representation of the input into another representation. 
+    
+    \item[] \textbf{Activation function:} a non-linear function which is usually applied to the output of the linear transformation within a feed-forward layer to introduce non-linearity.     
+\end{itemize}
+
+
+
+\section{DeepTau loss function}\label{app:loss}
+The loss function minimised during the training of the DeepTau v2.1 and v2.5 models takes the form:
+\begin{align*}
+    L(\yt, \yp; \boldsymbol{\kappa}, \boldsymbol{w}, \boldsymbol{\gamma}) = \dfrac{1}{N_\tau}\sum_{i=1}^{N_\tau}w_i L_\text{base}(\yt_i, \yp_i; \boldsymbol{\kappa}, \boldsymbol{\gamma})\\
+    L_\text{base}(\yt, \yp; \boldsymbol{\kappa}, \boldsymbol{\gamma}) = \underbrace{\kappa_\tau H_\tau(y_\tau^\text{true}, y_\tau^\text{pred})}_{\text{Categorical CE for }\tau \text{ vs. all background classes}}\\
+    + \underbrace{(\kappa_e + \kappa_\mu + \kappa_\text{jet})\bar{F}_\tau(1-y_\tau^\text{true}, 1-y_\tau^\text{pred}; \gamma_\tau)}_{\text{Focal loss for all background classes vs. } \tau} \\ %
+    + \underbrace{\kappa_F\sum_{i \in \{e, \mu, \text{jet}\}}\kappa_i \Theta(y_\tau^\text{pred} - 0.1)\bar{F}_\text{i}(y_i^\text{true}, y_i^\text{pred}; \gamma_i)}_{\text{Focal loss for separate background classes with } y_\tau^\text{pred} > 0.1 \text{ vs. all the other classes}}\\
+\end{align*}
+\begin{align*}
+    &H_\tau(y_\tau^\text{true}, y_\tau^\text{pred})) = -y_\tau^\text{true} \log y_\tau^\text{pred}\\
+    &\bar{F}(y^\text{true}, y^\text{pred}; \gamma)) = N \cdot F(y^\text{true}, y^\text{pred}; \gamma). \quad F(y^\text{true}, y^\text{pred}; \gamma)) = - y^\text{true} (1-y^\text{pred})^\gamma \log(y^\text{pred})\\
+\end{align*}
+
+Here, $\Theta(.)$ is the Heaviside step function, $\bar{F}_i$ are the normalised focal loss terms, $N$ is the factor normalising the focal loss to unity in the range $[0,1]$, $w_i$ are the individual training weights defined per \tauh candidate. The following constants are used for the training of the DeepTau v2.5 model (unless it is specified differently in the text):
+\begin{itemize}
+    \item $\kappa_e = 0.4$, $\kappa_\mu = 1.$, $\kappa_\tau = 2.$, $\kappa_\text{jet} = 0.6$, $\kappa_F = 5.$.
+    \item $N_e = N_\mu = N_\text{jet} = 1.63636$, $N_\tau = 1.17153$.
+    \item $\gamma_e = \gamma_\mu = \gamma_\text{jet} = 2$, $\gamma_\tau = 0.5$.
+\end{itemize}
+
+
+
+\newpage
+\section{TaT ablation study: addition of particle collections.}\label{app:tat-add}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/scaling_up_png/vs_e_ggH_DY_dm_00.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/scaling_up_png/vs_e_ggH_DY_dm_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/scaling_up_png/vs_e_ggH_DY_dm_1010.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/scaling_up_png/vs_e_ggH_DY_dm_1111.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/scaling_up_png/vs_e_ggH_DY_pt_20_100_eta_0_2.3_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/scaling_up_png/vs_e_ggH_DY_pt_20_100_eta_2.3_2.5_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/scaling_up_png/vs_e_ggH_DY_pt_100_1000_eta_0_2.3_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/scaling_up_png/vs_e_ggH_DY_pt_100_1000_eta_2.3_2.5_dm_0_1_2_10_11.png}
+    \caption{Efficiency for electrons versus efficiency for genuine \tauh to pass the corresponding $D_\alpha$ discriminators for DeepTau v2.1, DeepTau v2.5 and TaT models for various \pt, $\eta$, and \tauh decay mode regions. For the TaT model, several configurations are trained with various modalities used as an input: PF candidates only on a binary classification task (dashed red, pale), PF candidates with RECO electrons/muons (PAT e/mu in the legend) on a binary classification task (dashed red, dark), PF candidates with RECO electrons/muons and global features on a binary classification task (solid red, pale), PF candidates with RECO electrons/muons and global features on a multiclass classification task (solid red, dark). Working points (grey dots) for DeepTau v2.1 are also shown, as derived in the original paper. The panel at the bottom of each figure shows the ratio of each of the ROC curves with respect to the one of the DeepTau v2.5 model.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/scaling_up_png/vs_mu_ggH_DY_dm_00.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/scaling_up_png/vs_mu_ggH_DY_dm_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/scaling_up_png/vs_mu_ggH_DY_dm_1010.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/scaling_up_png/vs_mu_ggH_DY_dm_1111.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/scaling_up_png/vs_mu_ggH_DY_pt_20_100_eta_0_2.3_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/scaling_up_png/vs_mu_ggH_DY_pt_20_100_eta_2.3_2.5_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/scaling_up_png/vs_mu_ggH_DY_pt_100_1000_eta_0_2.3_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/scaling_up_png/vs_mu_ggH_DY_pt_100_1000_eta_2.3_2.5_dm_0_1_2_10_11.png}
+    \caption{Efficiency for muons versus efficiency for genuine \tauh to pass the corresponding $D_\alpha$ discriminators for DeepTau v2.1, DeepTau v2.5 and TaT models for various \pt, $\eta$, and \tauh decay mode regions. For the TaT model, several configurations are trained with various modalities used as an input: PF candidates only on a binary classification task (dashed red, pale), PF candidates with RECO electrons/muons (PAT e/mu in the legend) on a binary classification task (dashed red, dark), PF candidates with RECO electrons/muons and global features on a binary classification task (solid red, pale), PF candidates with RECO electrons/muons and global features on a multiclass classification task (solid red, dark). Working points (grey dots) for DeepTau v2.1 are also shown, as derived in the original paper. The panel at the bottom of each figure shows the ratio of each of the ROC curves with respect to the one of the DeepTau v2.5 model.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/scaling_up_png/vs_jet_ggH_TT_dm_00.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/scaling_up_png/vs_jet_ggH_TT_dm_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/scaling_up_png/vs_jet_ggH_TT_dm_1010.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/scaling_up_png/vs_jet_ggH_TT_dm_1111.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/scaling_up_png/vs_jet_ggH_TT_pt_20_100_eta_0_2.3_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/scaling_up_png/vs_jet_ggH_TT_pt_20_100_eta_2.3_2.5_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/scaling_up_png/vs_jet_ggH_TT_pt_100_1000_eta_0_2.3_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/scaling_up_png/vs_jet_ggH_TT_pt_100_1000_eta_2.3_2.5_dm_0_1_2_10_11.png}
+    \caption{Efficiency for jets versus efficiency for genuine \tauh to pass the corresponding $D_\alpha$ discriminators for DeepTau v2.1, DeepTau v2.5 and TaT models for various \pt, $\eta$, and \tauh decay mode regions. For the TaT model, several configurations are trained with various modalities used as an input: PF candidates only on a binary classification task (dashed red, pale), PF candidates with RECO electrons/muons (PAT e/mu in the legend) on a binary classification task (dashed red, dark), PF candidates with RECO electrons/muons and global features on a binary classification task (solid red, pale), PF candidates with RECO electrons/muons and global features on a multiclass classification task (solid red, dark). Working points (grey dots) for DeepTau v2.1 are also shown, as derived in the original paper. The panel at the bottom of each figure shows the ratio of each of the ROC curves with respect to the one of the DeepTau v2.5 model.}
+\end{figure}
+
+\newpage
+\section{Performance comparison for TaT and ParticleNet.}\label{app:tat-bench}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/benchmark_0_png/vs_e_ggH_DY_dz_dm_00.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/benchmark_0_png/vs_e_ggH_DY_dz_dm_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/benchmark_0_png/vs_e_ggH_DY_dz_dm_1010.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/benchmark_0_png/vs_e_ggH_DY_dz_dm_1111.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/benchmark_0_png/vs_e_ggH_DY_dz_pt_20_100_eta_0_2.3_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/benchmark_0_png/vs_e_ggH_DY_dz_pt_20_100_eta_2.3_2.5_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/benchmark_0_png/vs_e_ggH_DY_dz_pt_100_1000_eta_0_2.3_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/benchmark_0_png/vs_e_ggH_DY_dz_pt_100_1000_eta_2.3_2.5_dm_0_1_2_10_11.png}
+    \caption{Efficiency for electrons versus efficiency for genuine \tauh to pass the corresponding $D_\alpha$ discriminators for DeepTau v2.1 (grey), DeepTau v2.5 (black), ParticleNet v0.1 (dark cyan) and TaT v0.2 (red) models. Working points (grey dots) for DeepTau v2.1 are also shown, as derived in the original paper. The panel at the bottom of each figure shows the ratio of each of the ROC curves with respect to the one of the DeepTau v2.5 model.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/benchmark_0_png/vs_mu_ggH_DY_dz_dm_00.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/benchmark_0_png/vs_mu_ggH_DY_dz_dm_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/benchmark_0_png/vs_mu_ggH_DY_dz_dm_1010.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/benchmark_0_png/vs_mu_ggH_DY_dz_dm_1111.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/benchmark_0_png/vs_mu_ggH_DY_dz_pt_20_100_eta_0_2.3_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/benchmark_0_png/vs_mu_ggH_DY_dz_pt_20_100_eta_2.3_2.5_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/benchmark_0_png/vs_mu_ggH_DY_dz_pt_100_1000_eta_0_2.3_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/benchmark_0_png/vs_mu_ggH_DY_dz_pt_100_1000_eta_2.3_2.5_dm_0_1_2_10_11.png}
+    \caption{Efficiency for muons versus efficiency for genuine \tauh to pass the corresponding $D_\alpha$ discriminators for DeepTau v2.1 (grey), DeepTau v2.5 (black), ParticleNet v0.1 (dark cyan) and TaT v0.2 (red) models. Working points (grey dots) for DeepTau v2.1 are also shown, as derived in the original paper. The panel at the bottom of each figure shows the ratio of each of the ROC curves with respect to the one of the DeepTau v2.5 model.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/benchmark_0_png/vs_jet_ggH_TT_dz_dm_00.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/benchmark_0_png/vs_jet_ggH_TT_dz_dm_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/benchmark_0_png/vs_jet_ggH_TT_dz_dm_1010.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/benchmark_0_png/vs_jet_ggH_TT_dz_dm_1111.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/benchmark_0_png/vs_jet_ggH_TT_dz_pt_20_100_eta_0_2.3_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/benchmark_0_png/vs_jet_ggH_TT_dz_pt_20_100_eta_2.3_2.5_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/benchmark_0_png/vs_jet_ggH_TT_dz_pt_100_1000_eta_0_2.3_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/benchmark_0_png/vs_jet_ggH_TT_dz_pt_100_1000_eta_2.3_2.5_dm_0_1_2_10_11.png}
+    \caption{Efficiency for jets versus efficiency for genuine \tauh to pass the corresponding $D_\alpha$ discriminators for DeepTau v2.1 (grey), DeepTau v2.5 (black), ParticleNet v0.1 (dark cyan) and TaT v0.2 (red) models. Working points (grey dots) for DeepTau v2.1 are also shown, as derived in the original paper. The panel at the bottom of each figure shows the ratio of each of the ROC curves with respect to the one of the DeepTau v2.5 model.}
+\end{figure}
+
+\newpage
+\section{TaT ablation study: variation of the cone size.}\label{app:tat-cone}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/R_studies_png/vs_e_ggH_DY_dz_dm_00.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/R_studies_png/vs_e_ggH_DY_dz_dm_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/R_studies_png/vs_e_ggH_DY_dz_dm_1010.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/R_studies_png/vs_e_ggH_DY_dz_dm_1111.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/R_studies_png/vs_e_ggH_DY_dz_pt_20_100_eta_0_2.3_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/R_studies_png/vs_e_ggH_DY_dz_pt_20_100_eta_2.3_2.5_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/R_studies_png/vs_e_ggH_DY_dz_pt_100_1000_eta_0_2.3_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/R_studies_png/vs_e_ggH_DY_dz_pt_100_1000_eta_2.3_2.5_dm_0_1_2_10_11.png}
+    \caption{Efficiency for electrons versus efficiency for genuine \tauh to pass the corresponding $D_\alpha$ discriminators for a TaT architecture with the various requirements on the cone distance between the directions of flight of constituents and \tauh candidate (R). The panel at the bottom of each figure shows the ratio of each of the ROC curves with respect to the model without any requirement on the cone distance (inclusive).}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/R_studies_png/vs_mu_ggH_DY_dz_dm_00.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/R_studies_png/vs_mu_ggH_DY_dz_dm_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/R_studies_png/vs_mu_ggH_DY_dz_dm_1010.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/R_studies_png/vs_mu_ggH_DY_dz_dm_1111.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/R_studies_png/vs_mu_ggH_DY_dz_pt_20_100_eta_0_2.3_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/R_studies_png/vs_mu_ggH_DY_dz_pt_20_100_eta_2.3_2.5_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/R_studies_png/vs_mu_ggH_DY_dz_pt_100_1000_eta_0_2.3_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/R_studies_png/vs_mu_ggH_DY_dz_pt_100_1000_eta_2.3_2.5_dm_0_1_2_10_11.png}
+    \caption{Efficiency for muons versus efficiency for genuine \tauh to pass the corresponding $D_\alpha$ discriminators for a TaT architecture with the various requirements on the cone distance between the directions of flight of constituents and \tauh candidate (R). The panel at the bottom of each figure shows the ratio of each of the ROC curves with respect to the model without any requirement on the cone distance (inclusive).}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/R_studies_png/vs_jet_ggH_TT_dz_dm_00.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/R_studies_png/vs_jet_ggH_TT_dz_dm_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/R_studies_png/vs_jet_ggH_TT_dz_dm_1010.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/R_studies_png/vs_jet_ggH_TT_dz_dm_1111.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/R_studies_png/vs_jet_ggH_TT_dz_pt_20_100_eta_0_2.3_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/R_studies_png/vs_jet_ggH_TT_dz_pt_20_100_eta_2.3_2.5_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/R_studies_png/vs_jet_ggH_TT_dz_pt_100_1000_eta_0_2.3_dm_0_1_2_10_11.png}
+    \includegraphics[width=0.32\textwidth]{Figures/Tau/R_studies_png/vs_jet_ggH_TT_dz_pt_100_1000_eta_2.3_2.5_dm_0_1_2_10_11.png}
+    \caption{Efficiency for jets versus efficiency for genuine \tauh to pass the corresponding $D_\alpha$ discriminators for a TaT architecture with the various requirements on the cone distance between the directions of flight of constituents and \tauh candidate (R). The panel at the bottom of each figure shows the ratio of each of the ROC curves with respect to the model without any requirement on the cone distance (inclusive).}
+\end{figure}
+
+\newpage
+\section{Control plots in the \et channel.}\label{app:control-plots}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{Figures/CP_etau/2016/1.png}
+    \includegraphics[width=0.3\textwidth]{Figures/CP_etau/2016/2.png}
+    \includegraphics[width=0.3\textwidth]{Figures/CP_etau/2016/3.png}
+    % \includegraphics[width=0.31\textwidth]{Figures/CP_etau/mvis.png}
+    \includegraphics[width=0.3\textwidth]{Figures/CP_etau/2016/12.png}
+    \includegraphics[width=0.3\textwidth]{Figures/CP_etau/2016/5.png}
+    \includegraphics[width=0.3\textwidth]{Figures/CP_etau/2016/6.png}
+    \includegraphics[width=0.3\textwidth]{Figures/CP_etau/2016/7.png}
+    \includegraphics[width=0.3\textwidth]{Figures/CP_etau/2016/8.png}
+    \includegraphics[width=0.3\textwidth]{Figures/CP_etau/2016/9.png}
+    \includegraphics[width=0.3\textwidth]{Figures/CP_etau/2016/10.png}
+    \includegraphics[width=0.3\textwidth]{Figures/CP_etau/2016/11.png}
+    \includegraphics[width=0.3\textwidth]{Figures/CP_etau/2016/4.png}
+    \caption{Comparison of data with simulation for the 2016 data-taking period for the variables used in the neural network training, as described in Sec. \ref{sec:categ}.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{Figures/CP_etau/2017/2.png}
+    \includegraphics[width=0.3\textwidth]{Figures/CP_etau/2017/3.png}
+    % \includegraphics[width=0.31\textwidth]{Figures/CP_etau/mvis.png}
+    \includegraphics[width=0.3\textwidth]{Figures/CP_etau/2017/4.png}
+    \includegraphics[width=0.3\textwidth]{Figures/CP_etau/2017/1.png}
+    \includegraphics[width=0.3\textwidth]{Figures/CP_etau/2017/6.png}
+    \includegraphics[width=0.3\textwidth]{Figures/CP_etau/2017/7.png}
+    \includegraphics[width=0.3\textwidth]{Figures/CP_etau/2017/8.png}
+    \includegraphics[width=0.3\textwidth]{Figures/CP_etau/2017/9.png}
+    \includegraphics[width=0.3\textwidth]{Figures/CP_etau/2017/10.png}
+    \includegraphics[width=0.3\textwidth]{Figures/CP_etau/2017/11.png}
+    \includegraphics[width=0.3\textwidth]{Figures/CP_etau/2017/12.png}
+    \includegraphics[width=0.3\textwidth]{Figures/CP_etau/2017/5.png}
+    \caption{Comparison of data with simulation for the 2017 data-taking period for the variables used in the neural network training, as described in Sec. \ref{sec:categ}.}
+\end{figure}
+
+\newpage
+\section{Pre-fit distributions in the \et channel.}\label{app:pre-fit}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.35\textwidth]{Figures/CP_etau/NN_score_embed_et_2016_higgs_prefit.png}
+    \includegraphics[width=0.35\textwidth]{Figures/CP_etau/NN_score_fakes_et_2016_fakes_prefit.png}
+    \includegraphics[width=0.35\textwidth]{Figures/CP_etau/NN_score_embed_et_2017_higgs_prefit.png}
+    \includegraphics[width=0.35\textwidth]{Figures/CP_etau/NN_score_fakes_et_2017_fakes_prefit.png}
+    \includegraphics[width=0.35\textwidth]{Figures/CP_etau/NN_score_embed_et_2018_higgs_prefit.png}
+    \includegraphics[width=0.35\textwidth]{Figures/CP_etau/NN_score_fakes_et_2018_fakes_prefit.png}
+    \caption{Pre-fit distribution of the NN score in the genuine $\tau$ (left) and fakes (right) background categories for the 2016 (top), 2017 (middle), and 2018 (bottom) data-taking periods.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.42\textwidth]{Figures/CP_etau/Bin_number_e-0a1_et_2016_higgs_prefit.png}
+    \includegraphics[width=0.42\textwidth]{Figures/CP_etau/Bin_number_e-a1_et_2016_higgs_prefit.png}
+    \includegraphics[width=0.42\textwidth]{Figures/CP_etau/Bin_number_e-pi_et_2016_higgs_prefit.png}
+    \includegraphics[width=0.42\textwidth]{Figures/CP_etau/Bin_number_e-rho_et_2016_higgs_prefit.png}
+    \caption{Pre-fit distributions of the unrolled \phicp observable in bins of the NN score in the signal categories for the 2016 data-taking period.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.42\textwidth]{Figures/CP_etau/Bin_number_e-0a1_et_2017_higgs_prefit.png}
+    \includegraphics[width=0.42\textwidth]{Figures/CP_etau/Bin_number_e-a1_et_2017_higgs_prefit.png}
+    \includegraphics[width=0.42\textwidth]{Figures/CP_etau/Bin_number_e-pi_et_2017_higgs_prefit.png}
+    \includegraphics[width=0.42\textwidth]{Figures/CP_etau/Bin_number_e-rho_et_2017_higgs_prefit.png}
+    \caption{Pre-fit distributions of the unrolled \phicp observable in bins of the NN score in the signal categories for the 2017 data-taking period.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.42\textwidth]{Figures/CP_etau/Bin_number_e-0a1_et_2018_higgs_prefit.png}
+    \includegraphics[width=0.42\textwidth]{Figures/CP_etau/Bin_number_e-a1_et_2018_higgs_prefit.png}
+    \includegraphics[width=0.42\textwidth]{Figures/CP_etau/Bin_number_e-pi_et_2018_higgs_prefit.png}
+    \includegraphics[width=0.42\textwidth]{Figures/CP_etau/Bin_number_e-rho_et_2018_higgs_prefit.png}
+    \caption{Pre-fit distributions of the unrolled \phicp observable in bins of the NN score in the signal categories for the 2018 data-taking period.}
+\end{figure}
+
+\newpage
+\section{Post-fit distributions in the \et channel.}\label{app:post-fit}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.35\textwidth]{Figures/CP_etau/NN_score_embed_et_2016_higgs_postfit.png}
+    \includegraphics[width=0.35\textwidth]{Figures/CP_etau/NN_score_fakes_et_2016_fakes_postfit}
+    \includegraphics[width=0.35\textwidth]{Figures/CP_etau/NN_score_embed_et_2017_higgs_postfit.png}
+    \includegraphics[width=0.35\textwidth]{Figures/CP_etau/NN_score_fakes_et_2017_fakes_postfit.png}
+    \includegraphics[width=0.35\textwidth]{Figures/CP_etau/NN_score_embed_et_2018_higgs_postfit.png}
+    \includegraphics[width=0.35\textwidth]{Figures/CP_etau/NN_score_fakes_et_2018_fakes_postfit.png}
+    \caption{Post-fit distribution of the NN score in the genuine $\tau$ (left) and fakes (right) background categories for the 2016 (top), 2017 (middle), and 2018 (bottom) data-taking periods.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.42\textwidth]{Figures/CP_etau/Bin_number_e-0a1_et_2016_higgs_postfit.png}
+    \includegraphics[width=0.42\textwidth]{Figures/CP_etau/Bin_number_e-a1_et_2016_higgs_postfit.png}
+    \includegraphics[width=0.42\textwidth]{Figures/CP_etau/Bin_number_e-pi_et_2016_higgs_postfit.png}
+    \includegraphics[width=0.42\textwidth]{Figures/CP_etau/Bin_number_e-rho_et_2016_higgs_postfit.png}
+    \caption{Post-fit distributions of the unrolled \phicp observable in bins of the NN score in the signal categories for the 2016 data-taking period.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.42\textwidth]{Figures/CP_etau/Bin_number_e-0a1_et_2017_higgs_postfit.png}
+    \includegraphics[width=0.42\textwidth]{Figures/CP_etau/Bin_number_e-a1_et_2017_higgs_postfit.png}
+    \includegraphics[width=0.42\textwidth]{Figures/CP_etau/Bin_number_e-pi_et_2017_higgs_postfit.png}
+    \includegraphics[width=0.42\textwidth]{Figures/CP_etau/Bin_number_e-rho_et_2017_higgs_postfit.png}
+    \caption{Post-fit distributions of the unrolled \phicp observable in bins of the NN score in the signal categories for the 2017 data-taking period.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.42\textwidth]{Figures/CP_etau/Bin_number_e-0a1_et_2018_higgs_postfit.png}
+    \includegraphics[width=0.42\textwidth]{Figures/CP_etau/Bin_number_e-a1_et_2018_higgs_postfit.png}
+    \includegraphics[width=0.42\textwidth]{Figures/CP_etau/Bin_number_e-pi_et_2018_higgs_postfit.png}
+    \includegraphics[width=0.42\textwidth]{Figures/CP_etau/Bin_number_e-rho_et_2018_higgs_postfit.png}
+    \caption{Post-fit distributions of the unrolled \phicp observable in bins of the NN score in the signal categories for the 2018 data-taking period.}
+\end{figure}

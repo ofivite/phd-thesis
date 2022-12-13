@@ -300,7 +300,7 @@ To summarise, the final states to be analysed with the corresponding methods to 
 The following procedure to select events for the analysis of the \et final state, where one tau lepton decays into an electron plus neutrinos ($\taue$) and the other into hadrons plus neutrino ($\tauh$), is followed:
 
 \begin{enumerate}
-    \item Events are selected online by the CMS trigger system (Sec. \ref{}). Either a cross trigger ($e \, \& \, \tauh$) or a single electron trigger ($e$) should be fired depending on the data taking year (online \pt thresholds for the corresponding objects are shown in brackets in GeV):
+    \item Events are selected online by the CMS trigger system (Sec. \ref{sec:trigger}). Either a cross trigger ($e \, \& \, \tauh$) or a single electron trigger ($e$) should be fired depending on the data taking year (online \pt thresholds for the corresponding objects are shown in brackets in GeV):
     \begin{itemize}
         \item 2016: $e$(25),
         \item 2017: $e$(27) OR $e(24) \, \& \, \tauh(30)$,
@@ -421,12 +421,12 @@ Lastly, corrections to the impact parameter significance variable are applied bo
 
 \begin{figure}[t!]
     \centering
-    \includegraphics[width=0.6\textwidth]{Figures/CP_etau/mvis.png}
-    \caption{Comparison of data with simulation for 2018 data-taking period for the visible mass of the \et system variable.}
+    \includegraphics[width=0.6\textwidth]{Figures/CP_etau/2018/4.png}
+    \caption{Comparison of data with simulation for the 2018 data-taking period for the visible mass of the \et system.}
     \label{fig:mvis}
 \end{figure}
 
-After estimating the backgrounds as described above and applying all the necessary corrections good agreement between data and simulation is observed for the key physical observables for all years (Fig. \ref{fig:mvis}, Fig. \ref{fig:nn_vars}, and Appendix \ref{app:control_plots}). 
+After estimating the backgrounds as described above and applying all the necessary corrections good agreement between data and simulation is observed for the key physical observables for all years (Fig. \ref{fig:mvis}, Fig. \ref{fig:nn_vars}, and Appendix \ref{app:control-plots}). 
 
 \section{Event categorisation}\label{sec:categ}
 After the selection of \et candidate pairs (Sec. \ref{sec:selection}), one has to perform their categorisation. Fundamentally, that means that for each candidate pair one wants to understand which physical process it originates from. Since the selection criteria do not yield the sample with only \htt events but the one which is contaminated by several background processes, one is interested in purifying this sample. This is hardly possible to perform manually due to an extremely large number of events to be categorised. Therefore, some automated refining procedure is needed.
@@ -456,26 +456,44 @@ A neural network (NN) is trained to leverage the multidimensionality of the prob
     \item $\Delta\eta_{jj}$, difference in pseudorapidity between the two leading jets.
 \end{itemize}
 
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.31\textwidth]{Figures/CP_etau/pt_e.png}
+%     \includegraphics[width=0.31\textwidth]{Figures/CP_etau/pt_tau.png}
+%     \includegraphics[width=0.31\textwidth]{Figures/CP_etau/pt_tautau.png}
+%     % \includegraphics[width=0.31\textwidth]{Figures/CP_etau/mvis.png}
+%     \includegraphics[width=0.31\textwidth]{Figures/CP_etau/mtautau.png}
+%     \includegraphics[width=0.31\textwidth]{Figures/CP_etau/puppimet.png}
+%     \includegraphics[width=0.31\textwidth]{Figures/CP_etau/mt.png}
+%     \includegraphics[width=0.31\textwidth]{Figures/CP_etau/njets.png}
+%     \includegraphics[width=0.31\textwidth]{Figures/CP_etau/pt_jet1.png}
+%     \includegraphics[width=0.31\textwidth]{Figures/CP_etau/pt_jet2.png}
+%     \includegraphics[width=0.31\textwidth]{Figures/CP_etau/pt_jj.png}
+%     \includegraphics[width=0.31\textwidth]{Figures/CP_etau/mjj.png}
+%     \includegraphics[width=0.31\textwidth]{Figures/CP_etau/deta_jj.png}
+%     \caption{Comparison of data with simulation for 2018 data-taking period for the variables used in the neural network training, as described in Sec. \ref{sec:categ}.}
+%     \label{fig:nn_vars}
+% \end{figure}
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.31\textwidth]{Figures/CP_etau/pt_e.png}
-    \includegraphics[width=0.31\textwidth]{Figures/CP_etau/pt_tau.png}
-    \includegraphics[width=0.31\textwidth]{Figures/CP_etau/pt_tautau.png}
+    \includegraphics[width=0.27\textwidth]{Figures/CP_etau/2018/2.png}
+    \includegraphics[width=0.27\textwidth]{Figures/CP_etau/2018/3.png}
     % \includegraphics[width=0.31\textwidth]{Figures/CP_etau/mvis.png}
-    \includegraphics[width=0.31\textwidth]{Figures/CP_etau/mtautau.png}
-    \includegraphics[width=0.31\textwidth]{Figures/CP_etau/puppimet.png}
-    \includegraphics[width=0.31\textwidth]{Figures/CP_etau/mt.png}
-    \includegraphics[width=0.31\textwidth]{Figures/CP_etau/njets.png}
-    \includegraphics[width=0.31\textwidth]{Figures/CP_etau/pt_jet1.png}
-    \includegraphics[width=0.31\textwidth]{Figures/CP_etau/pt_jet2.png}
-    \includegraphics[width=0.31\textwidth]{Figures/CP_etau/pt_jj.png}
-    \includegraphics[width=0.31\textwidth]{Figures/CP_etau/mjj.png}
-    \includegraphics[width=0.31\textwidth]{Figures/CP_etau/deta_jj.png}
-    \caption{Comparison of data with simulation for 2018 data-taking period for the variables used in the neural network training, as described in Sec. \ref{sec:categ}.}
+    \includegraphics[width=0.27\textwidth]{Figures/CP_etau/2018/6.png}    \includegraphics[width=0.27\textwidth]{Figures/CP_etau/2018/1.png}
+    \includegraphics[width=0.27\textwidth]{Figures/CP_etau/2018/7.png}
+    \includegraphics[width=0.27\textwidth]{Figures/CP_etau/2018/15.png}
+    \includegraphics[width=0.27\textwidth]{Figures/CP_etau/2018/5.png}
+    \includegraphics[width=0.27\textwidth]{Figures/CP_etau/2018/8.png}
+    \includegraphics[width=0.27\textwidth]{Figures/CP_etau/2018/9.png}
+    \includegraphics[width=0.27\textwidth]{Figures/CP_etau/2018/12.png}
+    \includegraphics[width=0.27\textwidth]{Figures/CP_etau/2018/10.png}
+    \includegraphics[width=0.27\textwidth]{Figures/CP_etau/2018/11.png}
+    \caption{Comparison of data with simulation for the 2018 data-taking period for the variables used in the neural network training, as described in Sec. \ref{sec:categ}.}
     \label{fig:nn_vars}
 \end{figure}
 
-This set of variables is chosen as the ones which are known \textit{a priori} to provide discriminating power between the classes and to be well-modelled in data (Fig. \ref{fig:mvis}, Fig. \ref{fig:nn_vars}, and Appendix \ref{app:control_plots}). Each event is therefore represented as a vector of length 13, which defines the input to the model.
+This set of variables is chosen as the ones which are known \textit{a priori} to provide discriminating power between the classes and to be well-modelled in data (Fig. \ref{fig:mvis}, Fig. \ref{fig:nn_vars}, and Appendix \ref{app:control-plots}). Each event is therefore represented as a vector of length 13, which defines the input to the model.
 
 The model architecture consists of three consecutive blocks. Each block has the same structure and is constructed from a feed-forward layer with 100 nodes, followed by a batch normalisation layer, a ReLU activation function, and a dropout layer with probability $p=0.5$. The output layer is a feed-forward layer with three nodes normalised to sum up to 1 with a softmax function. It therefore defines the probability of an event to belong to either of the three classes, as defined above.
 
@@ -498,20 +516,20 @@ Lastly, a requirement on the impact parameter significance $S_\text{IP} > 1.5$ i
 
 \begin{figure}[!t]
     \centering
-    \includegraphics[width=0.49\textwidth]{Figures/CP_etau/NN_score_embed_et_2018_tau_prefit.pdf}
-    \includegraphics[width=0.49\textwidth]{Figures/CP_etau/NN_score_fakes_et_2018_fakes_prefit.pdf}
+    \includegraphics[width=0.49\textwidth]{Figures/CP_etau/NN_score_embed_et_2018_higgs_prefit.png}
+    \includegraphics[width=0.49\textwidth]{Figures/CP_etau/NN_score_fakes_et_2018_fakes_prefit.png}
     \caption{Pre-fit distribution of the NN score in the genuine $\tau$ (left) and fakes (right) background categories for 2018 data-taking period.}
     \label{fig:bkgr_cat_prefit}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{Figures/CP_etau/Bin_number_e-rho_et_2018_higgs_prefit.pdf}
+    \includegraphics[width=0.9\textwidth]{Figures/CP_etau/Bin_number_e-rho_et_2018_higgs_prefit_blinded.png}
     \caption{Pre-fit blinded distribution of unrolled in bins of the NN score \phicp observable in $e\rho$ signal category for 2018 data-taking period.}
     \label{fig:sig_cat_prefit}
 \end{figure}
 
-Overall, good agreement between data and simulation is observed in background categories before performing the statistical fit (Fig. \ref{fig:bkgr_cat_prefit}). For the blinded signal categories, the unrolled distribution of the \phicp observable shows increasing signal over background ratio from the first to the last bins of NN score, with a clear separation between the pure CP-even and CP-odd hypotheses in the most sensitive $e\rho$ category (Fig. \ref{fig:sig_cat_prefit} and Appendix \ref{}).
+Overall, good agreement between data and simulation is observed in background categories before performing the statistical fit (Fig. \ref{fig:bkgr_cat_prefit}, Appendix \ref{app:pre-fit}). For the blinded signal categories, the unrolled distribution of the \phicp observable shows increasing signal over background ratio from the first to the last bins of NN score, with a clear separation between the pure CP-even and CP-odd hypotheses in the most sensitive $e\rho$ category (Fig. \ref{fig:sig_cat_prefit} and Appendix \ref{app:pre-fit}).
 
 \section{Statistical inference}\label{sec:stat}
 \subsection{Framework}
@@ -686,14 +704,14 @@ The following sources of shape uncertainties are considered in the analysis:
 
 \section{Results}\label{sec:results}
 
-After the likelihood minimisation is performed (Sec. \ref{sec:stat}), one can firstly investigate if there is no significant discrepancies between data and simulation in the post-fit distributions in the background categories. Overall, good description of data with the fitted templates is observed for all the categories and data-taking periods (Fig. \ref{fig:bkgr_cat_postfit} and Appendix \ref{}).
+After the likelihood minimisation is performed (Sec. \ref{sec:stat}), one can firstly investigate if there is no significant discrepancies between data and simulation in the post-fit distributions in the background categories. Overall, good description of data with the fitted templates is observed for all the categories and data-taking periods (Fig. \ref{fig:bkgr_cat_postfit} and Appendix \ref{app:post-fit}).
 
 In a more formalised way, one can perform a goodness-of-fit (GoF) test to estimate if there is a statistically significant difference between data and fitted templates. Results of the saturated model GoF test \cite{Cousins2013GeneralizationOC} performed for the combination of all the categories (signal and background) and all the data-taking years (2016, 2017, 2018) show the $p$-value of 0.22, which also indicates a good quality of the fit.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{Figures/CP_etau/NN_score_embed_et_2018_tau_postfit.pdf}
-    \includegraphics[width=0.4\textwidth]{Figures/CP_etau/NN_score_fakes_et_2018_fakes_postfit.pdf}
+    \includegraphics[width=0.4\textwidth]{Figures/CP_etau/NN_score_embed_et_2018_higgs_postfit.png}
+    \includegraphics[width=0.4\textwidth]{Figures/CP_etau/NN_score_fakes_et_2018_fakes_postfit.png}
     \caption{Post-fit distribution of the NN score in the genuine $\tau$ (left) and fakes (right) background categories for 2018 data-taking period.}
     \label{fig:bkgr_cat_postfit}
 \end{figure}
@@ -715,7 +733,7 @@ In a more formalised way, one can perform a goodness-of-fit (GoF) test to estima
 
 In order to gauge the behaviour of the systematic uncertainties in the fit, a scan of the likelihood function Eq. \ref{eq:like} is performed for each of the nuisance parameter with all the POIs except for the nuisance parameter being profiled. Results are shown on Fig. \ref{fig:pulls} for the first 30 leading nuisance parameters as well as the impact of the each nuisance parameter variation on the main POI \mixa. Overall, no anomalous behaviour is observed in the nuisance parameter diagnostics.  
 
-The signal categories are then unblinded and the resulting unrolled distributions of \phicp observable are shown in Fig. \ref{fig:sig_cat_postfit} and Appendix \ref{}. A slight presence of the \htt signal is visible in the bins of the NN score, albeit diluted by statistical uncertainties. 
+The signal categories are then unblinded and the resulting unrolled distributions of \phicp observable are shown in Fig. \ref{fig:sig_cat_postfit} and Appendix \ref{app:post-fit}. A slight presence of the \htt signal is visible in the bins of the NN score, albeit diluted by statistical uncertainties. 
 
 Before proceeding to the extraction of the observed \mixa value from the fit to data it is good to have an estimate of what one would expect under the null hypothesis, which is the Standard Model. The expected values of \mixa are obtained with the same procedure as described in Sec. \ref{sec:stat} but with the template fit being performed to the Azimov data set. The latter is obtained with fixing the cross sections of all the physical processes to their SM values and the \phicp distribution to the prediction of the pure CP-even hypothesis. 
 
