@@ -2,49 +2,44 @@
 
 \section{ML glossary}\label{app:glossary}
 \begin{itemize}
-    \item[] \textbf{Label/Target:} information about the event/object which the model learns to predict given an input representation of the event/object during the optimisation step. 
-    
-    \item[] \textbf{Loss function:} a function that maps the event or values of one or more variables onto a real number representing a \enquote{cost} associated with the event. Usually parametrised per event as a function of the true event information (target) and the corresponding model predictions, the loss function is minimised as a part of an optimisation problem in order to infer the model's parameters. The term also refers to a cost associated with a group of events, usually by summing/averaging the loss function values for each of the events.
-    
-    \item[] \textbf{Up/Downsampling (image preprocessing):} the increase/decrease of the spatial resolution of the image while keeping the same representation.
-    
-    \item[] \textbf{Representation:} generally, the way a given event/object is described. In the context of ML, the representation is the way the object/event is numerically encoded (manually or by the model itself) in order to be used for the downstream task.   
-    
-    \item[] \textbf{Encoder:} a part of the model which maps the input representation (usually high-dimensional) of the event/object into a representation useful for the given optimisation task (usually low-dimensional).
-    
-    \item[] \textbf{Decoder:} a part of the model which maps the representation learned by the encoder into a target prediction. 
+	
+	\item[] \textbf{Activation function:} a non-linear function which is usually applied to the output of the linear transformation within a feed-forward layer to introduce non-linearity.   
 
-    \item[] \textbf{Hyperparameter:} a parameter whose value is used to control the learning process or the model configuration. Therefore, it usually remains constant during the training rather than being optimised jointly with the model weights.
+	\item[] \textbf{Backpropagation/backward pass:} a process of computing the gradient of the loss function with respect to each model weight by the chain rule, computing the gradient one layer at a time, iterating backward from the last model layer to the first one. 
 
-    \item[] \textbf{Training:} the process of inferring the best parameters of the model as obtained by minimising the loss function. In most of the classification problem it is performed in steps where each step corresponds to a forward pass of a single batch to compute the value of the loss function, followed by a backward pass where the weight gradients are computed and the model parameters are updated by the optimiser. 
+	\item[] \textbf{Batch:} a set of input objects from the training data set used for a single step of the model training.
+
+	\item[] \textbf{Categorical variable:} a variable that can take one of a limited and fixed number of possible values.
+
+	\item[] \textbf{Decoder:} a part of the model which maps the representation learned by the encoder into a target prediction. 
+
+	\item[] \textbf{Embedding:} a procedure mapping a given representation of the input into another representation. 
+	
+	\item[] \textbf{Encoder:} a part of the model which maps the input representation (usually high-dimensional) of the event/object into a representation useful for the given optimisation task (usually low-dimensional).
 
     \item[] \textbf{Epoch:} a period of time corresponding to the number of steps when the model completes the iteration over the entire training dataset.  
 
-    \item[] \textbf{Batch:} a set of input objects from the training data set used for a single step of the model training.
+	\item[] \textbf{Forwardpropagation/forward pass:}  a process of propagating a batch of input data through the model layer by layer to the final layer which outputs a prediction and the value of the loss function.
+
+	\item[] \textbf{Hyperparameter:} a parameter whose value is used to control the learning process or the model configuration. Therefore, it usually remains constant during the training rather than being optimised jointly with the model weights.
+
+    \item[] \textbf{Label/Target:} information about the event/object which the model learns to predict given an input representation of the event/object during the optimisation step. 
+    
+    \item[] \textbf{Loss function:} a function that maps the event or values of one or more variables onto a real number representing a \enquote{cost} associated with the event. Usually parametrised per event as a function of the true event information (target) and the corresponding model predictions, the loss function is minimised as a part of an optimisation problem in order to infer the model's parameters. The term also refers to a cost associated with a group of events, usually by summing/averaging the loss function values for each of the events.
 
     \item[] \textbf{Model:} a mathematical representation of objects and their relationships to each other. Usually represents (a set) of functions or rules parametrised by some parameters, also called weights.
 
-    \item[] \textbf{Forwardpropagation/forward pass:}  a process of propagating a batch of input data through the model layer by layer to the final layer which outputs a prediction and the value of the loss function.
-    
-    \item[] \textbf{Backpropagation/backward pass:} a process of computing the gradient of the loss function with respect to each model weight by the chain rule, computing the gradient one layer at a time, iterating backward from the last model layer to the first one. 
+	\item[] \textbf{Optimiser:} the method to update the model weights during the training. Usually it is done using some modified form of the gradient descent. In its original definition, at the given step of the training each of the weights is updated by the negative gradient of the loss function w.r.t. to the corresponding weight as computed for a given batch during the backpropagation step. The key parameter in this update is a so-called learning rate, which is a multiplier to the gradient vector. Many optimisers do not fix it as a constant throughout the training but rather try to dynamically adjust it as the training is ongoing.
+
+	\item[] \textbf{Receiver Operator Characteristic (ROC) curve:} a plot of the true positive rate (positive class efficiency) against the false positive rate (negative class efficiency) at various model threshold settings used to measure the model performance.
  
-    \item[] \textbf{Regularisation:} a reduction of model sensitivity as measured by the change in performance to a certain type of input data variation.
-
-    \item[] \textbf{Optimiser:} the method to update the model weights during the training. Usually it is done using some modified form of the gradient descent. In its original definition, at the given step of the training each of the weights is updated by the negative gradient of the loss function w.r.t. to the corresponding weight as computed for a given batch during the backpropagation step. The key parameter in this update is a so-called learning rate, which is a multiplier to the gradient vector. Many optimisers do not fix it as a constant throughout the training but rather try to dynamically adjust it as the training is ongoing.
-    % \begin{itemize}
-    %     \item[] \textbf{Adam}
-    %     \begin{equation}
-    %         2+2
-    %     \end{equation}
-    % \end{itemize}
-
-    \item[] \textbf{Receiver Operator Characteristic (ROC) curve:} a plot of the true positive rate (positive class efficiency) against the false positive rate (negative class efficiency) at various model threshold settings used to measure the model performance.
-
-    \item[] \textbf{Categorical variable:} a variable that can take one of a limited and fixed number of possible values.
-
-    \item[] \textbf{Embedding:} a procedure mapping a given representation of the input into another representation. 
+	\item[] \textbf{Regularisation:} a reduction of model sensitivity as measured by the change in performance to a certain type of input data variation.
     
-    \item[] \textbf{Activation function:} a non-linear function which is usually applied to the output of the linear transformation within a feed-forward layer to introduce non-linearity.     
+    \item[] \textbf{Representation:} generally, the way a given event/object is described. In the context of ML, the representation is the way the object/event is numerically encoded (manually or by the model itself) in order to be used for the downstream task.   
+
+    \item[] \textbf{Training:} the process of inferring the best parameters of the model as obtained by minimising the loss function. In most of the classification problem it is performed in steps where each step corresponds to a forward pass of a single batch to compute the value of the loss function, followed by a backward pass where the weight gradients are computed and the model parameters are updated by the optimiser. 
+
+    \item[] \textbf{Up/Downsampling (image preprocessing):} the increase/decrease of the spatial resolution of the image while keeping the same representation. 
 \end{itemize}
 
 
@@ -72,7 +67,7 @@ Here, $\Theta(.)$ is the Heaviside step function, $\bar{F}_i$ are the normalised
 
 
 \newpage
-\section{TaT ablation study: addition of particle collections.}\label{app:tat-add}
+\section{TaT ablation study: impact of modalities}\label{app:tat-add}
 
 \begin{figure}[H]
     \centering
@@ -114,7 +109,7 @@ Here, $\Theta(.)$ is the Heaviside step function, $\bar{F}_i$ are the normalised
 \end{figure}
 
 \newpage
-\section{Performance comparison for TaT and ParticleNet.}\label{app:tat-bench}
+\section{Performance comparison for TaT and ParticleNet}\label{app:tat-bench}
 
 \begin{figure}[H]
     \centering
@@ -156,7 +151,7 @@ Here, $\Theta(.)$ is the Heaviside step function, $\bar{F}_i$ are the normalised
 \end{figure}
 
 \newpage
-\section{TaT ablation study: variation of the cone size.}\label{app:tat-cone}
+\section{TaT ablation study: variation of the cone size}\label{app:tat-cone}
 
 \begin{figure}[H]
     \centering
@@ -200,7 +195,7 @@ Here, $\Theta(.)$ is the Heaviside step function, $\bar{F}_i$ are the normalised
 \end{figure}
 
 \newpage
-\section{Control plots in the \et channel.}\label{app:control-plots}
+\section{Control plots in the \et channel}\label{app:control-plots}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.3\textwidth]{Figures/CP_etau/2016/1.png}
@@ -238,7 +233,7 @@ Here, $\Theta(.)$ is the Heaviside step function, $\bar{F}_i$ are the normalised
 \end{figure}
 
 \newpage
-\section{Pre-fit distributions in the \et channel.}\label{app:pre-fit}
+\section{Pre-fit distributions in the \et channel}\label{app:pre-fit}
 
 \begin{figure}[H]
     \centering
@@ -279,7 +274,7 @@ Here, $\Theta(.)$ is the Heaviside step function, $\bar{F}_i$ are the normalised
 \end{figure}
 
 \newpage
-\section{Post-fit distributions in the \et channel.}\label{app:post-fit}
+\section{Post-fit distributions in the \et channel}\label{app:post-fit}
 
 \begin{figure}[H]
     \centering
