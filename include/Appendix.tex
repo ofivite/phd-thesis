@@ -42,8 +42,6 @@
     \item[] \textbf{Up/Downsampling (image preprocessing):} the increase/decrease of the spatial resolution of the image while keeping the same representation. 
 \end{itemize}
 
-
-
 \section{DeepTau loss function}\label{app:loss}
 The loss function minimised during the training of the DeepTau v2.1 and v2.5 models takes the form:
 \begin{align*}
@@ -64,8 +62,57 @@ Here, $\Theta(.)$ is the Heaviside step function, $\bar{F}_i$ are the normalised
     \item $\gamma_e = \gamma_\mu = \gamma_\text{jet} = 2$, $\gamma_\tau = 0.5$.
 \end{itemize}
 
+\newpage
+\section{TaT: input features}\label{app:feats}
+Below, the input features are listed in the form of aliases. More detailed description and formal definition of each feature can be found in \cite{code:tauml, code:tatoo}.
 
-
+\begin{itemize}
+	\item Global features (HPS/\tauh candidate related):
+	\begin{itemize}
+		\item Particle properties: \textit{particle\_type (token identifier), tau\_pt, tau\_eta, tau\_mass, tau\_E\_over\_pt, tau\_charge.}
+			
+		\item Isolation variables: \textit{tau\_chargedIsoPtSum, tau\_chargedIsoPtSumdR03\_over\_dR05,tau\_footprintCorrection, tau\_neutralIsoPtSum, tau\_neutralIsoPtSumWeight\_over\_neutralIsoPtSum, tau\_neutralIsoPtSumWeightdR03\_over\_neutralIsoPtSum, tau\_neutralIsoPtSumdR03\_over\_dR05, tau\_photonPtSumOutsideSignalCone, tau\_puCorrPtSum.} 
+		
+		\item Secondary vertex features: \textit{tau\_hasSecondaryVertex, tau\_sv\_minus\_pv\_x, tau\_sv\_minus\_pv\_y, tau\_sv\_minus\_pv\_z, tau\_flightLength\_x, tau\_flightLength\_y, tau\_flightLength\_z, tau\_flightLength\_sig.}
+		
+		\item IP features: \textit{tau\_dxy\_valid, tau\_dxy, tau\_dxy\_sig, tau\_ip3d\_valid, tau\_ip3d, tau\_ip3d\_sig, tau\_dz\_sig\_valid, tau\_dz, tau\_dz\_sig.}
+	
+		\item Misc.: \textit{rho, tau\_n\_charged\_prongs, tau\_n\_neutral\_prongs, 
+		 tau\_pt\_weighted\_deta\_strip, tau\_pt\_weighted\_dphi\_strip, tau\_pt\_weighted\_dr\_signal, tau\_pt\_weighted\_dr\_iso, tau\_e\_ratio\_valid, tau\_e\_ratio, tau\_gj\_angle\_diff\_valid, tau\_gj\_angle\_diff, tau\_n\_photons, tau\_emFraction, tau\_inside\_ecal\_crack, tau\_leadingTrackNormChi2, tau\_leadChargedCand\_etaAtEcalEntrance\_minus\_tau\_eta}
+	\end{itemize}
+	\item PF candidates:
+	\begin{itemize}
+		\item Positional information (in $\eta-\phi$ plane): \textit{r, theta}.
+		\item Particle properties: \textit{rel\_pt, particle\_type (token identifier), charge}.
+		\item PV and impact parameter information: \textit{pvAssociationQuality, fromPV, vertex\_dx, vertex\_dy, vertex\_dz, vertex\_dx\_tauFL, vertex\_dy\_tauFL, vertex\_dz\_tauFL,  dxy, dxy\_sig, dz, dz\_sig}. 
+		\item Tracker information:  \textit{lostInnerHits, nPixelHits, hasTrackDetails, nHits, nPixelLayers, nStripLayers, track\_ndof, chi2\_ndof}.
+		\item  Calorimeter information: \textit{hcalFraction, rawCaloFraction, rawHcalFraction}. 
+		\item Misc.: \textit{tauLeadChargedHadrCand, puppiWeight}.
+	\end{itemize}
+	\item RECO electrons:
+	\begin{itemize}
+		\item Positional information (in $\eta-\phi$ plane): \textit{r, theta}.
+		\item Particle properties: \textit{rel\_pt, particle\_type (token identifier).}
+		
+		\item MVA variables: \textit{mvaInput\_earlyBrem, mvaInput\_lateBrem, mvaInput\_sigmaEtaEta, mvaInput\_hadEnergy, mvaInput\_deltaEta.}
+		
+		\item Track properties: \textit{rel\_trackMomentumAtVtx, rel\_trackMomentumAtCalo, rel\_trackMomentumOut, rel\_trackMomentumAtEleClus, rel\_trackMomentumAtVtxWithConstraint, gsfTrack\_normalizedChi2, gsfTrack\_numberOfValidHits, rel\_gsfTrack\_pt, gsfTrack\_pt\_sig, has\_closestCtfTrack, closestCtfTrack\_normalizedChi2, closestCtfTrack\_numberOfValidHits.}
+		
+		\item Cluster variables: \textit{cc\_valid, cc\_ele\_rel\_energy, cc\_gamma\_rel\_energy, cc\_n\_gamma, rel\_ecalEnergy, ecalEnergy\_sig, eSuperClusterOverP, eSeedClusterOverP, eSeedClusterOverPout, eEleClusterOverPout,
+		deltaEtaSuperClusterTrackAtVtx, deltaEtaSeedClusterTrackAtCalo, deltaEtaEleClusterTrackAtCalo,
+		deltaPhiEleClusterTrackAtCalo, deltaPhiSuperClusterTrackAtVtx, deltaPhiSeedClusterTrackAtCalo.}
+		
+		\item Shower shape variable: \textit{sigmaEtaEta, sigmaIetaIeta, sigmaIphiIphi, sigmaIetaIphi, e1x5, e2x5Max, e5x5, r9, hcalDepth1OverEcal, hcalDepth2OverEcal, hcalDepth1OverEcalBc, hcalDepth2OverEcalBc, eLeft, eRight, eBottom, eTop, full5x5\_sigmaEtaEta, full5x5\_sigmaIetaIeta, full5x5\_sigmaIphiIphi, full5x5\_sigmaIetaIphi, full5x5\_e1x5, full5x5\_e2x5Max, full5x5\_e5x5, full5x5\_r9, full5x5\_hcalDepth1OverEcal, full5x5\_hcalDepth2OverEcal, full5x5\_hcalDepth1OverEcalBc, full5x5\_hcalDepth2OverEcalBc, full5x5\_eLeft, full5x5\_eRight, full5x5\_eBottom, full5x5\_eTop, full5x5\_e2x5Left, full5x5\_e2x5Right, full5x5\_e2x5Bottom, full5x5\_e2x5Top.}
+	\end{itemize}
+	\item RECO muons:
+	\begin{itemize}
+		\item Positional information (in $\eta-\phi$ plane): \textit{r, theta.}
+		\item Particle properties:  \textit{rel\_pt, particle\_type (token identifier).}
+		\item Calorimeter information: 	\textit{segmentCompatibility, caloCompatibility, pfEcalEnergy\_valid, rel\_pfEcalEnergy.}
+		\item Track and impact parameter features: \textit{dxy, dxy\_sig, normalizedChi2\_valid, normalizedChi2, numberOfValidHits.}
+		\item Muon chambers information: \textit{n\_matches\_DT\_1, n\_matches\_DT\_2, n\_matches\_DT\_3, n\_matches\_DT\_4, n\_matches\_CSC\_1, n\_matches\_CSC\_2, n\_matches\_CSC\_3, n\_matches\_CSC\_4, n\_matches\_RPC\_1, n\_matches\_RPC\_2, n\_matches\_RPC\_3, n\_matches\_RPC\_4,  n\_hits\_DT\_1, n\_hits\_DT\_2, n\_hits\_DT\_3, n\_hits\_DT\_4, n\_hits\_CSC\_1, n\_hits\_CSC\_2, n\_hits\_CSC\_3, n\_hits\_CSC\_4, n\_hits\_RPC\_1, n\_hits\_RPC\_2, n\_hits\_RPC\_3, n\_hits\_RPC\_4.}
+	\end{itemize}
+\end{itemize}
 \newpage
 \section{TaT ablation study: impact of modalities}\label{app:tat-add}
 

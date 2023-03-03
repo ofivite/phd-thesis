@@ -18,7 +18,7 @@ A particle, being a small localised in space object with certain properties, is 
     
     \item \textbf{Electric charge} -- a quantum number which defines the behaviour of the particle in the electromagnetic field. Taking the positive/negative integer values, it categorises particle to be charged (charge does not equal to 0) or neutral (charge equals to 0).
     
-    \item \textbf{Mass} -- an intrinsic property of a body which measures its inertia to acceleration by a net force. In this work, the mass is measured in electronvolt (eV) units, where $1 \text{eV}/c^2 = 1.78266192 \cross 10^{-36} ~\text{kg}$ and $c = 299 792 458 ~m/s$ is a speed of light. Natural units are used throughout this work which set $c = h/(2\pi) = 1$, where $h$ is a Planck constant.  
+    \item \textbf{Mass} -- an intrinsic property of a body which measures its inertia to acceleration by a net force. In this work, the mass is measured in electronvolt (eV) units, where $1 \text{eV}/c^2 = 1.78266192 \cross 10^{-36} ~\text{kg}$ and $c = 299 792 458 ~m/s$ is a speed of light. Natural units are used throughout this work which set $c = h/(2\pi) = 1$, where $h$ is the Planck constant.  
 \end{itemize}
 
 \begin{figure}[h!]
@@ -43,7 +43,7 @@ The notion of interaction and force is at the very core of the Standard Model, a
 \section{Formulation}\label{sec:lagr}
 
 \subsection{Introduction}\label{sec:lagr-intro}
-The Standard Model is a relativistic Quantum Field Theory (QFT) describing dynamics of particles moving at the speed close to the speed of light. It is built upon the notion of \textit{symmetry}, which in this particular case refers to the invariance of physical processes under a certain type of transformations. The transformations are formalised using the language of a group theory. The latter introduces a mathematical concept of a \textit{group} -- a set of elements $G$ and an operation on this set which maps two elements of the set to another element in the set. The group should also satisfy three axioms: associativity, existence of the identify element, and existence of the inverse element.
+The Standard Model is a relativistic Quantum Field Theory (QFT) describing dynamics of particles moving at the speed close to the speed of light. It is built upon the notion of \textit{symmetry}, which in this particular case refers to the invariance of physical processes under a certain type of transformations. The transformations are formalised using the language of group theory. The latter introduces a mathematical concept of a \textit{group} -- a set of elements $G$ and an operation on this set which maps two elements of the set to another element in the set. The group should also satisfy three axioms: associativity, existence of the identify element, and existence of the inverse element.
 
 For example, one of the most fundamental symmetries which the Standard model should satisfy is the \textit{Lorentz symmetry}. In particular, the theory should be build in a Lorentz-covariant way, so that physical quantities transform accordingly under a given representation of the Lorentz group (indefinite orthogonal group O(1,3)) -- i.e. as quantities composed of scalars, four-vectors, four-tensors, and spinors. This allows to properly account for the relativistic nature of particles in a consistent way with the special theory of relativity. 
 
@@ -188,7 +188,7 @@ Later on, both $W^\pm$ and $Z$ boson properties were measured at the Large Elect
 
 \subsubsection{Quantum Chromodynamics}
 
-One more piece of the puzzle which has not been mentioned so far is the theory describing the strong interaction. This theory is called \textit{Quantum Chromodynamics} (QCD) and it describes the interaction between quarks. The motivation for a dedicated theoretical foundation is that experimentally the quarks have not been found in a free state contrary to leptons. Instead, they are confined within bound states of quark-antiquark pairs $q_i\bar{q_j}$ (called \textit{mesons}), quark triplets $q_iq_jq_k$ (caled \textit{barions}), tetraquarks $q_i\bar{q}_iQ_j\bar{Q}_j$, and pentaquarks $q_iq_jq_kq_l\bar{q}_m$, where $i,j,k,l,m$ refers to different quark flavours. Mesons and barions are collectively called hadrons. These states are colour singlets, where the colour $C$ is a charge introduced by the \suthr group. As of now, six quarks have been discovered: up ($u$), down ($d$), charm ($c$), strange ($s$), top ($t$), bottom ($b$).
+One more piece of the puzzle which has not been mentioned so far is the theory describing the strong interaction. This theory is called \textit{Quantum Chromodynamics} (QCD) and it describes the interaction between quarks. The motivation for a dedicated theoretical foundation is that experimentally the quarks have not been found in a free state contrary to leptons. Instead, they are confined within bound states of quark-antiquark pairs $q_i\bar{q_j}$ (called \textit{mesons}), quark triplets $q_iq_jq_k$ (called \textit{baryons}), tetraquarks $q_i\bar{q}_iQ_j\bar{Q}_j$, and pentaquarks $q_iq_jq_kq_l\bar{q}_m$, where $i,j,k,l,m$ refers to different quark flavours. Mesons and baryons are collectively called hadrons. These states are colour singlets, where the colour $C$ is a charge introduced by the \suthr group. As of now, six quarks have been discovered: up ($u$), down ($d$), charm ($c$), strange ($s$), top ($t$), bottom ($b$).
 
 Another consequence of the theory, similarly to the EWK case, was the appearance of the gauge bosons associated to the group -- gluons. These are the mediators of the strong force which is responsible for formation of quark bound states. Experimentally, gluons were discovered at the electron-positron collider PETRA at DESY in three-jet events \cite{Barber:1979yr}. The jet is a cone of particles produced after the hadronisation (hadron formation) of a quark or a gluon. In this search, two jets would be initiated by two quarks appearing from the lepton annihilation, while one jet would be initiated by the gluon radiated from one of the quarks.  
 
@@ -197,7 +197,7 @@ Theoretically, gluons are introduced by the covariant derivative corresponding t
     D_\mu = \partial_\mu - ig_s\dfrac{\lambda_a}{2}G_\mu^a.
 \end{equation}
 
-Here, $G_\mu^a$ are the gluon fields with the index $a=1..8$, $\lambda_a$ are the Gell-Mann matrices, $g_s$ is the gauge constant of the \suthr group. These terms from the covariant derivative are then added to the covariant derivatives in the quark terms of the EWK Lagrangian (\ref{eq:lagr-ewk-0}). Lastly, a kinetic term for the gluons also have to be introduced:
+Here, $G_\mu^a$ are the gluon fields with the index $a=1..8$, $\lambda_a$ are the Gell-Mann matrices, $g_s$ is the gauge constant of the \suthr group. These terms from the covariant derivative are then added to the covariant derivatives in the quark terms of the EWK Lagrangian (\ref{eq:lagr-ewk-0}). Lastly, a kinetic term for the gluons also has to be introduced:
 
 \begin{align}
     &L_k^\text{QCD} = -\dfrac{1}{4}G_{\mu\nu}^aG^{\mu\nu}_a\\
@@ -323,7 +323,7 @@ Although the properties of the newly observed particle were reasonably consisten
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.99\textwidth]{Figures/SM/h-int.png}
-    \caption{Feynman diagrams for the leading Higgs boson interactions: single Higgs boson production modes (top left), Higgs boson decay channels (top right), and Higgs boson pair production modes (bottom) \cite{Mulders:2019vhb}.}
+    \caption{Feynman diagrams for the leading Higgs boson interactions: single Higgs boson production modes (top left), Higgs boson decay channels (top right), and Higgs boson pair production modes (bottom) \cite{CMS:2022dwd}.}
     \label{fig:h-int}
 \end{figure}
 
